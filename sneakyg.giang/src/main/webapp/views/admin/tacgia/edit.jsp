@@ -48,7 +48,7 @@
 											<span> <i class="fa fa-check "></i>
 											</span>
 										</button>
-										<a href="<c:url value='/admin-tacgia?type=list'/>"
+										<a href="<c:url value='/admin-tacgia?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenTG&sortBy=asc'/>"
 											class="dt-button buttons-html5 btn btn-white btn-primary btn-bold"
 											style="margin-left: 10px" data-toggle="tooltip"
 											title='Thoát'>

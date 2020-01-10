@@ -35,7 +35,7 @@
 						<li class="nav-item"><a href="<c:url value = '/admin-sach'/>" class="nav-link">
 								<p>Quản lý sách</p>
 						</a></li>
-						<li class="nav-item"><a href="<c:url value = '/admin-tacgia?type=list&page=1&maxPageItem=5&sortName=tenTG&sortBy=asc'/>" class="nav-link">
+						<li class="nav-item"><a href="<c:url value = '/admin-tacgia?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenTG&sortBy=asc'/>" class="nav-link">
 								<p>Quản lý tác giả</p>
 						</a></li>
 					</ul></li>

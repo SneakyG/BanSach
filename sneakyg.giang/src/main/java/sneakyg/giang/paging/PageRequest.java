@@ -44,4 +44,9 @@ public class PageRequest implements IPageble {
 		this.sorter = sorter;
 	}
 
+	@Override
+	public void setPage(int page) {
+		this.page = page;
+	}
+
 }

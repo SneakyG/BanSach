@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class KhachHang {
 
-	protected int id;
+	protected Integer id;
 	protected String ten;
 	protected String email;
 	protected String sdt;
@@ -14,6 +14,12 @@ public class KhachHang {
 	protected int maTaiKhoan;
 	protected TaiKhoan tk = new TaiKhoan();
 	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public TaiKhoan getTk() {
 		return tk;
 	}
@@ -25,12 +31,6 @@ public class KhachHang {
 	}
 	public void setMaTaiKhoan(int maTaiKhoan) {
 		this.maTaiKhoan = maTaiKhoan;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	public String getTen() {
 		return ten;

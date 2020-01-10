@@ -9,18 +9,21 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import sneakyg.giang.dao.interfaces.ICommonDAO;
 import sneakyg.giang.mapper.IRowMapper;
 
 public class CommonDAO<T> implements ICommonDAO<T> {
+	
+	ResourceBundle resource = ResourceBundle.getBundle("db");
 
 	public Connection getConnection() {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/bookstore";
-			String user = "root";
-			String password = "1234";
+			Class.forName(resource.getString("driverName"));
+			String url = resource.getString("url");
+			String user = resource.getString("user");
+			String password = resource.getString("password");
 			return DriverManager.getConnection(url, user, password);
 		} catch (ClassNotFoundException | SQLException e) {
 			return null;

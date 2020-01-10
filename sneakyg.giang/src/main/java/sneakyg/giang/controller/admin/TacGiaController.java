@@ -33,6 +33,9 @@ public class TacGiaController extends HttpServlet {
 		if (model.getType().equals(SystemConstant.LIST)) {
 			IPageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
 					new Sorter(model.getSortName(), model.getSortBy()));
+			if(model.getTextSearch() != null) {
+				model.setListResult(tacGiaService.search(model.getTextSearch()));
+			}
 			model.setListResult(tacGiaService.findAll(pageble,model.getTextSearch()));
 			model.setTotalItem(tacGiaService.getTotalItem(model.getTextSearch()));
 			model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));

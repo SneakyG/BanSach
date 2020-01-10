@@ -32,7 +32,7 @@
 			<!-- /.container-fluid -->
 		</section>
 		<section class="content">
-			<form action="<c:url value = '/admin-tacgia'/>" id="formSubmit" method="get">
+			<form action="<c:url value = '/admin-tacgia'/>" id="formSubmit" method="get" onsubmit="DoSubmit();">
 				<div class="row">
 					<div class="col-12">
 						<div class="card">
@@ -98,8 +98,16 @@
 														</tr>
 													</tfoot>
 												</table>
+												<%-- <c:if test="${not empty model.textSearch}">
+													<ul class="pagination" id="pagination2"></ul>
+													<input type="hidden" value="1" id="page" name="page" /> 
+												</c:if>
+												<c:if test="${empty model.textSearch }">
+													<ul class="pagination" id="pagination1"></ul>
+													<input type="hidden" value="${model.page}" id="page" name="page" /> 
+												</c:if> --%>
 												<ul class="pagination" id="pagination"></ul>
-												<input type="hidden" value="${model.page}" id="page" name="page" /> 
+												<input type="hidden" value="${model.page}" id="page" name="page" />
 												<input type="hidden" value="${model.maxPageItem}" id="maxPageItem" name="maxPageItem" />
 												<input type="hidden" value="${model.sortName}" id="sortName" name="sortName" />
 												<input type="hidden" value="${model.sortBy}" id="sortBy" name="sortBy" />
@@ -118,6 +126,11 @@
 		var totalPage = ${model.totalPage};
 		var currentPage = ${model.page};
 		var limit = 5;
+		function DoSubmit() {
+			if(($('#textSearch').val()+"") != (${model.textSearch}+"")){
+				$('#page').val(1);
+			}
+		}
 		$(function () {
 				window.pagObj = $('#pagination').twbsPagination({
 					totalPages: totalPage,

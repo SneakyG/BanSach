@@ -16,8 +16,8 @@
 <!-- Theme style -->
 <link rel="stylesheet"
 	href="<c:url value = '/template/admin/dist/css/adminlte.min.css'/>">
-<link rel="stylesheet"
-	href="<c:url value = '/template/admin/plugins/datables-bs4/css/dataTables.bootstrap4.min.css'/>">
+<%-- <link rel="stylesheet"
+	href="<c:url value = '/template/admin/plugins/datables-bs4/css/dataTables.bootstrap4.min.css'/>"> --%>
 <!-- Google Font: Source Sans Pro -->
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
