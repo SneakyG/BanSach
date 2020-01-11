@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<c:url var="dangnhap"  value="/dangnhap" />
+<%@include file="/common/taglibs.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,23 +24,27 @@
 				printing and typesetting industry. Lorem</p> -->
 
 			<div class="form" align="center">
-			
-				<form action="${dangnhap}" id='formLogin'
+
+				<form action="<c:url value = '/dang-nhap'/>" id='formLogin'
 					method='post'>
 					<div class="col">
+					<c:if test="${not empty message}">
+						<div class="alert alert-${alert}">
+							${message}
+						</div>
+					</c:if>
 						<div class="col-md-4">
-							<input placeholder="Tên đăng nhập" id="tenTaiKhoan" name="tenTaiKhoan"
-								required>
+							<input placeholder="Tên đăng nhập" id="tenTaiKhoan"
+								name="tenTaiKhoan" required>
 						</div>
 						<div class="col-md-4">
 							<input type="password" placeholder="Mật khẩu" id="matKhau"
 								name="matKhau" required>
 						</div>
 						<div class="col-md-3">
-						<button type="submit" class="btn black">Đăng
-							nhập</button>
+							<button type="submit" class="btn black">Đăng nhập</button>
 						</div>
-		
+
 						<input type="hidden" value="login" name="action" />
 					</div>
 				</form>

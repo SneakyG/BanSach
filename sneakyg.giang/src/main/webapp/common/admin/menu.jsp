@@ -38,6 +38,9 @@
 						<li class="nav-item"><a href="<c:url value = '/admin-tacgia?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenTG&sortBy=asc'/>" class="nav-link">
 								<p>Quản lý tác giả</p>
 						</a></li>
+						<li class="nav-item"><a href="<c:url value = '/admin-nhaxuatban?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenNXB&sortBy=asc'/>" class="nav-link">
+								<p>Quản lý nhà xuất bản</p>
+						</a></li>
 					</ul></li>
 				<li class="nav-item"><a href="#" class="nav-link"> <i
 						class="nav-icon fas fa-th"></i>

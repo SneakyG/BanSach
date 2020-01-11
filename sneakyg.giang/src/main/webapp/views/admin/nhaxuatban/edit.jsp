@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglibs.jsp"%>
-<c:url var="editurl" value="/admin-tacgia" />
-<c:url var="APIurl" value="/api-admin-tacgia" />
+<c:url var="editurl" value="/admin-nhaxuatban" />
+<c:url var="APIurl" value="/api-admin-nhaxuatban" />
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8">
-<title>Sửa tác giả</title>
+<title>Nhà xuất bản</title>
 </head>
 
 <body>
@@ -17,12 +17,12 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1>Tác giả</h1>
+						<h1>Nhà xuất bản</h1>
 					</div>
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
 							<li class="breadcrumb-item"><a href="#">Home</a></li>
-							<li class="breadcrumb-item active">Tác giả</li>
+							<li class="breadcrumb-item active">Nhà xuất bản</li>
 						</ol>
 					</div>
 				</div>
@@ -36,19 +36,22 @@
 						<div class="card-body">
 							<form id="formSubmit">
 								<div class="form-group">
-									<label for="exampleInputEmail1">Tên tác giả</label> <input
-										type="text" class="form-control" id="tenTG" name="tenTG"
-										value="${model.tenTG}">
+									<label>Tên nhà xuất bản</label> 
+									<input type="text" class="form-control" id="tenNXB" name="tenNXB"
+										value="${model.tenNXB}">
+									<label>Số điện thoại</label> 
+									<input type="text" class="form-control" id="sdt" name="sdt"
+										value="${model.sdt}">
 								</div>
 								<div align="center">
 									<div class="dt-buttons btn-overlap btn-group">
-										<button id="btnXacNhan" type="button"
+										<button id="btnXacNhan" type="submit"
 											class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
 											data-toggle="tooltip" title='Sửa'>
 											<span> <i class="fa fa-check "></i>
 											</span>
 										</button>
-										<a href="<c:url value='/admin-tacgia?type=list'/>"
+										<a href="${editurl}?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenNXB&sortBy=asc"
 											class="dt-button buttons-html5 btn btn-white btn-primary btn-bold"
 											style="margin-left: 10px" data-toggle="tooltip"
 											title='Thoát'>
@@ -78,13 +81,13 @@
 				});
 				var id = $("#id").val();
 				if (id == "") {
-					createTacGia(data);
+					createNhaXuatBan(data);
 				} else {
-					updateTacGia(data);
+					updateNhaXuatBan(data);
 				}
 			});
 
-			function updateTacGia(data) {
+			function updateNhaXuatBan(data) {
 				$.ajax({
 					url : '${APIurl}',
 					type : 'PUT',
@@ -92,14 +95,14 @@
 					data : JSON.stringify(data),
 					dataType : 'json',
 					success : function(result) {
-						window.location.href = "${editurl}?type=list";
+						window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=tenNXB&sortBy=asc";
 					},
 					error : function(error) {
 						console.log(error);
 					}
 				});
 			}
-			function createTacGia(data) {
+			function createNhaXuatBan(data) {
 				$.ajax({
 					url : '${APIurl}',
 					type : 'POST',
@@ -107,7 +110,7 @@
 					data : JSON.stringify(data),
 					dataType : 'json',
 					success : function(result) {
-						window.location.href = "${editurl}?type=list";
+						window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=tenNXB&sortBy=asc";
 					},
 					error : function(error) {
 						console.log(error);

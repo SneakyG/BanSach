@@ -18,9 +18,13 @@ public class KhachHangMapper implements IRowMapper<KhachHang> {
 			kh.setSdt(resultSet.getString("sdt"));
 			kh.setDiaChi(resultSet.getString("diachi"));
 			kh.setCmnd(resultSet.getString("cmnd"));
-			TaiKhoan tk = new TaiKhoan();
-			tk.setMatKhau(resultSet.getString("matkhau"));
-			kh.setTk(tk);
+			try {
+				TaiKhoan tk = new TaiKhoan();
+				tk.setMatKhau(resultSet.getString("matkhau"));
+				kh.setTk(tk);
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
 			return kh;
 		} catch (SQLException e) {
 			return null;

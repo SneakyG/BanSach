@@ -38,7 +38,7 @@ public class TacGiaDAO extends CommonDAO<TacGia> implements ITacGiaDAO {
 	public List<TacGia> findAll(IPageble pageble, String textSearch) {
 		StringBuilder sql = new StringBuilder("SELECT * FROM tacgia");
 		if (textSearch != null) {
-			sql.append(" WHERE tenTG like '%" + textSearch + "%' or id like '%" + textSearch + "%'");
+			sql.append(" WHERE tenTG like '%" + textSearch + "%'");
 		}
 		if (pageble.getSorter() != null) {
 			sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy());
@@ -54,14 +54,14 @@ public class TacGiaDAO extends CommonDAO<TacGia> implements ITacGiaDAO {
 	public int getTotalItem(String textSearch) {
 		StringBuilder sql = new StringBuilder("SELECT count(*) from tacgia");
 		if (textSearch != null) {
-			sql.append(" WHERE tenTG like '%" + textSearch + "%' or id like '%" + textSearch + "%'");
+			sql.append(" WHERE tenTG like '%" + textSearch + "%'");
 		}
 		return count(sql.toString());
 	}
 
 	@Override
 	public List<TacGia> search(String textSearch) {
-		String sql = "SELECT * FROM tacgia WHERE tenTG like '%" + textSearch + "%' or id like '%" + textSearch + "%'";
+		String sql = "SELECT * FROM tacgia WHERE tenTG like '%" + textSearch + "%'";
 		return query(sql, new TacGiaMapper());
 	}
 

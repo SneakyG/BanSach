@@ -10,15 +10,21 @@ import sneakyg.giang.paging.IPageble;
 public class NhaXuatBanDAO extends CommonDAO<NhaXuatBan> implements INhaXuatBanDAO{
 
 	@Override
-	public List<NhaXuatBan> findAll(IPageble pageble) {
-		StringBuilder sql = new StringBuilder("SELECT * FROM nhaxuatban");
-		if(pageble.getSorter().getSortBy() != null && pageble.getSorter().getSortName() != null) {
-			sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy());
-		}
-		if(pageble.getLimit() != 0) {
-			sql.append(" LIMIT " + pageble.getOffSet() + ", " + pageble.getLimit());
-		}
-		return query(sql.toString(), new NhaXuatBanMapper());
+	public int save(NhaXuatBan nxb) {
+		String sql = "INSERT INTO nhaxuatban(tennxb,sdt) VALUES(?,?)";
+		return insert(sql, nxb.getTenNXB(),nxb.getSdt());
+	}
+
+	@Override
+	public void update(NhaXuatBan nxb) {
+		String sql = "UPDATE nhaxuatban SET tennxb = ?, sdt=? WHERE id = ?";
+		update(sql, nxb.getTenNXB(),nxb.getSdt(), nxb.getId());
+	}
+
+	@Override
+	public void delete(int id) {
+		String sql = "DELETE FROM nhaxuatban WHERE id = ?";
+		update(sql, id);
 	}
 
 	@Override
@@ -29,32 +35,33 @@ public class NhaXuatBanDAO extends CommonDAO<NhaXuatBan> implements INhaXuatBanD
 	}
 
 	@Override
-	public int save(NhaXuatBan nxb) {
-		StringBuilder sql = new StringBuilder("INSERT INTO nhaxuatban(tennxb,sdt) VALUES(?,?)");
-		return insert(sql.toString(), nxb.getTenNXB(),nxb.getSdt());
+	public List<NhaXuatBan> findAll(IPageble pageble, String textSearch) {
+		StringBuilder sql = new StringBuilder("SELECT * FROM nhaxuatban");
+		if (textSearch != null) {
+			sql.append(" WHERE tennxb like '%" + textSearch + "%' or sdt like '%" + textSearch + "%'");
+		}
+		if (pageble.getSorter() != null) {
+			sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy());
+		}
+		if (pageble.getLimit() != 0) {
+			sql.append(" LIMIT " + pageble.getOffSet() + "," + pageble.getLimit());
+		}
+		List<NhaXuatBan> ds = query(sql.toString(), new NhaXuatBanMapper());
+		return ds;
 	}
 
 	@Override
-	public void update(NhaXuatBan nxb) {
-		String sql = "UPDATE nhaxuatban SET tennxb = ?, sdt = ? WHERE id = ?";
-		update(sql, nxb.getTenNXB(),nxb.getSdt(),nxb.getId());
-	}
-
-	@Override
-	public void delete(int id) {
-		String sql = "DELETE FROM nhaxuatban WHERE id = ?";
-		update(sql, id);
-	}
-
-	@Override
-	public int getTotalItem() {
-		String sql = "SELECT count(*) FROM nhaxuatban";
-		return count(sql);
+	public int getTotalItem(String textSearch) {
+		StringBuilder sql = new StringBuilder("SELECT count(*) from nhaxuatban");
+		if (textSearch != null) {
+			sql.append(" WHERE tennxb like '%" + textSearch + "%' or sdt like '%" + textSearch + "%'");
+		}
+		return count(sql.toString());
 	}
 
 	@Override
 	public List<NhaXuatBan> search(String textSearch) {
-		String sql = "SELECT * FROM nhaxuatban WHERE tennxb LIKE '%" + textSearch + "%'or sdt LIKE '%" + textSearch + "%";
+		String sql = "SELECT * FROM nhaxuatban WHERE tennxb like '%" + textSearch + "%' or sdt like '%" + textSearch + "%'";
 		return query(sql, new NhaXuatBanMapper());
 	}
 

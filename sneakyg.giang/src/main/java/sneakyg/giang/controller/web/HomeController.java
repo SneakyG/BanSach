@@ -1,6 +1,7 @@
 package sneakyg.giang.controller.web;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -20,6 +21,8 @@ public class HomeController extends HttpServlet {
 
 	private static final long serialVersionUID = 3868379978025734446L;
 
+	ResourceBundle resource = ResourceBundle.getBundle("message");
+	
 	@Inject
 	private ITaiKhoanService taiKhoanService;
 
@@ -28,6 +31,12 @@ public class HomeController extends HttpServlet {
 		String action = req.getParameter("action");
 		if (action != null) {
 			if (action.equals("login")) {
+				String message = req.getParameter("message");
+				String alert = req.getParameter("alert");
+				if(message != null && alert != null) {
+					req.setAttribute("message", resource.getString(message));
+					req.setAttribute("alert", alert);
+				}
 				RequestDispatcher rd = req.getRequestDispatcher("/views/login.jsp");
 				rd.forward(req, resp);
 			} else if (action.equals("logout")) {
@@ -57,7 +66,7 @@ public class HomeController extends HttpServlet {
 					resp.sendRedirect(req.getContextPath() + "/admin-home");
 				}
 			} else {
-				resp.sendRedirect(req.getContextPath() + "/dang-nhap?action=login");
+				resp.sendRedirect(req.getContextPath() + "/dang-nhap?action=login&message=username-password-invalid&alert=danger");
 			}
 		}
 	}

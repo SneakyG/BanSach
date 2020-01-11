@@ -32,7 +32,7 @@
 			<!-- /.container-fluid -->
 		</section>
 		<section class="content">
-			<form action="<c:url value = '/admin-tacgia'/>" id="formSubmit" method="get" onsubmit="DoSubmit();">
+			<form action="${LISTurl}" id="formSubmit" method="get" onsubmit="DoSubmit();">
 				<div class="row">
 					<div class="col-12">
 						<div class="card">
@@ -47,7 +47,7 @@
 										<div class="dt-buttons btn-overlap btn-group">
 											<a class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
 												data-toggle="tooltip" title='Thêm'
-												href='<c:url value="/admin-tacgia?type=edit"/>'> <span>
+												href="${LISTurl}?type=edit"> <span>
 													<i class="fa fa-plus-circle bigger-110 purple"></i>
 												</span>
 											</a>
@@ -98,20 +98,11 @@
 														</tr>
 													</tfoot>
 												</table>
-												<%-- <c:if test="${not empty model.textSearch}">
-													<ul class="pagination" id="pagination2"></ul>
-													<input type="hidden" value="1" id="page" name="page" /> 
-												</c:if>
-												<c:if test="${empty model.textSearch }">
-													<ul class="pagination" id="pagination1"></ul>
-													<input type="hidden" value="${model.page}" id="page" name="page" /> 
-												</c:if> --%>
 												<ul class="pagination" id="pagination"></ul>
 												<input type="hidden" value="${model.page}" id="page" name="page" />
 												<input type="hidden" value="${model.maxPageItem}" id="maxPageItem" name="maxPageItem" />
 												<input type="hidden" value="${model.sortName}" id="sortName" name="sortName" />
 												<input type="hidden" value="${model.sortBy}" id="sortBy" name="sortBy" />
-												<!-- <input type="hidden" value="list" id="type" name="type" /> -->
 											</div>
 										</div>
 								</div>
@@ -127,7 +118,7 @@
 		var currentPage = ${model.page};
 		var limit = 5;
 		function DoSubmit() {
-			if(($('#textSearch').val()+"") != (${model.textSearch}+"")){
+			if($('#textSearch').val()+"" != ${model.textSearch}+""){
 				$('#page').val(1);
 			}
 		}
@@ -142,7 +133,6 @@
 							$('#maxPageItem').val(limit);
 							$('#sortName').val('tenTG');
 							$('#sortBy').val('asc');
-							// $('#type').val('list');
 							$('#formSubmit').submit();
 						}
 					}

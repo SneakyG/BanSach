@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sneakyg.giang.model.KhachHang;
-import sneakyg.giang.model.TaiKhoan;
 import sneakyg.giang.utils.SessionUtil;
 
 public class Authorization implements Filter{
 
+	@SuppressWarnings("unused")
 	private ServletContext context;
 	
 	@Override
@@ -38,10 +38,10 @@ public class Authorization implements Filter{
 				if(model.getTk().getCv().getTenCode().equals("quan-ly")) {
 					chain.doFilter(req, resp);
 				}else if(model.getTk().getCv().getTenCode().equals("khach-hang")) {
-					resp.sendRedirect(req.getContextPath() + "/trang-chu");
+					resp.sendRedirect(req.getContextPath() + "/dang-nhap?action=login&message=no-permission&alert=warning");
 				}
 			}else {
-				resp.sendRedirect(req.getContextPath() + "/trang-chu");
+				resp.sendRedirect(req.getContextPath() + "/dang-nhap?action=login&message=not-login&alert=warning");
 			}
 		}else {
 			chain.doFilter(req, resp);
