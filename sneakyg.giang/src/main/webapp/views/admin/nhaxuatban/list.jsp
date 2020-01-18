@@ -85,7 +85,7 @@
 																		<c:param name="type" value="edit" />
 																		<c:param name="id" value="${item.id}" />
 																	</c:url> <a class="btn btn-sm btn-primary btn-edit"
-																		data-toggle="tooltip" title="Cập nhật bài viết"
+																		data-toggle="tooltip" title="Cập nhật"
 																		href="${editUrl}"><i class="fa fa-edit"
 																			aria-hidden="true"></i> </a>
 																</td>

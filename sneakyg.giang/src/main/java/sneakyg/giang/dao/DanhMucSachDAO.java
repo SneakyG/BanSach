@@ -1,69 +1,68 @@
 package sneakyg.giang.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import sneakyg.giang.dao.interfaces.IDanhMucSachDAO;
+import sneakyg.giang.mapper.DanhMucSachMapper;
 import sneakyg.giang.model.DanhMucSach;
+import sneakyg.giang.paging.IPageble;
 
-public class DanhMucSachDAO implements IDanhMucSachDAO {
+public class DanhMucSachDAO extends CommonDAO<DanhMucSach>implements IDanhMucSachDAO {
 
-	public Connection getConnection() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/bookstore";
-			String user = "root";
-			String password = "1234";
-			return DriverManager.getConnection(url, user, password);
-		} catch (ClassNotFoundException | SQLException e) {
-			return null;
+	@Override
+	public List<DanhMucSach> findAll(IPageble pageble, String textSearch) {
+		StringBuilder sql = new StringBuilder("SELECT * FROM danhmucsach");
+		if (textSearch != null) {
+			sql.append(" WHERE tendanhmuc like '%" + textSearch + "%' or tenCode like '%" + textSearch + "%'");
 		}
+		if (pageble.getSorter() != null) {
+			sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy());
+		}
+		if (pageble.getLimit() != 0) {
+			sql.append(" LIMIT " + pageble.getOffSet() + "," + pageble.getLimit());
+		}
+		List<DanhMucSach> ds = query(sql.toString(), new DanhMucSachMapper());
+		return ds;
 	}
 
 	@Override
-	public List<DanhMucSach> findAll() {
-		List<DanhMucSach> results = new ArrayList<>();
-		String sql = "SELECT * FROM danhmucsach";
-		Connection conn = getConnection();
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
-		if (conn != null) {
-			try {
-				statement = conn.prepareStatement(sql);
-				resultSet = statement.executeQuery();
-				while (resultSet.next()) {
-					DanhMucSach ds = new DanhMucSach();
-					ds.setId(resultSet.getInt("id"));
-					ds.setTenCode(resultSet.getString("tencode"));
-					ds.setTenDanhMuc(resultSet.getString("tendanhmuc"));
-					results.add(ds);
-				}
-				return results;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					if (conn != null) {
-						conn.close();
-					}
-					if (statement != null) {
-						statement.close();
-					}
-					if (resultSet != null) {
-						resultSet.close();
-					}
-				} catch (SQLException e) {
-					return null;
-				}
+	public DanhMucSach findOne(int id) {
+		String sql = "SELECT * FROM danhmucsach WHERE id = ?";
+		List<DanhMucSach> ds = query(sql, new DanhMucSachMapper(), id);
+		return ds.isEmpty() ? null : ds.get(0);
+	}
 
-			}
+	@Override
+	public int save(DanhMucSach dms) {
+		String sql = "INSERT INTO danhmucsach(tendanhmuc,tencode) VALUES(?,?)";
+		return insert(sql, dms.getTenDanhMuc(),dms.getTenCode());
+	}
+
+	@Override
+	public void update(DanhMucSach dms) {
+		String sql = "UPDATE danhmucsach SET tendanhmuc = ?, tencode = ? WHERE id = ?";
+		update(sql, dms.getTenDanhMuc(),dms.getTenCode(), dms.getId());
+	}
+
+	@Override
+	public void delete(int id) {
+		String sql = "DELETE FROM danhmucsach WHERE id = ?";
+		update(sql, id);
+	}
+
+	@Override
+	public int getTotalItem(String textSearch) {
+		StringBuilder sql = new StringBuilder("SELECT count(*) from danhmucsach");
+		if (textSearch != null) {
+			sql.append(" WHERE tendanhmuc like '%" + textSearch + "%' or tenCode like '%" + textSearch + "%'");
 		}
-		return null;
+		return count(sql.toString());
+	}
+
+	@Override
+	public List<DanhMucSach> search(String textSearch) {
+		String sql = "SELECT * FROM danhmucsach WHERE tendanhmuc like '%" + textSearch + "%' or tenCode like '%" + textSearch + "%'";
+		return query(sql, new DanhMucSachMapper());
 	}
 
 }

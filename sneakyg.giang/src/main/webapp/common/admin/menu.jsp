@@ -41,6 +41,12 @@
 						<li class="nav-item"><a href="<c:url value = '/admin-nhaxuatban?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenNXB&sortBy=asc'/>" class="nav-link">
 								<p>Quản lý nhà xuất bản</p>
 						</a></li>
+						<li class="nav-item"><a href="<c:url value = '/admin-chucvu?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenCV&sortBy=asc'/>" class="nav-link">
+								<p>Quản lý chức vụ</p>
+						</a></li>
+						<li class="nav-item"><a href="<c:url value = '/admin-danhmucsach?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenDanhMuc&sortBy=asc'/>" class="nav-link">
+								<p>Quản lý danh mục sách</p>
+						</a></li>
 					</ul></li>
 				<li class="nav-item"><a href="#" class="nav-link"> <i
 						class="nav-icon fas fa-th"></i>

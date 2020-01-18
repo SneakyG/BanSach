@@ -20,15 +20,15 @@ public class NhaXuatBanService implements INhaXuatBanService {
 	}
 
 	@Override
-	public NhaXuatBan save(NhaXuatBan tg) {
-		int newID = nhaxuatbanDAO.save(tg);
+	public NhaXuatBan save(NhaXuatBan nxb) {
+		int newID = nhaxuatbanDAO.save(nxb);
 		return nhaxuatbanDAO.findOne(newID);
 	}
 
 	@Override
-	public NhaXuatBan update(NhaXuatBan tg) {
-		nhaxuatbanDAO.update(tg);
-		return nhaxuatbanDAO.findOne(tg.getId());
+	public NhaXuatBan update(NhaXuatBan nxb) {
+		nhaxuatbanDAO.update(nxb);
+		return nhaxuatbanDAO.findOne(nxb.getId());
 	}
 
 	@Override

@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglibs.jsp"%>
-<c:url var="APIurl" value="/api-admin-tacgia" />
-<c:url var="LISTurl" value="/admin-tacgia" />
+<c:url var="APIurl" value="/api-admin-chucvu" />
+<c:url var="LISTurl" value="/admin-chucvu" />
 <!DOCTYPE html>
 <html>
 
 <head>
 
 	<meta charset="UTF-8">
-	<title>Tác Giả</title>
+	<title>Nhà xuất bản</title>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 </head>
 
@@ -19,12 +19,12 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1>Tác giả</h1>
+						<h1>Chức vụ</h1>
 					</div>
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
 							<li class="breadcrumb-item"><a href="#">Home</a></li>
-							<li class="breadcrumb-item active">Tác giả</li>
+							<li class="breadcrumb-item active">Chức vụ</li>
 						</ol>
 					</div>
 				</div>
@@ -68,7 +68,8 @@
 													<thead>
 														<tr>
 															<th><input type="checkbox" id="checkAllHead"></th>
-															<th>Tên tác giả</th>
+															<th>Tên chức vụ</th>
+															<th>Mã tên chức vụ</th>
 															<th>Thao tác</th>
 														</tr>
 													</thead>
@@ -77,9 +78,10 @@
 															<tr>
 																<td><input type="checkbox" id="checkbox_${item.id}"
 																		value="${item.id}"></td>
-																<td>${item.tenTG}</td>
+																<td>${item.tenCV}</td>
+																<td>${item.tenCode}</td>
 																<td>
-																	<c:url var="editUrl" value="/admin-tacgia">
+																	<c:url var="editUrl" value="/admin-chucvu">
 																		<c:param name="type" value="edit" />
 																		<c:param name="id" value="${item.id}" />
 																	</c:url> <a class="btn btn-sm btn-primary btn-edit"
@@ -93,7 +95,8 @@
 													<tfoot>
 														<tr>
 															<th><input type="checkbox" id="checkAllFoot"></th>
-															<th>Tên tác giả</th>
+															<th>Tên chức vụ</th>
+															<th>Mã tên chức vụ</th>
 															<th>Thao tác</th>
 														</tr>
 													</tfoot>
@@ -118,7 +121,7 @@
 		var currentPage = ${model.page};
 		var limit = 5;
 		function DoSubmit() {
-			if($('#textSearch').val()+"" != ${model.textSearch}+""){
+			if($('#textSearch').val()+"" != (${model.textSearch}+"")){
 				$('#page').val(1);
 			}
 		}
@@ -131,7 +134,7 @@
 						if (currentPage != page) {
 							$('#page').val(page);
 							$('#maxPageItem').val(limit);
-							$('#sortName').val('tenTG');
+							$('#sortName').val('tenCV');
 							$('#sortBy').val('asc');
 							$('#formSubmit').submit();
 						}
@@ -152,10 +155,10 @@
 				return $(this).val();
 			}).get();
 			data['ids'] = ids;
-			deleteTacGia(data);
+			deleteChucVu(data);
 		});
 
-		function deleteTacGia(data) {
+		function deleteChucVu(data) {
 			$.ajax({
 				url: '${APIurl}',
 				type: 'DELETE',
@@ -163,7 +166,7 @@
 				data: JSON.stringify(data),
 				dataType: 'json',
 				success: function (result) {
-					window.location.href = "${LISTurl}?type=list&page=1&maxPageItem=5&sortName=tenTG&sortBy=asc";
+					window.location.href = "${LISTurl}?type=list&page=1&maxPageItem=5&sortName=tenCV&sortBy=asc";
 				},
 				error: function (error) {
 					console.log(error);

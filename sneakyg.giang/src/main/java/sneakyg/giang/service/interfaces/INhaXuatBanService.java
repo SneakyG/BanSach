@@ -13,9 +13,9 @@ public interface INhaXuatBanService {
 
 	NhaXuatBan findOne(int id);
 
-	NhaXuatBan save(NhaXuatBan tg);
+	NhaXuatBan save(NhaXuatBan nxb);
 
-	NhaXuatBan update(NhaXuatBan tg);
+	NhaXuatBan update(NhaXuatBan nxb);
 
 	void delete(Integer[] ids);
 
