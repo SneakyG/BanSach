@@ -1,0 +1,85 @@
+use bookstore;
+
+-- Danh mục sách --
+insert into danhmucsach(tencode,tendanhmuc) values("cntt","Sách công nghệ thông tin");
+insert into danhmucsach(tencode,tendanhmuc) values("ngoai-ngu","Sách ngoại ngữ");
+insert into danhmucsach(tencode,tendanhmuc) values("sgk","Sách giáo khoa");
+insert into danhmucsach(tencode,tendanhmuc) values("lich-su","Sách lịch sử");
+insert into danhmucsach(tencode,tendanhmuc) values("thieu-nhi","Sách thiếu nhi");
+insert into danhmucsach(tencode,tendanhmuc) values("van-hoc","Sách văn học");
+
+-- Chức vụ --
+insert into chucvu(tencode,tencv) values("khach-hang","Khách hàng");
+insert into chucvu(tencode,tencv) values("nhan-vien","Nhân viên");
+insert into chucvu(tencode,tencv) values("quan-ly","Quản lý");
+
+-- Nhà xuất bản --
+insert into nhaxuatban(tennxb,sdt) values("Nhà Xuất Bản Bách Khoa Hà Nội","024 3868 4569");
+insert into nhaxuatban(tennxb,sdt) values("Nhà Xuất Bản Thanh Niên","028 3930 5243");
+insert into nhaxuatban(tennxb,sdt) values("Nhà Xuất Bản Đại Học Quốc Gia Hà Nội","024 3971 4896");
+insert into nhaxuatban(tennxb,sdt) values("Nhà Xuất Bản Giáo Dục Việt Nam","028 3835 6111");
+insert into nhaxuatban(tennxb,sdt) values("Nhà Xuất Bản Tri Thức","");
+insert into nhaxuatban(tennxb,sdt) values("Thời Đại","028 3820 8632");
+insert into nhaxuatban(tennxb,sdt) values("Nhà Xuất Bản Trẻ","028 3931 6289");
+insert into nhaxuatban(tennxb,sdt) values("Nhà Xuất Bản Hội Nhà Văn","");
+insert into nhaxuatban(tennxb,sdt) values("Nhà Xuất Bản Tổng Hợp","028 3822 5340");
+
+-- Tác giả
+insert into tacgia(tentg) values("Nhiều tác giả");
+insert into tacgia(tentg) values("Vũ Thị Mai Phương");
+insert into tacgia(tentg) values("A.J.Hoge");
+insert into tacgia(tentg) values("Yuval Noah Harari");
+insert into tacgia(tentg) values("Nguyễn Nhật Ánh");
+insert into tacgia(tentg) values("Andrea Hirata");
+insert into tacgia(tentg) values("Hamlet Trương");
+insert into tacgia(tentg) values("Mori Eto");
+
+-- Sách --
+insert into sach(manxb,matacgia,madanhmuc,tensach,motangan,soluong,trangthai) values(1,1,1,"Giáo Trình Kỹ Thuật Lập Trình C Căn Bản Và Nâng Cao","Giáo trình kỹ thuật lập trình C căn bản và nâng cao được hình thành qua nhiều năm giảng dạy của các tác giả. Ngôn ngữ lập trình C là một môn học cơ sở trong chương trình đào tạo kỹ sư, cử nhân tin học của nhiều trường đại học. Ở đây sinh viên được trang bị những kiến thức cơ bản nhất về lập trình, các kỹ thuật  tổ chức dữ liệu và lập trình căn bản với ngôn ngữ C.",5,1);
+insert into sach(manxb,matacgia,madanhmuc,tensach,motangan,soluong,trangthai) values(2,1,1,"Giáo Trình Thực Hành Excel - Dùng Cho Phiên Bản 2016, 2013, 2010 (Tái Bản 2019)","Trong lĩnh vực điện toán văn phòng, Microsoft Excel là một trong những chương trình thuộc bộ Microsoft Office đã và đang ứng dụng rộng rãi trong nhiều lĩnh vực: Kinh tế, kế toán, thương mại, quản lý và nhiều hơn nữa.",10,1);
+insert into sach(manxb,matacgia,madanhmuc,tensach,motangan,soluong,trangthai) values(3,2,2,"Rèn Kỹ Năng Làm Bài Trọng Âm Ngữ Âm Môn Tiếng Anh (Bộ Sách Cô Mai Phương)","“Rèn kỹ năng làm bài trọng âm, ngữ âm môn tiếng Anh” giúp các em tổng hợp và ghi nhớ những quy tắc vàng trong việc phát âm và đánh dấu trọng âm. Kèm theo đó là các hình ảnh minh họa hướng dẫn các em cách đọc sao cho giống người bản ngữ nhất. Qua 2 phần lí thuyết và thực hành các em học sinh sẽ được ôn tập đầy đủ và củng cố các kĩ năng phát âm và đánh dấu trọng âm nhanh nhất.",10,1);
+insert into sach(manxb,matacgia,madanhmuc,tensach,motangan,soluong,trangthai) values(3,3,2,"Luyện Nói Tiếng Anh Như Người Bản Ngữ (Tái Bản Kèm DVD Hoặc Dùng App Về 7 Rules Effortless English)","Effortless English – Luyện nói tiếng Anh như người bản ngữ – Phương pháp học tiếng Anh nổi tiếng thế giới, kết quả đã được kiểm chứng",10,1);
+insert into sach(manxb,matacgia,madanhmuc,tensach,motangan,soluong,trangthai) values(4,1,3,"Vở Bài Tập Tự Nhiên Và Xã Hội Lớp 1","Vở Bài Tập Tự Nhiên Và Xã Hội Lớp 1 nhằm giúp học sinh lớp 1 thực hiện các hoạt động học tập độc lập và đa dạng trong các tiết  học môn Tự nhiên và xã hội, rèn luyện cho học sinh kĩ năng học tập, thực hành.",10,1);
+insert into sach(manxb,matacgia,madanhmuc,tensach,motangan,soluong,trangthai) values(4,1,3,"Bộ Sách Giáo Khoa Lớp 3 (Bộ Bài Học Và Bài Tập)","Bộ Sách Giáo Khoa Lớp 3 (Bộ Bài Học Và Bài Tập) gồm 2 bộ sách: Bài Học và Bài Tập lớp 3.",10,1);
+insert into sach(manxb,matacgia,madanhmuc,tensach,motangan,soluong,trangthai) values(5,4,4,"Sapiens: Lược Sử Loài Người (Tái Bản Có Chỉnh Sửa)","Sapiens, đưa chúng ta vào một chuyến đi kinh ngạc qua toàn bộ lịch sử loài người, từ những gốc rễ tiến hóa của nó đến thời đại của chủ nghĩa tư bản và kỹ thuật di truyền, để khám phá tại sao chúng ta đang trong những điều kiện sinh sống hiện tại.",10,1);
+insert into sach(manxb,matacgia,madanhmuc,tensach,motangan,soluong,trangthai) values(6,1,4,"Đại Việt Sử Ký Toàn Thư","Đại Việt Sử Ký Toàn Thư là bộ quốc sử danh tiếng, một di sản quý báu của dân tộc Việt Nam nghìn năm văn hiến. Đó là bộ sử cái, có giá trị nhiều mặt, gắn liền với tên tuổi các nhà sử học nổi tiếng như Lê Văn Hưu, Phan Phu Tiên, Ngô Sĩ Liên, Phạm Công Trứ, Lê Hy…",10,1);
+insert into sach(manxb,matacgia,madanhmuc,tensach,motangan,soluong,trangthai) values(7,5,5,"Có Hai Con Mèo Ngồi Bên Cửa Sổ","Sẽ được cập nhật trong tương lai...",10,1);
+insert into sach(manxb,matacgia,madanhmuc,tensach,motangan,soluong,trangthai) values(8,6,5,"Chiến Binh Cầu Vồng (Tái Bản)","“Thầy Harfan và cô Mus nghèo khổ đã mang đến cho tôi tuổi thơ đẹp nhất, tình bạn đẹp nhất, và tâm hồn phong phú, một thứ gì đó vô giá, thậm chí còn có giá trị hơn những khao khát mơ ước. Có thể tôi lầm, nhưng theo ý tôi, đây thật sự là hơi thở của giáo dục và linh hồn của một chốn được gọi là trường học.” - (Trích tác phẩm)",10,1);
+insert into sach(manxb,matacgia,madanhmuc,tensach,motangan,soluong,trangthai) values(9,7,6,"12 Cách Yêu","Lần đầu tiên 12 chòm sao được cụ thể hóa thành những nhân vật có số phận, có tính cách đặc trưng trong những câu chuyện tình lãng mạn đến bất ngờ...",10,1);
+insert into sach(manxb,matacgia,madanhmuc,tensach,motangan,soluong,trangthai) values(8,8,6,"Colorful","Có một người phạm tội nặng, chết đi không được luân hồi. Nhưng trong lúc linh hồn người này đang mất trí nhớ và trôi nổi vô định về một nơi tối tăm xứng đáng với cậu ta, thì một thiên sứ cánh trắng xuất hiện, giơ tay chặn lại, thông báo rằng cậu vừa trúng phiên xổ số may mắn của thiên đình, nhận được cơ hội tu hành kiêm tái thử thách...",10,1);
+
+-- Tài khoản --
+insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(3,"sneakyg","123456",1);
+
+insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(2,"nhanviena","123456",1);
+insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(2,"nhanvienb","123456",1);
+insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(2,"nhanvienc","123456",0);
+
+insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(1,"khachhanga","123456",1);
+insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(1,"khachhangb","123456",1);
+insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(1,"khachhangc","123456",1);
+insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(1,"khachhangd","123456",1);
+insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(1,"khachhange","123456",1);
+insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(1,"khachhangf","123456",1);
+insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(1,"khachhangg","123456",1);
+insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(1,"khachhangh","123456",1);
+insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(1,"khachhangj","123456",1);
+insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(1,"khachhangk","123456",1);
+
+-- Khách hàng --
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(4,"Nguyễn Văn A","nguyenvana@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(5,"Nguyễn Văn B","nguyenvanb@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(6,"Nguyễn Văn C","nguyenvanc@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(7,"Nguyễn Văn D","nguyenvand@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(8,"Nguyễn Văn E","nguyenvane@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(9,"Nguyễn Văn F","nguyenvanf@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(10,"Nguyễn Văn G","nguyenvang@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(11,"Nguyễn Văn H","nguyenvanh@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(12,"Nguyễn Văn J","nguyenvanj@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(13,"Nguyễn Văn K","nguyenvank@gmail.com","123456789","123456789",null,"asd");
+
+-- Nhân viên --
+insert into nhanvien(mataikhoan,tennv,email,sdt,cmnd,ngaysinh,ngayvl,luong,diachi) values(1,"Hồ Tấn Giang","hotangiang@gmail.com","123456789","123456789",null,null,0,"asd");
+insert into nhanvien(mataikhoan,tennv,email,sdt,cmnd,ngaysinh,ngayvl,luong,diachi) values(2,"Nhân Viên A","nhanviena@gmail.com","123456789","123456789",null,null,10,"asd");
+insert into nhanvien(mataikhoan,tennv,email,sdt,cmnd,ngaysinh,ngayvl,luong,diachi) values(3,"Nhân Viên B","nhanvienb@gmail.com","123456789","123456789",null,null,100,"asd");
+insert into nhanvien(mataikhoan,tennv,email,sdt,cmnd,ngaysinh,ngayvl,luong,diachi) values(4,"Nhân Viên C","nhanvienc@gmail.com","123456789","123456789",null,null,1000,"asd");

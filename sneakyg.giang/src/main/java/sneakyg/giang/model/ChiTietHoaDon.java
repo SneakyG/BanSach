@@ -1,13 +1,22 @@
 package sneakyg.giang.model;
 
+import java.util.Date;
+
 public class ChiTietHoaDon extends Common<ChiTietHoaDon> {
 
 	private int soLuong;
 	private double thanhTien;
+	private Date thoiGian;
 	private int maSach;
 	private int maNhanVien;
 	private int maHoaDon;
 	
+	public Date getThoiGian() {
+		return thoiGian;
+	}
+	public void setThoiGian(Date thoiGian) {
+		this.thoiGian = thoiGian;
+	}
 	public int getMaSach() {
 		return maSach;
 	}

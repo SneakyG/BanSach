@@ -1,0 +1,105 @@
+create database bookstore;
+
+use bookstore;
+
+create table KhachHang(
+	id int primary key auto_increment,
+    mataikhoan int null,
+    tenkh nvarchar(255) null,
+    email varchar(144) null,
+    sdt varchar(20) null,
+    cmnd varchar(10) null,
+    ngaysinh datetime null,
+    diachi text null
+);
+
+create table NhanVien(
+	id int primary key auto_increment,
+    mataikhoan int not null,
+    tennv nvarchar(255) null,
+    email varchar(144) null,
+    sdt varchar(20) null,
+    cmnd varchar(10) null,
+    ngaysinh datetime null,
+    ngayvl datetime null,
+    luong decimal not null,
+    diachi text null
+);
+
+create table HinhAnh(
+	id int primary key auto_increment,
+    masach int null,
+    hinhanh text null
+    
+);
+
+create table ChucVu(
+	id int primary key auto_increment,
+	tencode varchar(255) not null,
+    tencv nvarchar(255) not null
+);
+
+create table Sach(
+	id int primary key auto_increment,
+    manxb int not null,
+    matacgia int not null,
+    madanhmuc int not null,
+    tensach nvarchar(255) null,
+    motangan text null,
+    soluong int null,
+    trangthai int null
+);
+
+create table DanhMucSach(
+	id int primary key auto_increment,
+	tencode varchar(255) not null,
+    tendanhmuc nvarchar(255) null
+);
+
+create table TacGia(
+	id int primary key auto_increment,
+    tentg nvarchar(255) not null
+);
+
+create table NhaXuatBan(
+	id int primary key auto_increment,
+    sdt varchar(20) null,
+    tennxb nvarchar(255) not null
+);
+
+create table TaiKhoan(
+	id int primary key auto_increment,
+    machucvu int not null,
+    tentaikhoan nvarchar(255) not null,
+    matkhau nvarchar(255) not null,
+    trangthai int not null
+);
+
+create table HoaDon(
+	id int primary key auto_increment,
+    ngayhoadon datetime not null,
+    tongtien decimal null
+);
+
+create table ChiTietHoaDon(
+	id int primary key auto_increment,
+    mahoadon int not null,
+    masach int not null,
+    manv int not null,
+    makh int not null,
+    soluong int null,
+    thanhtien decimal null
+);
+
+ALTER TABLE KhachHang ADD CONSTRAINT fk_KhachHang_TaiKhoan FOREIGN KEY (mataikhoan) REFERENCES TaiKhoan(id);
+ALTER TABLE NhanVien ADD CONSTRAINT fk_NhanVien_TaiKhoan FOREIGN KEY (mataikhoan) REFERENCES TaiKhoan(id);
+ALTER TABLE HinhAnh ADD CONSTRAINT fk_HinhAnh_Sach FOREIGN KEY (masach) REFERENCES Sach(id);
+ALTER TABLE Sach ADD CONSTRAINT fk_Sach_NhaXuatBan FOREIGN KEY (manxb) REFERENCES NhaXuatBan(id);
+ALTER TABLE Sach ADD CONSTRAINT fk_Sach_TacGia FOREIGN KEY (matacgia) REFERENCES TacGia(id);
+ALTER TABLE Sach ADD CONSTRAINT fk_Sach_DanhMucSach FOREIGN KEY (madanhmuc) REFERENCES DanhMucSach(id);
+ALTER TABLE TaiKhoan ADD CONSTRAINT fk_TaiKhoan_ChucVu FOREIGN KEY (machucvu) REFERENCES ChucVu(id);
+ALTER TABLE ChiTietHoaDon ADD CONSTRAINT fk_ChiTietHoaDon_HoaDon FOREIGN KEY (mahoadon) REFERENCES HoaDon(id);
+ALTER TABLE ChiTietHoaDon ADD CONSTRAINT fk_ChiTietHoaDon_Sach FOREIGN KEY (masach) REFERENCES Sach(id);
+ALTER TABLE ChiTietHoaDon ADD CONSTRAINT fk_ChiTietHoaDon_NhanVien FOREIGN KEY (manv) REFERENCES NhanVien(id);
+ALTER TABLE ChiTietHoaDon ADD CONSTRAINT fk_ChiTietHoaDon_KhachHang FOREIGN KEY (makh) REFERENCES KhachHang(id);
+
