@@ -11,7 +11,7 @@ public interface IChucVuService {
 
 	List<ChucVu> search(String textSearch);
 
-	ChucVu findOne(int id);
+	ChucVu findOne(Integer id);
 
 	ChucVu save(ChucVu cv);
 

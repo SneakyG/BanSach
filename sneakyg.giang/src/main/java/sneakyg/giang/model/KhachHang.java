@@ -11,7 +11,7 @@ public class KhachHang {
 	protected String cmnd;
 	protected Date ngaySinh;
 	protected String diaChi;
-	protected int maTaiKhoan;
+	protected Integer maTaiKhoan;
 	protected TaiKhoan tk = new TaiKhoan();
 	
 	public Integer getId() {
@@ -26,10 +26,10 @@ public class KhachHang {
 	public void setTk(TaiKhoan tk) {
 		this.tk = tk;
 	}
-	public int getMaTaiKhoan() {
+	public Integer getMaTaiKhoan() {
 		return maTaiKhoan;
 	}
-	public void setMaTaiKhoan(int maTaiKhoan) {
+	public void setMaTaiKhoan(Integer maTaiKhoan) {
 		this.maTaiKhoan = maTaiKhoan;
 	}
 	public String getTen() {

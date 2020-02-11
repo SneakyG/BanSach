@@ -9,4 +9,5 @@ public interface ICommonDAO<T> {
 	void update(String sql,Object... parameters);
 	int insert(String sql,Object... parameters);
 	int count(String sql,Object... parameters);
+	double total(String sql,Object... parameters);
 }

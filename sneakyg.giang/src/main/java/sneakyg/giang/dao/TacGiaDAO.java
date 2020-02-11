@@ -10,7 +10,7 @@ import sneakyg.giang.paging.IPageble;
 public class TacGiaDAO extends CommonDAO<TacGia> implements ITacGiaDAO {
 
 	@Override
-	public int save(TacGia tg) {
+	public Integer save(TacGia tg) {
 		String sql = "INSERT INTO tacgia(tentg) VALUES(?)";
 		return insert(sql, tg.getTenTG());
 	}
@@ -22,13 +22,13 @@ public class TacGiaDAO extends CommonDAO<TacGia> implements ITacGiaDAO {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(Integer id) {
 		String sql = "DELETE FROM tacgia WHERE id = ?";
 		update(sql, id);
 	}
 
 	@Override
-	public TacGia findOne(int id) {
+	public TacGia findOne(Integer id) {
 		String sql = "SELECT * FROM tacgia WHERE id = ?";
 		List<TacGia> ds = query(sql, new TacGiaMapper(), id);
 		return ds.isEmpty() ? null : ds.get(0);

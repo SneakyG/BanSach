@@ -9,13 +9,13 @@ public interface IChucVuDAO {
 
 	List<ChucVu> findAll(IPageble pageble,String textSearch);
 
-	ChucVu findOne(int id);
+	ChucVu findOne(Integer id);
 
-	int save(ChucVu cv);
+	Integer save(ChucVu cv);
 
 	void update(ChucVu cv);
 
-	void delete(int id);
+	void delete(Integer id);
 
 	int getTotalItem(String textSearch);
 

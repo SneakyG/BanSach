@@ -10,7 +10,7 @@ import sneakyg.giang.paging.IPageble;
 public class NhaXuatBanDAO extends CommonDAO<NhaXuatBan> implements INhaXuatBanDAO{
 
 	@Override
-	public int save(NhaXuatBan nxb) {
+	public Integer save(NhaXuatBan nxb) {
 		String sql = "INSERT INTO nhaxuatban(tennxb,sdt) VALUES(?,?)";
 		return insert(sql, nxb.getTenNXB(),nxb.getSdt());
 	}
@@ -22,13 +22,13 @@ public class NhaXuatBanDAO extends CommonDAO<NhaXuatBan> implements INhaXuatBanD
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(Integer id) {
 		String sql = "DELETE FROM nhaxuatban WHERE id = ?";
 		update(sql, id);
 	}
 
 	@Override
-	public NhaXuatBan findOne(int id) {
+	public NhaXuatBan findOne(Integer id) {
 		String sql = "SELECT * FROM nhaxuatban WHERE id = ?";
 		List<NhaXuatBan> ds = query(sql, new NhaXuatBanMapper(), id);
 		return ds.isEmpty() ? null : ds.get(0);

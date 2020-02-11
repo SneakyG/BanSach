@@ -5,6 +5,7 @@ import java.util.List;
 import sneakyg.giang.model.Sach;
 
 public interface ISachDAO {
-	List<Sach> findByCategoryId(int maDanhMuc);
+	List<Sach> findByCategoryId(Integer maDanhMuc);
 	List<Sach> findAll();
+	List<Sach> getName();
 }

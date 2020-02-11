@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -15,7 +17,7 @@ import sneakyg.giang.dao.interfaces.ICommonDAO;
 import sneakyg.giang.mapper.IRowMapper;
 
 public class CommonDAO<T> implements ICommonDAO<T> {
-	
+
 	ResourceBundle resource = ResourceBundle.getBundle("db");
 
 	public Connection getConnection() {
@@ -74,9 +76,15 @@ public class CommonDAO<T> implements ICommonDAO<T> {
 				} else if (parameter instanceof String) {
 					statement.setString(i, (String) parameter);
 				} else if (parameter instanceof Integer) {
-					statement.setInt(i, (int) parameter);
+					statement.setInt(i,(int) parameter);
 				} else if (parameter instanceof Timestamp) {
 					statement.setTimestamp(i, (Timestamp) parameter);
+				} else if (parameter instanceof Date) {
+					statement.setDate(i, (java.sql.Date) parameter);
+				} else if (parameter instanceof Double) {
+					statement.setDouble(i,(double) parameter);
+				} else if (parameter == null) {
+					statement.setNull(i,Types.VARCHAR);
 				}
 			}
 		} catch (SQLException e) {
@@ -174,10 +182,44 @@ public class CommonDAO<T> implements ICommonDAO<T> {
 			statement = connection.prepareStatement(sql);
 			setParameter(statement, parameters);
 			resultSet = statement.executeQuery();
-			while(resultSet.next()) {
+			while (resultSet.next()) {
 				count = resultSet.getInt(1);
 			}
 			return count;
+		} catch (SQLException e) {
+			return 0;
+		} finally {
+			try {
+				if (connection != null) {
+					connection.close();
+				}
+				if (statement != null) {
+					statement.close();
+				}
+				if (resultSet != null) {
+					resultSet.close();
+				}
+			} catch (SQLException e) {
+				return 0;
+			}
+		}
+	}
+
+	@Override
+	public double total(String sql, Object... parameters) {
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		try {
+			double total = 0;
+			connection = getConnection();
+			statement = connection.prepareStatement(sql);
+			setParameter(statement, parameters);
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				total = resultSet.getInt(1);
+			}
+			return total;
 		} catch (SQLException e) {
 			return 0;
 		} finally {

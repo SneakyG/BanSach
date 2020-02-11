@@ -26,14 +26,14 @@ public class DanhMucSachDAO extends CommonDAO<DanhMucSach>implements IDanhMucSac
 	}
 
 	@Override
-	public DanhMucSach findOne(int id) {
+	public DanhMucSach findOne(Integer id) {
 		String sql = "SELECT * FROM danhmucsach WHERE id = ?";
 		List<DanhMucSach> ds = query(sql, new DanhMucSachMapper(), id);
 		return ds.isEmpty() ? null : ds.get(0);
 	}
 
 	@Override
-	public int save(DanhMucSach dms) {
+	public Integer save(DanhMucSach dms) {
 		String sql = "INSERT INTO danhmucsach(tendanhmuc,tencode) VALUES(?,?)";
 		return insert(sql, dms.getTenDanhMuc(),dms.getTenCode());
 	}
@@ -45,7 +45,7 @@ public class DanhMucSachDAO extends CommonDAO<DanhMucSach>implements IDanhMucSac
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(Integer id) {
 		String sql = "DELETE FROM danhmucsach WHERE id = ?";
 		update(sql, id);
 	}

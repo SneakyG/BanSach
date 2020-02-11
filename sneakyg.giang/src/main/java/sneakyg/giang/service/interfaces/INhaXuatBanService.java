@@ -11,7 +11,7 @@ public interface INhaXuatBanService {
 
 	List<NhaXuatBan> search(String textSearch);
 
-	NhaXuatBan findOne(int id);
+	NhaXuatBan findOne(Integer id);
 
 	NhaXuatBan save(NhaXuatBan nxb);
 

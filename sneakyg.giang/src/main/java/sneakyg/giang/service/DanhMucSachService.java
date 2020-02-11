@@ -25,7 +25,7 @@ public class DanhMucSachService implements IDanhMucSachService {
 	}
 
 	@Override
-	public DanhMucSach findOne(int id) {
+	public DanhMucSach findOne(Integer id) {
 		return danhMucSachDAO.findOne(id);
 	}
 

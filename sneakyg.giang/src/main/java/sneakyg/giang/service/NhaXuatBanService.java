@@ -39,7 +39,7 @@ public class NhaXuatBanService implements INhaXuatBanService {
 	}
 
 	@Override
-	public NhaXuatBan findOne(int id) {
+	public NhaXuatBan findOne(Integer id) {
 		return nhaxuatbanDAO.findOne(id);
 	}
 

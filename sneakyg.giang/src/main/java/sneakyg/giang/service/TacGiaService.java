@@ -39,7 +39,7 @@ public class TacGiaService implements ITacGiaService {
 	}
 
 	@Override
-	public TacGia findOne(int id) {
+	public TacGia findOne(Integer id) {
 		return tacGiaDAO.findOne(id);
 	}
 

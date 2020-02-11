@@ -11,7 +11,7 @@ public interface IDanhMucSachService {
 
 	List<DanhMucSach> search(String textSearch);
 
-	DanhMucSach findOne(int id);
+	DanhMucSach findOne(Integer id);
 
 	DanhMucSach save(DanhMucSach dms);
 

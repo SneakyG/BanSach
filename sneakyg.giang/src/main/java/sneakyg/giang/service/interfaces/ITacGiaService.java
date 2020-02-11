@@ -10,7 +10,7 @@ public interface ITacGiaService {
 	
 	List<TacGia> search(String textSearch);
 	
-	TacGia findOne(int id);
+	TacGia findOne(Integer id);
 
 	TacGia save(TacGia tg);
 

@@ -1,11 +1,19 @@
 package sneakyg.giang.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class HoaDon extends Common<HoaDon> {
 
 	private Date ngayHD;
 	private double tongTien;
+	
+	public HoaDon() {
+	}
+	
+	public HoaDon(Date ngayHD, double tongTien) {
+		this.ngayHD = ngayHD;
+		this.tongTien = tongTien;
+	}
 	
 	public Date getNgayHD() {
 		return ngayHD;

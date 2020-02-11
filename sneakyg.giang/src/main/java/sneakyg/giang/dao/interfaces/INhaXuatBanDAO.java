@@ -8,13 +8,13 @@ import sneakyg.giang.paging.IPageble;
 public interface INhaXuatBanDAO{
 	List<NhaXuatBan> findAll(IPageble pageble,String textSearch);
 
-	NhaXuatBan findOne(int id);
+	NhaXuatBan findOne(Integer id);
 
-	int save(NhaXuatBan tg);
+	Integer save(NhaXuatBan tg);
 
 	void update(NhaXuatBan tg);
 
-	void delete(int id);
+	void delete(Integer id);
 
 	int getTotalItem(String textSearch);
 

@@ -13,7 +13,11 @@ public class SachMapper implements IRowMapper<Sach> {
 		try {
 			sach.setId(resultSet.getInt("id"));
 			sach.setTenSach(resultSet.getString("tensach"));
-			sach.setSoLuong(resultSet.getInt("soluong"));
+			try {
+				sach.setSoLuong(resultSet.getInt("soluong"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return sach;
 		} catch (SQLException e) {
 			return null;

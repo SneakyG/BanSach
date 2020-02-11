@@ -11,42 +11,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sneakyg.giang.common.SystemConstant;
-import sneakyg.giang.model.ChucVu;
+import sneakyg.giang.model.HoaDon;
 import sneakyg.giang.paging.IPageble;
 import sneakyg.giang.paging.PageRequest;
-import sneakyg.giang.service.interfaces.IChucVuService;
+import sneakyg.giang.service.interfaces.IHoaDonService;
 import sneakyg.giang.sort.Sorter;
 import sneakyg.giang.utils.FormUtil;
 
-@WebServlet(urlPatterns = {"/admin-chucvu"})
-public class ChucVuController extends HttpServlet {
+@WebServlet(urlPatterns = {"/admin-hoadon"})
+public class HoaDonController extends HttpServlet {
 	
-	private static final long serialVersionUID = 3519482797016184228L;
+	private static final long serialVersionUID = -4464251260532240774L;
 	
 	@Inject
-	private IChucVuService chucVuService;
+	private IHoaDonService hoaDonService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ChucVu model = FormUtil.toModel(ChucVu.class, req);
+		HoaDon model = FormUtil.toModel(HoaDon.class, req);
 		String view = "";
 		if (model.getType().equals(SystemConstant.LIST)) {
 			IPageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
 					new Sorter(model.getSortName(), model.getSortBy()));
-//			if(model.getTextSearch() != null) {
-//				model.setListResult(chucVuService.search(model.getTextSearch()));
-//			}
-			model.setListResult(chucVuService.findAll(pageble,model.getTextSearch()));
-			model.setTotalItem(chucVuService.getTotalItem(model.getTextSearch()));
+			if(model.getTextSearch() != null) {
+				model.setListResult(hoaDonService.search(pageble,model.getTextSearch()));
+			}
+			model.setListResult(hoaDonService.findAll(pageble,model.getTextSearch()));
+			model.setTotalItem(hoaDonService.getTotalItem(model.getTextSearch()));
 			model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
-			view = "/views/admin/chucvu/list.jsp";
+			view = "/views/admin/hoadon/list.jsp";
 		} else if (model.getType().equals(SystemConstant.EDIT)) {
 			if (model.getId() != null) {
-				model = chucVuService.findOne(model.getId());
 			} else {
 
 			}
-			view = "/views/admin/chucvu/edit.jsp";
+			view = "/views/admin/cthd/edit.jsp";
 		} 
 		req.setAttribute(SystemConstant.MODEL, model);
 		RequestDispatcher rd = req.getRequestDispatcher(view);

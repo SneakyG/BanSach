@@ -9,13 +9,13 @@ public interface IDanhMucSachDAO {
 
 	List<DanhMucSach> findAll(IPageble pageble,String textSearch);
 
-	DanhMucSach findOne(int id);
+	DanhMucSach findOne(Integer id);
 
-	int save(DanhMucSach dms);
+	Integer save(DanhMucSach dms);
 
 	void update(DanhMucSach dms);
 
-	void delete(int id);
+	void delete(Integer id);
 
 	int getTotalItem(String textSearch);
 

@@ -25,7 +25,7 @@ public class ChucVuService implements IChucVuService{
 	}
 
 	@Override
-	public ChucVu findOne(int id) {
+	public ChucVu findOne(Integer id) {
 		return chucVuDAO.findOne(id);
 	}
 

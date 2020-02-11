@@ -8,13 +8,13 @@ import sneakyg.giang.paging.IPageble;
 public interface ITacGiaDAO {
 	List<TacGia> findAll(IPageble pageble,String textSearch);
 
-	TacGia findOne(int id);
+	TacGia findOne(Integer id);
 
-	int save(TacGia tg);
+	Integer save(TacGia tg);
 
 	void update(TacGia tg);
 
-	void delete(int id);
+	void delete(Integer id);
 
 	int getTotalItem(String textSearch);
 

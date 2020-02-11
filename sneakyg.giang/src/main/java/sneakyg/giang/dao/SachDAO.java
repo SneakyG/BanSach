@@ -9,7 +9,7 @@ import sneakyg.giang.model.Sach;
 public class SachDAO extends CommonDAO<Sach> implements ISachDAO{
 	
 	@Override
-	public List<Sach> findByCategoryId(int maDanhMuc) {
+	public List<Sach> findByCategoryId(Integer maDanhMuc) {
 		String sql = "SELECT * FROM sach WHERE madanhmuc = ?";
 		List<Sach> results = query(sql,new SachMapper(), maDanhMuc);
 		return results;
@@ -20,6 +20,13 @@ public class SachDAO extends CommonDAO<Sach> implements ISachDAO{
 		String sql = "SELECT * FROM sach";
 		List<Sach> results = query(sql,new SachMapper());
 		return results;
+	}
+
+	@Override
+	public List<Sach> getName() {
+		String sql = "SELECT s.tensach,s.id FROM sach as s";
+		List<Sach> ds = query(sql, new SachMapper());
+		return ds;
 	}
 
 }

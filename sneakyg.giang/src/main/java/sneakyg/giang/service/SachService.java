@@ -14,7 +14,7 @@ public class SachService implements ISachService {
 	private ISachDAO sachDAO;
 	
 	@Override
-	public List<Sach> findByCategoryId(int maDanhMuc) {
+	public List<Sach> findByCategoryId(Integer maDanhMuc) {
 		return sachDAO.findByCategoryId(maDanhMuc);
 	}
 

@@ -26,14 +26,14 @@ public class ChucVuDAO extends CommonDAO<ChucVu> implements IChucVuDAO {
 	}
 
 	@Override
-	public ChucVu findOne(int id) {
+	public ChucVu findOne(Integer id) {
 		String sql = "SELECT * FROM chucvu WHERE id = ?";
 		List<ChucVu> ds = query(sql, new ChucVuMapper(), id);
 		return ds.isEmpty() ? null : ds.get(0);
 	}
 
 	@Override
-	public int save(ChucVu cv) {
+	public Integer save(ChucVu cv) {
 		String sql = "INSERT INTO chucvu(tencv,tencode) VALUES(?,?)";
 		return insert(sql, cv.getTenCV(),cv.getTenCode());
 	}
@@ -45,7 +45,7 @@ public class ChucVuDAO extends CommonDAO<ChucVu> implements IChucVuDAO {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(Integer id) {
 		String sql = "DELETE FROM chucvu WHERE id = ?";
 		update(sql, id);
 	}
