@@ -19,7 +19,7 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1>Chức vụ</h1>
+						<h1>Hóa đơn</h1>
 					</div>
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
@@ -69,7 +69,7 @@
 																		<c:param name="maHoaDon" value="${item.id}" />
 																		<c:param name="page" value="1" />
 																		<c:param name="maxPageItem" value="5" />
-																		<c:param name="sortName" value="thanhTien" />
+																		<c:param name="sortName" value="id" />
 																		<c:param name="sortBy" value="asc" />
 																	</c:url> <a class="btn btn-sm btn-primary btn-edit"
 																		data-toggle="tooltip" title="Cập nhật"

@@ -23,6 +23,6 @@ public interface IChiTietHoaDonService {
 	void delete(Integer[] ids);
 
 	int getTotalItem(String textSearch, Integer maHoaDon);
-
+	
 	List<Sach> getBookName(Integer maSach);
 }

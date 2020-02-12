@@ -8,6 +8,8 @@ import sneakyg.giang.paging.IPageble;
 public interface IHoaDonDAO {
 
 	List<HoaDon> findAll(IPageble pageble, String textSearch);
+	
+	HoaDon findOne(Integer id);
 
 	Integer save(HoaDon hd);
 	

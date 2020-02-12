@@ -48,13 +48,18 @@ public class ChiTietHoaDonService implements IChiTietHoaDonService {
 		LocalDateTime currentTime = LocalDateTime.now();
 		LocalDate currentDate = currentTime.toLocalDate();
 		HoaDon hd = new HoaDon(Date.valueOf(currentDate),0);
+		Sach sach = new Sach();
 		if (hoaDonDAO.findOneByDate(currentDate.toString()) == null) {
 			cthd.setMaHoaDon(hoaDonDAO.save(hd));
+			hd = hoaDonDAO.findOne(cthd.getMaHoaDon());
 		}else {
 			hd = hoaDonDAO.findOneByDate(currentDate.toString());
 			cthd.setMaHoaDon(hd.getId());
 		}
 		cthd.setThoiGian(Timestamp.valueOf(currentTime));
+		sach = sachDAO.findOne(cthd.getMaSach());
+		double thanhTien = cthd.getSoLuong() * sach.getDonGia();
+		cthd.setThanhTien(thanhTien);
 		int id = cthdDAO.save(cthd);
 		double tongTien = cthdDAO.getTotalCostByMaHoaDon(cthd.getMaHoaDon());
 		hd.setTongTien(tongTien);

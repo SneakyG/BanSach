@@ -12,9 +12,9 @@ public class ChiTietHoaDonDAO extends CommonDAO<ChiTietHoaDon> implements IChiTi
 	@Override
 	public List<ChiTietHoaDon> findAll(IPageble pageble, String textSearch) {
 		StringBuilder sql = new StringBuilder("SELECT * FROM chitiethoadon");
-//		if (textSearch != null) {
-//			sql.append(" WHERE masach like '%" + textSearch + "%' or makh like '%" + textSearch + "%' or manv like '%" + textSearch + "%'");
-//		}
+		if (textSearch != null) {
+			sql.append(" WHERE masach like '%" + textSearch + "%' or makh like '%" + textSearch + "%' or manv like '%" + textSearch + "%'");
+		}
 		if (pageble.getSorter() != null) {
 			sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy());
 		}

@@ -7,21 +7,49 @@ public class Sach extends Common<Sach> {
 	private int soLuong;
 	private int trangThai;
 	private String hinhAnh;
+	private double donGia;
 	private Integer maNXB;
-	private Integer maTagGia;
+	private Integer maTacGia;
 	private Integer maDanhMuc;
+	private TacGia tg = new TacGia();
+	private NhaXuatBan nxb = new NhaXuatBan();
+	private DanhMucSach dm = new DanhMucSach();
 	
+	public TacGia getTg() {
+		return tg;
+	}
+	public void setTg(TacGia tg) {
+		this.tg = tg;
+	}
+	public NhaXuatBan getNxb() {
+		return nxb;
+	}
+	public void setNxb(NhaXuatBan nxb) {
+		this.nxb = nxb;
+	}
+	public DanhMucSach getDm() {
+		return dm;
+	}
+	public void setDm(DanhMucSach dm) {
+		this.dm = dm;
+	}
+	public double getDonGia() {
+		return donGia;
+	}
+	public void setDonGia(double donGia) {
+		this.donGia = donGia;
+	}
 	public Integer getMaNXB() {
 		return maNXB;
 	}
 	public void setMaNXB(Integer maNXB) {
 		this.maNXB = maNXB;
 	}
-	public Integer getMaTagGia() {
-		return maTagGia;
+	public Integer getMaTacGia() {
+		return maTacGia;
 	}
-	public void setMaTagGia(Integer maTagGia) {
-		this.maTagGia = maTagGia;
+	public void setMaTacGia(Integer maTacGia) {
+		this.maTacGia = maTacGia;
 	}
 	public Integer getMaDanhMuc() {
 		return maDanhMuc;

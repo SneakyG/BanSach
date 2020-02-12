@@ -31,7 +31,7 @@ public class HoaDonDAO extends CommonDAO<HoaDon> implements IHoaDonDAO{
 	@Override
 	public void update(HoaDon hd) {
 		String sql = "UPDATE hoadon SET tongtien = ? WHERE id = ?";
-		update(sql, hd.getTongTien());
+		update(sql, hd.getTongTien(),hd.getId());
 	}
 
 	@Override
@@ -54,6 +54,13 @@ public class HoaDonDAO extends CommonDAO<HoaDon> implements IHoaDonDAO{
 			sql.append(" WHERE ngayhoadon like '%" + textSearch + "%' or tongtien like '%" + textSearch + "%'");
 		}
 		return count(sql.toString());
+	}
+
+	@Override
+	public HoaDon findOne(Integer id) {
+		String sql = "SELECT * FROM hoadon WHERE id = ?";
+		List<HoaDon> ds = query(sql, new HoaDonMapper(), id);
+		return ds.isEmpty() ? null : ds.get(0);
 	}
 
 }

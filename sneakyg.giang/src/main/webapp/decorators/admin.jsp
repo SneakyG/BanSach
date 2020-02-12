@@ -28,6 +28,8 @@
 <script src="<c:url value='/template/paging/jquery.twbsPagination.js'/>"></script>
 <script	src="<c:url value = '/template/admin/js/fstdropdown.js'/>"></script>
 <link rel="stylesheet" href="<c:url value = '/template/admin/css/fstdropdown.css'/>">
+<link rel="stylesheet"
+	href="<c:url value = '/template/admin/css/style.css'/>">
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
