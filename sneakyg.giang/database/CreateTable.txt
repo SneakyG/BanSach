@@ -78,17 +78,18 @@ create table TaiKhoan(
 
 create table HoaDon(
 	id int primary key auto_increment,
-    ngayhoadon datetime not null,
-    tongtien decimal null
+    manv int null,
+    makh int not null,
+    thoigiandat timestamp null,
+    thoigianmua timestamp null,
+    tongtien decimal null,
+    trangthai int not null
 );
 
 create table ChiTietHoaDon(
 	id int primary key auto_increment,
     mahoadon int not null,
     masach int not null,
-    manv int not null,
-    makh int not null,
-    thoigian timestamp null,
     soluong int null,
     thanhtien decimal null
 );
@@ -102,6 +103,6 @@ ALTER TABLE Sach ADD CONSTRAINT fk_Sach_DanhMucSach FOREIGN KEY (madanhmuc) REFE
 ALTER TABLE TaiKhoan ADD CONSTRAINT fk_TaiKhoan_ChucVu FOREIGN KEY (machucvu) REFERENCES ChucVu(id);
 ALTER TABLE ChiTietHoaDon ADD CONSTRAINT fk_ChiTietHoaDon_HoaDon FOREIGN KEY (mahoadon) REFERENCES HoaDon(id);
 ALTER TABLE ChiTietHoaDon ADD CONSTRAINT fk_ChiTietHoaDon_Sach FOREIGN KEY (masach) REFERENCES Sach(id);
-ALTER TABLE ChiTietHoaDon ADD CONSTRAINT fk_ChiTietHoaDon_NhanVien FOREIGN KEY (manv) REFERENCES NhanVien(id);
-ALTER TABLE ChiTietHoaDon ADD CONSTRAINT fk_ChiTietHoaDon_KhachHang FOREIGN KEY (makh) REFERENCES KhachHang(id);
+ALTER TABLE HoaDon ADD CONSTRAINT fk_HoaDon_NhanVien FOREIGN KEY (manv) REFERENCES NhanVien(id);
+ALTER TABLE HoaDon ADD CONSTRAINT fk_HoaDon_KhachHang FOREIGN KEY (makh) REFERENCES KhachHang(id);
 

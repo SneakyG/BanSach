@@ -13,12 +13,15 @@ public class ChiTietHoaDonMapper implements IRowMapper<ChiTietHoaDon> {
 			ChiTietHoaDon cthd = new ChiTietHoaDon();
 			cthd.setId(resultSet.getInt("id"));
 			cthd.setMaHoaDon(resultSet.getInt("mahoadon"));
-			cthd.setMaNhanVien(resultSet.getInt("manv"));
-			cthd.setMaKhachHang(resultSet.getInt("makh"));
 			cthd.setMaSach(resultSet.getInt("masach"));
 			cthd.setSoLuong(resultSet.getInt("soluong"));
-			cthd.setThoiGian(resultSet.getTimestamp("thoigian"));
 			cthd.setThanhTien(resultSet.getDouble("thanhtien"));
+			try {
+				cthd.setTenSach(resultSet.getString("tensach"));
+				cthd.setTrangThai(resultSet.getInt("trangthai"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return cthd;
 		} catch (SQLException e) {
 			return null;

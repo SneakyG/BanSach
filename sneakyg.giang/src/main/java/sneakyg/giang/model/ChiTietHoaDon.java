@@ -1,42 +1,29 @@
 package sneakyg.giang.model;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-
 public class ChiTietHoaDon extends Common<ChiTietHoaDon> {
 
 	private int soLuong;
 	private double thanhTien;
-	private Timestamp thoiGian;
 	private Integer maSach;
-	private Integer maKhachHang;
-	private Integer maNhanVien;
 	private Integer maHoaDon;
-	private List<Sach> dsTenSach = new ArrayList<>();
+	private int trangThai;
+	private String tenSach;
+//	private List<Sach> dsTenSach = new ArrayList<>();
 
 	public Integer getMaSach() {
 		return maSach;
 	}
 
+	public int getTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(int trangThai) {
+		this.trangThai = trangThai;
+	}
+
 	public void setMaSach(Integer maSach) {
 		this.maSach = maSach;
-	}
-
-	public Integer getMaKhachHang() {
-		return maKhachHang;
-	}
-
-	public void setMaKhachHang(Integer maKhachHang) {
-		this.maKhachHang = maKhachHang;
-	}
-
-	public Integer getMaNhanVien() {
-		return maNhanVien;
-	}
-
-	public void setMaNhanVien(Integer maNhanVien) {
-		this.maNhanVien = maNhanVien;
 	}
 
 	public Integer getMaHoaDon() {
@@ -45,22 +32,6 @@ public class ChiTietHoaDon extends Common<ChiTietHoaDon> {
 
 	public void setMaHoaDon(Integer maHoaDon) {
 		this.maHoaDon = maHoaDon;
-	}
-
-	public List<Sach> getDsTenSach() {
-		return dsTenSach;
-	}
-
-	public void setDsTenSach(List<Sach> dsTenSach) {
-		this.dsTenSach = dsTenSach;
-	}
-
-	public Timestamp getThoiGian() {
-		return this.thoiGian;
-	}
-
-	public void setThoiGian(Timestamp thoiGian) {
-		this.thoiGian = thoiGian;
 	}
 
 	public int getSoLuong() {
@@ -77,6 +48,14 @@ public class ChiTietHoaDon extends Common<ChiTietHoaDon> {
 
 	public void setThanhTien(double thanhTien) {
 		this.thanhTien = thanhTien;
+	}
+
+	public String getTenSach() {
+		return tenSach;
+	}
+
+	public void setTenSach(String tenSach) {
+		this.tenSach = tenSach;
 	}
 
 }

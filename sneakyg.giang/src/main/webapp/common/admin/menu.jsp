@@ -47,7 +47,7 @@
 						<li class="nav-item"><a href="<c:url value = '/admin-danhmucsach?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenDanhMuc&sortBy=asc'/>" class="nav-link">
 								<p>Quản lý danh mục sách</p>
 						</a></li>
-						<li class="nav-item"><a href="<c:url value = '/admin-chitiethoadon?type=list&textSearch=&page=1&maxPageItem=5&sortName=thanhTien&sortBy=asc'/>" class="nav-link">
+						<li class="nav-item"><a href="<c:url value = '/admin-chitiethoadon?type=list&textSearch=&page=1&maxPageItem=5&sortName=maHoaDon&sortBy=asc'/>" class="nav-link">
 								<p>Quản lý chi tiết hóa đơn</p>
 						</a></li>
 						<li class="nav-item"><a href="<c:url value = '/admin-hoadon?type=list&textSearch=&page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" class="nav-link">

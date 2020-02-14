@@ -45,13 +45,12 @@ public class ChiTietHoaDonController extends HttpServlet {
 			model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
 			view = "/views/admin/cthd/list.jsp";
 		} else if (model.getType().equals(SystemConstant.EDIT)) {
-			if (model.getId() != null) {
-				model = cthdService.findOne(model.getId());
-			} else {
+				if (model.getId() != null) {
+					model = cthdService.findOne(model.getId());
+				} else {
 
-			}
-			model.setDsTenSach(cthdService.getBookName(model.getMaSach()));
-			view = "/views/admin/cthd/edit.jsp";
+				}
+				view = "/views/admin/cthd/edit.jsp";
 		} 
 		req.setAttribute(SystemConstant.MODEL, model);
 		RequestDispatcher rd = req.getRequestDispatcher(view);

@@ -1,6 +1,7 @@
 package sneakyg.giang.controller.admin.api;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -37,7 +38,7 @@ public class ChiTietHoaDonAPI extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		req.setCharacterEncoding("UTF8");
 		resp.setContentType("application/json");
-		ChiTietHoaDon model = HttpUtil.of(req.getReader()).toModel(ChiTietHoaDon.class);
+		List<ChiTietHoaDon> model = HttpUtil.of(req.getReader()).toListModel(ChiTietHoaDon.class);
 		model = cthdService.save(model);
 		mapper.writeValue(resp.getOutputStream(), model);
 	}

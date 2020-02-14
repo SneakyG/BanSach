@@ -1,5 +1,7 @@
 package sneakyg.giang.service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,6 +29,14 @@ public class HoaDonService implements IHoaDonService {
 	@Override
 	public int getTotalItem(String textSearch) {
 		return hoaDonDAO.getTotalItem(textSearch);
+	}
+
+	@Override
+	public HoaDon update(HoaDon hd) {
+		LocalDateTime currentTime = LocalDateTime.now();
+		hd.setThoiGianMua(Timestamp.valueOf(currentTime));
+		hoaDonDAO.update(hd);
+		return hoaDonDAO.findOne(hd.getId());
 	}
 
 }

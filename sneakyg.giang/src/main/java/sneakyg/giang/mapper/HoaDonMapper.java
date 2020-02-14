@@ -12,8 +12,14 @@ public class HoaDonMapper implements IRowMapper<HoaDon> {
 		try {
 			HoaDon hd = new HoaDon();
 			hd.setId(resultSet.getInt("id"));
-			hd.setNgayHD(resultSet.getDate("ngayhoadon"));
-			hd.setTongTien(resultSet.getDouble("tongtien"));
+			try {
+				hd.setThoiGianDat(resultSet.getTimestamp("thoigiandat"));
+				hd.setThoiGianMua(resultSet.getTimestamp("thoigianmua"));
+				hd.setTongTien(resultSet.getDouble("tongtien"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			hd.setTrangThai(resultSet.getInt("trangthai"));
 			return hd;
 		} catch (SQLException e) {
 			return null;

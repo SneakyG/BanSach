@@ -11,5 +11,7 @@ public interface IHoaDonService {
 
 	List<HoaDon> search(IPageble pageble, String textSearch);
 	
+	HoaDon update(HoaDon hd);
+	
 	int getTotalItem(String textSearch);
 }

@@ -36,14 +36,14 @@
 						<div class="card-body">
 							<form id="formSubmit">
 								<div class="form-group">
-									<div>
+									<%-- <div>
 										<label>Sách</label> 
 											<select class="fstdropdown-select" id="maSach" name="maSach">
 												<c:forEach var="item" items="${model.dsTenSach}">
 													<option value="${item.id}" class="form-control">${item.tenSach}</option>
 												</c:forEach>
 											</select>
-									</div>
+									</div> --%>
 									<div>
 										<label>Số lượng</label> 
 										<input type="text" class="form-control" id="soLuong" name="soLuong"
@@ -81,7 +81,6 @@
 		$(document).ready(function() {
 			$('#btnXacNhan').click(function(e) {
 				e.preventDefault();
-				console.log($("#maSach").val());
 				var data = {};
 				var formData = $('#formSubmit').serializeArray();
 				$.each(formData, function(i, v) {
@@ -103,7 +102,7 @@
 					data : JSON.stringify(data),
 					dataType : 'json',
 					success : function(result) {
-						window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=thanhTien&sortBy=asc";
+						window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=maHoaDon&sortBy=asc";
 					},
 					error : function(error) {
 						console.log(error);
@@ -118,7 +117,7 @@
 					data : JSON.stringify(data),
 					dataType : 'json',
 					success : function(result) {
-						window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=thanhTien&sortBy=asc";
+						window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=maHoaDon&sortBy=asc";
 					},
 					error : function(error) {
 						console.log(error);

@@ -11,9 +11,11 @@ public class ChiTietHoaDonDAO extends CommonDAO<ChiTietHoaDon> implements IChiTi
 
 	@Override
 	public List<ChiTietHoaDon> findAll(IPageble pageble, String textSearch) {
-		StringBuilder sql = new StringBuilder("SELECT * FROM chitiethoadon");
+		StringBuilder sql = new StringBuilder("SELECT cthd.id,cthd.masach,s.tenSach,cthd.mahoadon,cthd.soluong,cthd.thanhtien,hd.trangthai FROM chitiethoadon AS cthd");
+		sql.append(" JOIN hoadon AS hd ON cthd.mahoadon = hd.id");
+		sql.append(" JOIN sach AS s ON cthd.masach = s.id");
 		if (textSearch != null) {
-			sql.append(" WHERE masach like '%" + textSearch + "%' or makh like '%" + textSearch + "%' or manv like '%" + textSearch + "%'");
+			sql.append(" WHERE mahoadon like '%" + textSearch + "%'");
 		}
 		if (pageble.getSorter() != null) {
 			sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy());
@@ -34,15 +36,14 @@ public class ChiTietHoaDonDAO extends CommonDAO<ChiTietHoaDon> implements IChiTi
 
 	@Override
 	public Integer save(ChiTietHoaDon cthd) {
-		String sql = "INSERT INTO chitiethoadon(mahoadon,masach,manv,makh,soluong,thanhtien,thoigian) VALUES(?,?,?,?,?,?,?)";
-		return insert(sql, cthd.getMaHoaDon(),cthd.getMaSach(),cthd.getMaNhanVien(),cthd.getMaKhachHang(),
-				cthd.getSoLuong(),cthd.getThanhTien(),cthd.getThoiGian());
+		String sql = "INSERT INTO chitiethoadon(mahoadon,masach,soluong,thanhtien) VALUES(?,?,?,?)";
+		return insert(sql, cthd.getMaHoaDon(),cthd.getMaSach(),cthd.getSoLuong(),cthd.getThanhTien());
 	}
 
 	@Override
 	public void update(ChiTietHoaDon cthd) {
-		String sql = "UPDATE chitiethoadon SET soluong = ?, masach = ? WHERE id = ?";
-		update(sql, cthd.getSoLuong(),cthd.getMaSach(), cthd.getId());
+		String sql = "UPDATE chitiethoadon SET soluong = ?, thanhtien = ? WHERE id = ?";
+		update(sql, cthd.getSoLuong(),cthd.getThanhTien(),cthd.getId());
 	}
 
 	@Override
@@ -59,20 +60,16 @@ public class ChiTietHoaDonDAO extends CommonDAO<ChiTietHoaDon> implements IChiTi
 			return count(sql.toString(),maHoaDon);
 		}
 		if (textSearch != null) {
-			sql.append(" WHERE masach like '%" + textSearch + "%' or makh like '%" + textSearch + "%' or manv like '%" + textSearch + "%'");
+			sql.append(" WHERE masach like '%" + textSearch + "%'");
 		}
 		return count(sql.toString());
 	}
 
 	@Override
 	public List<ChiTietHoaDon> search(IPageble pageble, String textSearch) {
-		StringBuilder sql = new StringBuilder("SELECT cthd.id,cthd.mahoadon,cthd.masach,cthd.manv,cthd.makh,cthd.soluong,cthd.thanhtien,kh.tenkh,nv.tennv,s.tensach");
-		sql.append(" FROM chitiethoadon AS cthd JOIN khachhang AS kh ON cthd.makh = kh.id");
-		sql.append(" JOIN nhanvien AS nv ON cthd.manv = nv.id");
-		sql.append(" JOIN sach AS s ON cthd.masach = s.id");
-		sql.append(" WHERE masach like '%" + textSearch + "%' or makh like '%" + textSearch + "%' or manv like '%" + textSearch + "%'");
-		sql.append(" or tenkh like '%" + textSearch + "%' or tennv like '%" + textSearch + "%' or tensach like '%" + textSearch + "%'");
-		sql.append(" or thoigian like '%" + textSearch + "%'");
+		StringBuilder sql = new StringBuilder("SELECT cthd.id,cthd.mahoadon,cthd.masach,cthd.soluong,cthd.thanhtien,s.tensach");
+		sql.append(" FROM chitiethoadon AS cthd JOIN sach AS s ON cthd.masach = s.id");
+		sql.append(" WHERE masach like '%" + textSearch + "%' or tensach like '%" + textSearch + "%'");
 		if (pageble.getSorter() != null) {
 			sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy());
 		}
@@ -91,7 +88,10 @@ public class ChiTietHoaDonDAO extends CommonDAO<ChiTietHoaDon> implements IChiTi
 
 	@Override
 	public List<ChiTietHoaDon> findAllByMaHoaDon(IPageble pageble, Integer maHoaDon) {
-		StringBuilder sql = new StringBuilder("SELECT * FROM chitiethoadon WHERE mahoadon = ?");
+		StringBuilder sql = new StringBuilder("SELECT cthd.id,cthd.masach,s.tenSach,cthd.mahoadon,cthd.soluong,cthd.thanhtien,hd.trangthai FROM chitiethoadon AS cthd");
+		sql.append(" JOIN hoadon AS hd ON cthd.mahoadon = hd.id");
+		sql.append(" JOIN sach AS s ON cthd.masach = s.id");
+		sql.append(" WHERE cthd.mahoadon = ?");
 		if (pageble.getSorter() != null) {
 			sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy());
 		}

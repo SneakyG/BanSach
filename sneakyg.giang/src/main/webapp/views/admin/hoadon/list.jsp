@@ -52,19 +52,23 @@
 													<thead>
 														<tr>
 															<th>Mã hóa đơn</th>
-															<th>Thời gian</th>
-															<th>Thành tiền</th>
+															<th>Thời gian đặt</th>
+															<th>Thời gian mua</th>
+															<th>Tổng tiền</th>
+															<th>Trạng thái</th>
 															<th>Thao tác</th>
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="item" items="${model.listResult}">
+														<c:forEach var="item" items="${model.listResult}" varStatus="loop">
 															<tr>
 																<td>${item.id}</td>
-																<td>${item.ngayHD}</td>
+																<td>${item.thoiGianDat}</td>
+																<td>${item.thoiGianMua}</td>
 																<td>${item.tongTien}</td>
+																<td>${item.trangThai}</td>
 																<td>
-																	<c:url var="listUrl" value="/admin-chitiethoadon">
+																	<c:url var="cthdsUrl" value="/admin-chitiethoadon">
 																		<c:param name="type" value="list" />
 																		<c:param name="maHoaDon" value="${item.id}" />
 																		<c:param name="page" value="1" />
@@ -72,9 +76,19 @@
 																		<c:param name="sortName" value="id" />
 																		<c:param name="sortBy" value="asc" />
 																	</c:url> <a class="btn btn-sm btn-primary btn-edit"
-																		data-toggle="tooltip" title="Cập nhật"
-																		href="${listUrl}"><i class="fa fa-edit"
+																		data-toggle="tooltip" title="Chi tiết"
+																		href="${cthdsUrl}"><i class="fa fa-list"
 																			aria-hidden="true"></i> </a>
+																	<c:if test="${item.trangThai == 0}">
+																		<button class="btn btn-sm btn-primary btn-edit"
+																			data-toggle="tooltip" title="Check" value="${item.id}"
+																			><i class="fa fa-check"
+																				aria-hidden="true"></i>
+																			
+																		</button>
+																	</c:if>
+																	
+																	
 																</td>
 															</tr>
 														</c:forEach>
@@ -82,8 +96,10 @@
 													<tfoot>
 														<tr>
 															<th>Mã hóa đơn</th>
-															<th>Thời gian</th>
-															<th>Thành tiền</th>
+															<th>Thời gian đặt</th>
+															<th>Thời gian mua</th>
+															<th>Tổng tiền</th>
+															<th>Trạng thái</th>
 															<th>Thao tác</th>
 														</tr>
 													</tfoot>
@@ -128,6 +144,48 @@
 					}
 				});
 		});
+		
+		$("button").click(function(e) {
+			e.preventDefault();
+			var id1 = $(this).prop("value");
+			var data = {trangThai: "1",id: id1+""};
+			if (id1 == "") {
+				createHoaDon(data);
+			} else {
+				updateHoaDon(data);
+			}
+		});
+		
+		function updateHoaDon(data) {
+			$.ajax({
+				url : '${APIurl}',
+				type : 'PUT',
+				contentType : 'application/json',
+				data : JSON.stringify(data),
+				dataType : 'json',
+				success : function(result) {
+					window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=id&sortBy=asc";
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			});
+		}
+		function createHoaDon(data) {
+			$.ajax({
+				url : '${APIurl}',
+				type : 'POST',
+				contentType : 'application/json',
+				data : JSON.stringify(data),
+				dataType : 'json',
+				success : function(result) {
+					window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=id&sortBy=asc";
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			});
+		}
 	</script>
 </body>
 

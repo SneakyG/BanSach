@@ -70,10 +70,7 @@
 															<th><input type="checkbox" id="checkAllHead"></th>
 															<th>Mã hóa đơn</th>
 															<th>Mã sách</th>
-															<th>Mã nhân viên</th>
-															<th>Mã khách hàng</th>
 															<th>Số lượng</th>
-															<th>Thời gian</th>
 															<th>Thành tiền</th>
 															<th>Thao tác</th>
 														</tr>
@@ -84,20 +81,29 @@
 																<td><input type="checkbox" id="checkbox_${item.id}"
 																		value="${item.id}"></td>
 																<td>${item.maHoaDon}</td>
-																<td>${item.maSach}</td>
-																<td>${item.maNhanVien}</td>
-																<td>${item.maKhachHang}</td>
+																<td>
+																	<div class="content hideContent">
+																		${item.tenSach}
+																		<div class="show-more" style="color:blue">
+        																<h4>...</h4>
+    																	</div>
+																	</div>
+																	
+																
+																</td>
 																<td>${item.soLuong}</td>
-																<td>${item.thoiGian}</td>
 																<td>${item.thanhTien}</td>
 																<td>
-																	<c:url var="editUrl" value="/admin-chitiethoadon">
-																		<c:param name="type" value="edit" />
-																		<c:param name="id" value="${item.id}" />
-																	</c:url> <a class="btn btn-sm btn-primary btn-edit"
-																		data-toggle="tooltip" title="Cập nhật"
-																		href="${editUrl}"><i class="fa fa-edit"
-																			aria-hidden="true"></i> </a>
+																	<c:if test="${item.trangThai == 0}">
+																		<c:url var="editUrl" value="/admin-chitiethoadon">
+																			<c:param name="type" value="edit" />
+																			<c:param name="id" value="${item.id}" />
+																		</c:url> <a class="btn btn-sm btn-primary btn-edit"
+																			data-toggle="tooltip" title="Cập nhật"
+																			href="${editUrl}"><i class="fa fa-edit"
+																				aria-hidden="true"></i> </a>
+																	</c:if>
+																	
 																</td>
 															</tr>
 														</c:forEach>
@@ -107,10 +113,7 @@
 															<th><input type="checkbox" id="checkAllFoot"></th>
 															<th>Mã hóa đơn</th>
 															<th>Mã sách</th>
-															<th>Mã nhân viên</th>
-															<th>Mã khách hàng</th>
 															<th>Số lượng</th>
-															<th>Thời gian</th>
 															<th>Thành tiền</th>
 															<th>Thao tác</th>
 														</tr>
@@ -149,7 +152,7 @@
 						if (currentPage != page) {
 							$('#page').val(page);
 							$('#maxPageItem').val(limit);
-							$('#sortName').val('thanhTien');
+							$('#sortName').val('maHoaDon');
 							$('#sortBy').val('asc');
 							$('#formSubmit').submit();
 						}
@@ -171,6 +174,22 @@
 			}).get();
 			data['ids'] = ids;
 			deleteChiTietHoaDon(data);
+		});
+		
+		$(".show-more h4").on("click", function() {
+		    var $this = $(this); 
+		    var $content = $this.parent().prev("div.content");
+		    var linkText = $this.text().toUpperCase();    
+		    
+		    if(linkText === "..."){
+		        linkText = "Show less";
+		        $content.addClass('showcontent').removeClass('hideContent');
+		    } else {
+		        linkText = "...";
+		        $content.addClass('hideContent').removeClass('showContent');
+		    };
+	
+		    $this.text(linkText);
 		});
 
 		function deleteChiTietHoaDon(data) {

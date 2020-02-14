@@ -3,7 +3,6 @@ package sneakyg.giang.service.interfaces;
 import java.util.List;
 
 import sneakyg.giang.model.ChiTietHoaDon;
-import sneakyg.giang.model.Sach;
 import sneakyg.giang.paging.IPageble;
 
 public interface IChiTietHoaDonService {
@@ -16,7 +15,7 @@ public interface IChiTietHoaDonService {
 
 	ChiTietHoaDon findOne(Integer id);
 
-	ChiTietHoaDon save(ChiTietHoaDon cthd);
+	List<ChiTietHoaDon> save(List<ChiTietHoaDon> cthd);
 
 	ChiTietHoaDon update(ChiTietHoaDon cthd);
 
@@ -24,5 +23,6 @@ public interface IChiTietHoaDonService {
 
 	int getTotalItem(String textSearch, Integer maHoaDon);
 	
-	List<Sach> getBookName(Integer maSach);
+	int checkTrangThaiHoaDon(Integer id);
+//	List<Sach> getBookName(Integer maSach)O;
 }

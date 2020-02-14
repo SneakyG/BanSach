@@ -174,21 +174,21 @@
 			data['ids'] = ids;
 			deleteSach(data);
 		});
- $(".show-more h4").on("click", function() {
-	    var $this = $(this); 
-	    var $content = $this.parent().prev("div.content");
-	    var linkText = $this.text().toUpperCase();    
-	    
-	    if(linkText === "..."){
-	        linkText = "Show less";
-	        $content.addClass('showcontent').removeClass('hideContent');
-	    } else {
-	        linkText = "...";
-	        $content.addClass('hideContent').removeClass('showContent');
-	    };
-
-	    $this.text(linkText);
-	});
+ 		$(".show-more h4").on("click", function() {
+		    var $this = $(this); 
+		    var $content = $this.parent().prev("div.content");
+		    var linkText = $this.text().toUpperCase();    
+		    
+		    if(linkText === "..."){
+		        linkText = "Show less";
+		        $content.addClass('showcontent').removeClass('hideContent');
+		    } else {
+		        linkText = "...";
+		        $content.addClass('hideContent').removeClass('showContent');
+		    };
+	
+		    $this.text(linkText);
+		});
 		function deleteSach(data) {
 			$.ajax({
 				url: '${APIurl}',

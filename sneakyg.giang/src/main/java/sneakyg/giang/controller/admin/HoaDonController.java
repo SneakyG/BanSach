@@ -33,9 +33,6 @@ public class HoaDonController extends HttpServlet {
 		if (model.getType().equals(SystemConstant.LIST)) {
 			IPageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
 					new Sorter(model.getSortName(), model.getSortBy()));
-			if(model.getTextSearch() != null) {
-				model.setListResult(hoaDonService.search(pageble,model.getTextSearch()));
-			}
 			model.setListResult(hoaDonService.findAll(pageble,model.getTextSearch()));
 			model.setTotalItem(hoaDonService.getTotalItem(model.getTextSearch()));
 			model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
