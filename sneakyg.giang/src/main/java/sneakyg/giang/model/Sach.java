@@ -5,7 +5,6 @@ public class Sach extends Common<Sach> {
 	private String tenSach;
 	private String moTaNgan;
 	private int soLuong;
-	private int trangThai;
 	private String hinhAnh;
 	private double donGia;
 	private Integer maNXB;
@@ -81,12 +80,4 @@ public class Sach extends Common<Sach> {
 	public void setSoLuong(int soLuong) {
 		this.soLuong = soLuong;
 	}
-	public int getTrangThai() {
-		return trangThai;
-	}
-	public void setTrangThai(int trangThai) {
-		this.trangThai = trangThai;
-	}
-	
-	
 }

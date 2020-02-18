@@ -51,12 +51,14 @@
 													<i class="fa fa-plus-circle bigger-110 purple"></i>
 												</span>
 											</a>
-											<button id="btnDelete" type="button"
-												class="dt-button buttons-html5 btn btn-white btn-primary btn-bold"
-												data-toggle="tooltip" title='Xóa'>
-												<span> <i class="fa fa-trash"></i>
-												</span>
-											</button>
+											<c:if test="${model.trangThai == 0}">
+												<button id="btnDelete" type="button"
+													class="dt-button buttons-html5 btn btn-white btn-primary btn-bold"
+													data-toggle="tooltip" title='Xóa'>
+													<span> <i class="fa fa-trash"></i>
+													</span>
+												</button>
+											</c:if>
 										</div>
 									</div>
 								</div>
@@ -78,8 +80,14 @@
 													<tbody>
 														<c:forEach var="item" items="${model.listResult}">
 															<tr>
-																<td><input type="checkbox" id="checkbox_${item.id}"
+																<c:if test="${item.trangThai == 0}">
+																	<td><input type="checkbox" id="checkbox_${item.id}"
 																		value="${item.id}"></td>
+																</c:if>
+																<c:if test="${item.trangThai == 1}">
+																	<td></td>
+																</c:if>
+																
 																<td>${item.maHoaDon}</td>
 																<td>
 																	<div class="content hideContent">
@@ -152,7 +160,7 @@
 						if (currentPage != page) {
 							$('#page').val(page);
 							$('#maxPageItem').val(limit);
-							$('#sortName').val('maHoaDon');
+							$('#sortName').val('trangThai');
 							$('#sortBy').val('asc');
 							$('#formSubmit').submit();
 						}
@@ -200,7 +208,7 @@
 				data: JSON.stringify(data),
 				dataType: 'json',
 				success: function (result) {
-					window.location.href = "${LISTurl}?type=list&page=1&maxPageItem=5&sortName=thanhTien&sortBy=asc";
+					window.location.href = "${LISTurl}?type=list&page=1&maxPageItem=5&sortName=trangThai&sortBy=asc";
 				},
 				error: function (error) {
 					console.log(error);

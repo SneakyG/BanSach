@@ -20,7 +20,7 @@ public class SachMapper implements IRowMapper<Sach> {
 				sach.setMoTaNgan(resultSet.getString("motangan"));
 				sach.setSoLuong(resultSet.getInt("soluong"));
 				sach.setDonGia(resultSet.getDouble("dongia"));
-				sach.setTrangThai(resultSet.getInt("trangthai"));
+				sach.setHinhAnh(resultSet.getString("hinhanh"));
 				sach.setMaDanhMuc(resultSet.getInt("madanhmuc"));
 				sach.setMaTacGia(resultSet.getInt("matacgia"));
 				sach.setMaNXB(resultSet.getInt("manxb"));

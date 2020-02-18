@@ -47,16 +47,9 @@ public class ChiTietHoaDonService implements IChiTietHoaDonService {
 		LocalDateTime currentTime = LocalDateTime.now();
 		List<ChiTietHoaDon> ds = new ArrayList<ChiTietHoaDon>();
 		Sach sach = new Sach();
-		HoaDon hd = new HoaDon();
-		int maHoaDon;
-		if (ds.size() == 1 && ds.get(0) != null) {
-			maHoaDon = ds.get(0).getMaHoaDon();
-			hd.setThoiGianDat(hoaDonDAO.findOne(maHoaDon).getThoiGianDat());
-		} else {
-			hd.setThoiGianDat(Timestamp.valueOf(currentTime));
-			maHoaDon = hoaDonDAO.save(hd);
-		}
-		hd.setTrangThai(0);
+		HoaDon hd = new HoaDon(Timestamp.valueOf(currentTime),0,0);
+		int maHoaDon = hoaDonDAO.save(hd);
+		hd = hoaDonDAO.findOne(maHoaDon);
 		for (ChiTietHoaDon item : cthd) {
 			sach = sachDAO.findOne(item.getMaSach());
 			item.setThanhTien(item.getSoLuong() * sach.getDonGia());
@@ -99,8 +92,28 @@ public class ChiTietHoaDonService implements IChiTietHoaDonService {
 
 	@Override
 	public void delete(Integer[] ids) {
+		HoaDon hd = new HoaDon();
+		int soThanhPhanCuaHD;
+		ChiTietHoaDon cthd = new ChiTietHoaDon();
+		Sach sach = new Sach();
+		double tongTien;
+		int soLuongCon;
 		for (int id : ids) {
+			cthd = cthdDAO.findOne(id);
 			cthdDAO.delete(id);
+			soThanhPhanCuaHD = cthdDAO.countByMaHoaDon(cthd.getMaHoaDon());
+			if(soThanhPhanCuaHD == 0) {
+				hoaDonDAO.delete(cthd.getMaHoaDon());
+			}else {
+				hd = hoaDonDAO.findOne(cthd.getMaHoaDon());
+				tongTien = cthdDAO.getTotalCostByMaHoaDon(hd.getId());
+				hd.setTongTien(tongTien);
+				hoaDonDAO.update(hd);
+			}
+			sach = sachDAO.findOne(cthd.getMaSach());
+			soLuongCon = sach.getSoLuong() + cthd.getSoLuong();
+			sach.setSoLuong(soLuongCon);
+			sachDAO.update(sach);
 		}
 	}
 

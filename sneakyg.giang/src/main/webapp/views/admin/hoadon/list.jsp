@@ -73,8 +73,9 @@
 																		<c:param name="maHoaDon" value="${item.id}" />
 																		<c:param name="page" value="1" />
 																		<c:param name="maxPageItem" value="5" />
-																		<c:param name="sortName" value="id" />
+																		<c:param name="sortName" value="trangThai" />
 																		<c:param name="sortBy" value="asc" />
+																		<c:param name="trangThai" value="${item.trangThai}" />
 																	</c:url> <a class="btn btn-sm btn-primary btn-edit"
 																		data-toggle="tooltip" title="Chi tiết"
 																		href="${cthdsUrl}"><i class="fa fa-list"
@@ -137,7 +138,7 @@
 						if (currentPage != page) {
 							$('#page').val(page);
 							$('#maxPageItem').val(limit);
-							$('#sortName').val('id');
+							$('#sortName').val('trangThai');
 							$('#sortBy').val('asc');
 							$('#formSubmit').submit();
 						}
@@ -148,7 +149,7 @@
 		$("button").click(function(e) {
 			e.preventDefault();
 			var id1 = $(this).prop("value");
-			var data = {trangThai: "1",id: id1+""};
+			var data = {id: id1+""};
 			if (id1 == "") {
 				createHoaDon(data);
 			} else {
@@ -164,7 +165,7 @@
 				data : JSON.stringify(data),
 				dataType : 'json',
 				success : function(result) {
-					window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=id&sortBy=asc";
+					window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=trangThai&sortBy=asc";
 				},
 				error : function(error) {
 					console.log(error);
@@ -179,7 +180,7 @@
 				data : JSON.stringify(data),
 				dataType : 'json',
 				success : function(result) {
-					window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=id&sortBy=asc";
+					window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=trangThai&sortBy=asc";
 				},
 				error : function(error) {
 					console.log(error);

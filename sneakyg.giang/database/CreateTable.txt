@@ -48,7 +48,7 @@ create table Sach(
     motangan text null,
     soluong int null,
     dongia decimal null,
-    trangthai int null
+    hinhanh varchar(50) null
 );
 
 create table DanhMucSach(

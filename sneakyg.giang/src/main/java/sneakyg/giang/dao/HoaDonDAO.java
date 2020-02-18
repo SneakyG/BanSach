@@ -23,7 +23,7 @@ public class HoaDonDAO extends CommonDAO<HoaDon> implements IHoaDonDAO{
 			sql = new StringBuilder("SELECT * FROM hoadon");
 		}
 		if (pageble.getSorter() != null) {
-			sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy());
+			sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy() + ",id ASC");
 		}
 		if (pageble.getLimit() != 0) {
 			sql.append(" LIMIT " + pageble.getOffSet() + "," + pageble.getLimit());
@@ -72,6 +72,12 @@ public class HoaDonDAO extends CommonDAO<HoaDon> implements IHoaDonDAO{
 		String sql = "SELECT * FROM hoadon WHERE id = ?";
 		List<HoaDon> ds = query(sql, new HoaDonMapper(), id);
 		return ds.isEmpty() ? null : ds.get(0);
+	}
+
+	@Override
+	public void delete(Integer id) {
+		String sql = "DELETE FROM hoadon WHERE id = ?";
+		update(sql, id);
 	}
 
 }

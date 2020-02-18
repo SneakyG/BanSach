@@ -18,7 +18,7 @@ public class SachDAO extends CommonDAO<Sach> implements ISachDAO {
 
 	@Override
 	public List<Sach> findAll(IPageble pageble, String textSearch) {
-		StringBuilder sql = new StringBuilder("SELECT s.id,s.madanhmuc,s.matacgia,s.manxb,s.tensach,s.motangan,s.soluong,s.dongia,s.trangthai,dm.tendanhmuc,tg.tentg,nxb.tennxb");
+		StringBuilder sql = new StringBuilder("SELECT s.id,s.madanhmuc,s.matacgia,s.manxb,s.tensach,s.motangan,s.soluong,s.hinhanh,s.dongia,dm.tendanhmuc,tg.tentg,nxb.tennxb");
 		sql.append(" FROM sach AS s JOIN danhmucsach AS dm ON s.madanhmuc = dm.id");
 		sql.append(" JOIN tacgia AS tg ON s.matacgia = tg.id");
 		sql.append(" JOIN nhaxuatban AS nxb ON s.manxb = nxb.id");
@@ -44,14 +44,14 @@ public class SachDAO extends CommonDAO<Sach> implements ISachDAO {
 
 	@Override
 	public Integer save(Sach sach) {
-		String sql = "INSERT INTO sach(manxb,matacgia,madanhmuc,tensach,motangan,soluong,dongia,trangthai) VALUES(?,?,?,?,?,?,?,?)";
-		return insert(sql, sach.getMaNXB(),sach.getMaTacGia(),sach.getMaDanhMuc(),sach.getTenSach(),sach.getMoTaNgan(),sach.getSoLuong(),sach.getDonGia(),sach.getTrangThai());
+		String sql = "INSERT INTO sach(manxb,matacgia,madanhmuc,tensach,motangan,soluong,dongia,hinhanh) VALUES(?,?,?,?,?,?,?,?)";
+		return insert(sql, sach.getMaNXB(),sach.getMaTacGia(),sach.getMaDanhMuc(),sach.getTenSach(),sach.getMoTaNgan(),sach.getSoLuong(),sach.getDonGia(),sach.getHinhAnh());
 	}
 
 	@Override
 	public void update(Sach sach) {
-		String sql = "UPDATE sach SET manxb = ?, madanhmuc = ?, matacgia = ?,tensach = ?, motangan = ?, soluong = ?, dongia = ?, trangthai = ? WHERE id = ?";
-		update(sql,sach.getMaNXB(),sach.getMaTacGia(),sach.getMaDanhMuc(),sach.getTenSach(),sach.getMoTaNgan(),sach.getSoLuong(),sach.getDonGia(),sach.getTrangThai(),sach.getId());
+		String sql = "UPDATE sach SET manxb = ?, madanhmuc = ?, matacgia = ?,tensach = ?, motangan = ?, soluong = ?, dongia = ?, hinhanh = ? WHERE id = ?";
+		update(sql,sach.getMaNXB(),sach.getMaTacGia(),sach.getMaDanhMuc(),sach.getTenSach(),sach.getMoTaNgan(),sach.getSoLuong(),sach.getDonGia(),sach.getHinhAnh(),sach.getId());
 	}
 
 	@Override

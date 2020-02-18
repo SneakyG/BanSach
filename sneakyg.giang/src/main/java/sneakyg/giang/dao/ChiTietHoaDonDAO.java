@@ -18,7 +18,7 @@ public class ChiTietHoaDonDAO extends CommonDAO<ChiTietHoaDon> implements IChiTi
 			sql.append(" WHERE mahoadon like '%" + textSearch + "%'");
 		}
 		if (pageble.getSorter() != null) {
-			sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy());
+			sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy() + ",mahoadon ASC");
 		}
 		if (pageble.getLimit() != 0) {
 			sql.append(" LIMIT " + pageble.getOffSet() + "," + pageble.getLimit());
@@ -100,6 +100,12 @@ public class ChiTietHoaDonDAO extends CommonDAO<ChiTietHoaDon> implements IChiTi
 		}
 		List<ChiTietHoaDon> ds = query(sql.toString(), new ChiTietHoaDonMapper(), maHoaDon);
 		return ds;
+	}
+
+	@Override
+	public int countByMaHoaDon(Integer maHoaDon) {
+		String sql = "SELECT count(*) FROM chitiethoadon WHERE mahoadon = ?";
+		return count(sql, maHoaDon);
 	}
 
 }

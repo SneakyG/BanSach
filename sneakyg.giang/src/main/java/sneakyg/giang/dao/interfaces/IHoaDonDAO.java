@@ -15,6 +15,8 @@ public interface IHoaDonDAO {
 	
 	void update(HoaDon hd);
 	
+	void delete(Integer id);
+	
 	HoaDon findOneByDate(String ngayHD);
 	
 	int getTotalItem(String textSearch);

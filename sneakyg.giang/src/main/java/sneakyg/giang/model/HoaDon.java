@@ -11,6 +11,15 @@ public class HoaDon extends Common<HoaDon> {
 	private double tongTien;
 	private int trangThai;
 
+	public HoaDon() {
+	}
+	
+	public HoaDon(Timestamp thoiGianDat, double tongTien, int trangThai) {
+		this.thoiGianDat = thoiGianDat;
+		this.tongTien = tongTien;
+		this.trangThai = trangThai;
+	}
+
 	public Timestamp getThoiGianDat() {
 		return thoiGianDat;
 	}
@@ -41,9 +50,6 @@ public class HoaDon extends Common<HoaDon> {
 
 	public void setMaNhanVien(Integer maNhanVien) {
 		this.maNhanVien = maNhanVien;
-	}
-
-	public HoaDon() {
 	}
 	
 	public HoaDon(double tongTien) {

@@ -64,6 +64,7 @@
 													<thead>
 														<tr>
 															<th><input type="checkbox" id="checkAllHead"></th>
+															<th>Hình ảnh</th>
 															<th>Tên sách</th>
 															<th>Mô tả ngắn</th>
 															<th>Danh mục</th>
@@ -79,6 +80,7 @@
 															<tr>
 																<td><input type="checkbox" id="checkbox_${item.id}"
 																		value="${item.id}"></td>
+																<td><img alt="" src="${item.hinhAnh}"></td>
 																<td style="width:20%">${item.tenSach}</td>
 																<td style="width:20%"> 
 																	<div class="content hideContent">
@@ -107,6 +109,7 @@
 													<tfoot>
 														<tr>
 															<th><input type="checkbox" id="checkAllFoot"></th>
+															<th>Hình ảnh</th>
 															<th>Tên sách</th>
 															<th>Mô tả ngắn</th>
 															<th>Danh mục</th>

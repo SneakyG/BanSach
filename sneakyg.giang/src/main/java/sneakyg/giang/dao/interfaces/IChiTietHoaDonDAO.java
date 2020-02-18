@@ -18,6 +18,8 @@ public interface IChiTietHoaDonDAO {
 	void update(ChiTietHoaDon cthd);
 
 	void delete(Integer id);
+	
+	int countByMaHoaDon(Integer maHoaDon);
 
 	int getTotalItem(String textSearch,Integer maHoaDon);
 

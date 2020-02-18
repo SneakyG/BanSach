@@ -88,7 +88,7 @@
 				});
 				var id = $("#id").val();
 				if (id == "") {
-					createChucVu(data);
+					createChiTietHoaDon(data);
 				} else {
 					updateChiTietHoaDon(data);
 				}
@@ -102,14 +102,14 @@
 					data : JSON.stringify(data),
 					dataType : 'json',
 					success : function(result) {
-						window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=maHoaDon&sortBy=asc";
+						window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=trangThai&sortBy=asc";
 					},
 					error : function(error) {
 						console.log(error);
 					}
 				});
 			}
-			function createChucVu(data) {
+			function createChiTietHoaDon(data) {
 				$.ajax({
 					url : '${APIurl}',
 					type : 'POST',
@@ -117,7 +117,7 @@
 					data : JSON.stringify(data),
 					dataType : 'json',
 					success : function(result) {
-						window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=maHoaDon&sortBy=asc";
+						window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=trangThai&sortBy=asc";
 					},
 					error : function(error) {
 						console.log(error);

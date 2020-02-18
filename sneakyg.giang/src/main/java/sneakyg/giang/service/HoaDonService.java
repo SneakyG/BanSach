@@ -34,7 +34,9 @@ public class HoaDonService implements IHoaDonService {
 	@Override
 	public HoaDon update(HoaDon hd) {
 		LocalDateTime currentTime = LocalDateTime.now();
+		hd = hoaDonDAO.findOne(hd.getId());
 		hd.setThoiGianMua(Timestamp.valueOf(currentTime));
+		hd.setTrangThai(1);
 		hoaDonDAO.update(hd);
 		return hoaDonDAO.findOne(hd.getId());
 	}
