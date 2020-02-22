@@ -13,7 +13,11 @@ public class NhaXuatBanMapper implements IRowMapper<NhaXuatBan> {
 			NhaXuatBan nxb = new NhaXuatBan();
 			nxb.setId(resultSet.getInt("id"));
 			nxb.setTenNXB(resultSet.getString("tennxb"));
-			nxb.setSdt(resultSet.getString("sdt"));
+			try {
+				nxb.setSdt(resultSet.getString("sdt"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return nxb;
 		} catch (SQLException e) {
 			return null;

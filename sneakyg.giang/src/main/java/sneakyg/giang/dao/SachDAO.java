@@ -7,14 +7,7 @@ import sneakyg.giang.mapper.SachMapper;
 import sneakyg.giang.model.Sach;
 import sneakyg.giang.paging.IPageble;
 
-public class SachDAO extends CommonDAO<Sach> implements ISachDAO {
-
-	@Override
-	public List<Sach> getName() {
-		String sql = "SELECT s.tensach,s.id FROM sach as s";
-		List<Sach> ds = query(sql, new SachMapper());
-		return ds;
-	}
+public class SachDAO extends CommonDAO<Sach> implements ISachDAO{
 
 	@Override
 	public List<Sach> findAll(IPageble pageble, String textSearch) {
@@ -73,6 +66,13 @@ public class SachDAO extends CommonDAO<Sach> implements ISachDAO {
 	public List<Sach> search(IPageble pageble, String textSearch) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Sach> getListName() {
+		String sql = "SELECT s.tensach,s.id FROM sach as s";
+		List<Sach> ds = query(sql, new SachMapper());
+		return ds;
 	}
 
 }

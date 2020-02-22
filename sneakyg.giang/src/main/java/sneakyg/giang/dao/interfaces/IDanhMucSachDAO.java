@@ -20,4 +20,6 @@ public interface IDanhMucSachDAO {
 	int getTotalItem(String textSearch);
 
 	List<DanhMucSach> search(String textSearch);
+	
+	List<DanhMucSach> getListName();
 }

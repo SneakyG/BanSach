@@ -7,18 +7,18 @@ import sneakyg.giang.mapper.NhaXuatBanMapper;
 import sneakyg.giang.model.NhaXuatBan;
 import sneakyg.giang.paging.IPageble;
 
-public class NhaXuatBanDAO extends CommonDAO<NhaXuatBan> implements INhaXuatBanDAO{
+public class NhaXuatBanDAO extends CommonDAO<NhaXuatBan> implements INhaXuatBanDAO {
 
 	@Override
 	public Integer save(NhaXuatBan nxb) {
 		String sql = "INSERT INTO nhaxuatban(tennxb,sdt) VALUES(?,?)";
-		return insert(sql, nxb.getTenNXB(),nxb.getSdt());
+		return insert(sql, nxb.getTenNXB(), nxb.getSdt());
 	}
 
 	@Override
 	public void update(NhaXuatBan nxb) {
 		String sql = "UPDATE nhaxuatban SET tennxb = ?, sdt=? WHERE id = ?";
-		update(sql, nxb.getTenNXB(),nxb.getSdt(), nxb.getId());
+		update(sql, nxb.getTenNXB(), nxb.getSdt(), nxb.getId());
 	}
 
 	@Override
@@ -61,8 +61,16 @@ public class NhaXuatBanDAO extends CommonDAO<NhaXuatBan> implements INhaXuatBanD
 
 	@Override
 	public List<NhaXuatBan> search(String textSearch) {
-		String sql = "SELECT * FROM nhaxuatban WHERE tennxb like '%" + textSearch + "%' or sdt like '%" + textSearch + "%'";
+		String sql = "SELECT * FROM nhaxuatban WHERE tennxb like '%" + textSearch + "%' or sdt like '%" + textSearch
+				+ "%'";
 		return query(sql, new NhaXuatBanMapper());
+	}
+
+	@Override
+	public List<NhaXuatBan> getListName() {
+		String sql = "SELECT nxb.tennxb,nxb.id FROM nhaxuatban AS nxb";
+		List<NhaXuatBan> ds = query(sql, new NhaXuatBanMapper());
+		return ds;
 	}
 
 }

@@ -18,7 +18,7 @@ import sneakyg.giang.service.interfaces.ISachService;
 import sneakyg.giang.sort.Sorter;
 import sneakyg.giang.utils.FormUtil;
 
-@WebServlet(urlPatterns = { "/admin-sach" })
+@WebServlet(urlPatterns = { "/admin-sach","/upload" })
 public class SachController extends HttpServlet {
 	
 	private static final long serialVersionUID = -2711660483226721500L;
@@ -46,6 +46,9 @@ public class SachController extends HttpServlet {
 			} else {
 
 			}
+			model.setDsTenDanhMuc(sachService.getListCategoryName(model.getMaDanhMuc()));
+			model.setDsTenTacGia(sachService.getListAuthorName(model.getMaTacGia()));
+			model.setDsTenNXB(sachService.getListNXBName(model.getMaNXB()));
 			view = "/views/admin/sach/edit.jsp";
 		} 
 		req.setAttribute(SystemConstant.MODEL, model);

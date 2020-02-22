@@ -19,4 +19,6 @@ public interface ITacGiaDAO {
 	int getTotalItem(String textSearch);
 
 	List<TacGia> search(String textSearch);
+	
+	List<TacGia> getListName();
 }

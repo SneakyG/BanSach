@@ -19,4 +19,6 @@ public interface INhaXuatBanDAO{
 	int getTotalItem(String textSearch);
 
 	List<NhaXuatBan> search(String textSearch);
+	
+	List<NhaXuatBan> getListName();
 }

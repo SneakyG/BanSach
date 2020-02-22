@@ -65,4 +65,11 @@ public class TacGiaDAO extends CommonDAO<TacGia> implements ITacGiaDAO {
 		return query(sql, new TacGiaMapper());
 	}
 
+	@Override
+	public List<TacGia> getListName() {
+		String sql = "SELECT tg.tentg,tg.id FROM tacgia AS tg";
+		List<TacGia> ds = query(sql, new TacGiaMapper());
+		return ds;
+	}
+
 }

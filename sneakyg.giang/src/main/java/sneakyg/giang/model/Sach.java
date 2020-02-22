@@ -1,11 +1,15 @@
 package sneakyg.giang.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Sach extends Common<Sach> {
 
 	private String tenSach;
 	private String moTaNgan;
 	private int soLuong;
 	private String hinhAnh;
+	private List<String> fileHinhAnh;
 	private double donGia;
 	private Integer maNXB;
 	private Integer maTacGia;
@@ -13,7 +17,28 @@ public class Sach extends Common<Sach> {
 	private TacGia tg = new TacGia();
 	private NhaXuatBan nxb = new NhaXuatBan();
 	private DanhMucSach dm = new DanhMucSach();
+	private List<TacGia> dsTenTacGia = new ArrayList<TacGia>();
+	private List<NhaXuatBan> dsTenNXB  = new ArrayList<NhaXuatBan>();
+	private List<DanhMucSach> dsTenDanhMuc = new ArrayList<DanhMucSach>();
 	
+	public List<TacGia> getDsTenTacGia() {
+		return dsTenTacGia;
+	}
+	public void setDsTenTacGia(List<TacGia> dsTenTacGia) {
+		this.dsTenTacGia = dsTenTacGia;
+	}
+	public List<NhaXuatBan> getDsTenNXB() {
+		return dsTenNXB;
+	}
+	public void setDsTenNXB(List<NhaXuatBan> dsTenNXB) {
+		this.dsTenNXB = dsTenNXB;
+	}
+	public List<DanhMucSach> getDsTenDanhMuc() {
+		return dsTenDanhMuc;
+	}
+	public void setDsTenDanhMuc(List<DanhMucSach> dsTenDanhMuc) {
+		this.dsTenDanhMuc = dsTenDanhMuc;
+	}
 	public TacGia getTg() {
 		return tg;
 	}
@@ -56,12 +81,6 @@ public class Sach extends Common<Sach> {
 	public void setMaDanhMuc(Integer maDanhMuc) {
 		this.maDanhMuc = maDanhMuc;
 	}
-	public String getHinhAnh() {
-		return hinhAnh;
-	}
-	public void setHinhAnh(String hinhAnh) {
-		this.hinhAnh = hinhAnh;
-	}
 	public String getTenSach() {
 		return tenSach;
 	}
@@ -79,5 +98,17 @@ public class Sach extends Common<Sach> {
 	}
 	public void setSoLuong(int soLuong) {
 		this.soLuong = soLuong;
+	}
+	public String getHinhAnh() {
+		return hinhAnh;
+	}
+	public void setHinhAnh(String hinhAnh) {
+		this.hinhAnh = hinhAnh;
+	}
+	public List<String> getFileHinhAnh() {
+		return fileHinhAnh;
+	}
+	public void setFileHinhAnh(List<String> fileHinhAnh) {
+		this.fileHinhAnh = fileHinhAnh;
 	}
 }

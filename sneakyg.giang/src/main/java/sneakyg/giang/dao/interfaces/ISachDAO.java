@@ -20,5 +20,5 @@ public interface ISachDAO {
 
 	List<Sach> search(IPageble pageble, String textSearch);
 	
-	List<Sach> getName();
+	List<Sach> getListName();
 }

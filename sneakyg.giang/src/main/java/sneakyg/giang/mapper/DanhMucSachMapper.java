@@ -13,7 +13,12 @@ public class DanhMucSachMapper implements IRowMapper<DanhMucSach> {
 			DanhMucSach dms = new DanhMucSach();
 			dms.setId(resultSet.getInt("id"));
 			dms.setTenDanhMuc(resultSet.getString("tendanhmuc"));
-			dms.setTenCode(resultSet.getString("tencode"));
+			try {
+				dms.setTenCode(resultSet.getString("tencode"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 			return dms;
 		} catch (SQLException e) {
 			return null;
