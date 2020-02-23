@@ -32,7 +32,7 @@
 			<div class="row">
 				<div class="col-12" align="center">
 					<div>
-						<img alt="" src="${model.hinhAnh}">
+						<img alt="" src="images/${model.getFileHinhAnh().get(0)}" id="image-swap" name="image-swap">
 					</div>
 					<div>
 						<h5>Hình hiện tại</h5>
@@ -48,7 +48,11 @@
 								<div class="form-group">
 									<div>
 										<label>Hình ảnh:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-										<input class="border" type="file" name="fileHinhAnh" id="fileHinhAnh"/>
+										<select class="fstdropdown-select" id="hinhAnh" name="hinhAnh">
+												<c:forEach var="item" items="${model.fileHinhAnh}">
+													<option value="images/${item}" class="form-control">${item}</option>
+												</c:forEach>
+										</select>
 									</div>
 									<div>
 										<label>Loại sách:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
@@ -129,13 +133,10 @@
 				e.preventDefault();
 				var data = {};
 				var formData = $('#formSubmit').serializeArray();
-				var file = $('#fileHinhAnh')[0];
-				formData.push('file',file);
 				$.each(formData, function(i, v) {
 					data["" + v.name + ""] = v.value;
 				});
 				var id = $("#id").val();
-				var d = $("#fileHinhAnh")[0].val();
 				if (id == "") {
 					createSach(data);
 				} else {
@@ -143,6 +144,13 @@
 				}
 			});
 
+			$('#hinhAnh').on('change',function(){
+				var image = document.getElementById("image-swap");
+				var dropd = document.getElementById("hinhAnh");
+				image.src = dropd.value;	
+			});
+			
+			
 			function updateSach(data) {
 				$.ajax({
 					url : '${APIurl}',

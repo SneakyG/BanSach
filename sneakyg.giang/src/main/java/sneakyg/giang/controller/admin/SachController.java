@@ -1,6 +1,10 @@
 package sneakyg.giang.controller.admin;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -17,6 +21,7 @@ import sneakyg.giang.paging.PageRequest;
 import sneakyg.giang.service.interfaces.ISachService;
 import sneakyg.giang.sort.Sorter;
 import sneakyg.giang.utils.FormUtil;
+import sneakyg.giang.utils.UpLoadFileUtil;
 
 @WebServlet(urlPatterns = { "/admin-sach","/upload" })
 public class SachController extends HttpServlet {
@@ -41,11 +46,18 @@ public class SachController extends HttpServlet {
 			model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
 			view = "/views/admin/sach/list.jsp";
 		} else if (model.getType().equals(SystemConstant.EDIT)) {
+			File f = new File(SystemConstant.UPLOAD_IMAGE_DIR);
+			List<String> images = new ArrayList<String>(Arrays.asList(f.list()));
 			if (model.getId() != null) {
 				model = sachService.findOne(model.getId());
+				int viTriCatChuoi = model.getHinhAnh().indexOf("/");
+				String hinhAnhHienTai = model.getHinhAnh().substring(viTriCatChuoi+1);
+				images.add(0, hinhAnhHienTai);
 			} else {
 
 			}
+			
+			model.setFileHinhAnh(images);
 			model.setDsTenDanhMuc(sachService.getListCategoryName(model.getMaDanhMuc()));
 			model.setDsTenTacGia(sachService.getListAuthorName(model.getMaTacGia()));
 			model.setDsTenNXB(sachService.getListNXBName(model.getMaNXB()));
@@ -54,5 +66,11 @@ public class SachController extends HttpServlet {
 		req.setAttribute(SystemConstant.MODEL, model);
 		RequestDispatcher rd = req.getRequestDispatcher(view);
 		rd.forward(req, resp);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		UpLoadFileUtil.upLoadFile(req);
+		resp.sendRedirect(req.getContextPath() + "/admin-sach?type=list&textSearch=&page=1&maxPageItem=5&sortName=id&sortBy=asc");
 	}
 }

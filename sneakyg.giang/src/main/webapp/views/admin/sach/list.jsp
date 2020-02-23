@@ -28,6 +28,22 @@
 			<!-- /.container-fluid -->
 		</section>
 		<section class="content">
+			<div class="row">
+				<div class="col-12">
+					<div align="right">
+						<form action="${LISTurl}" method="POST" enctype="multipart/form-data">
+							<label for="file-upload"
+								class="dt-button buttons-html5 btn btn-white btn-primary btn-bold"
+								data-toggle="tooltip" title='Tải hình từ máy'>
+								<span> <i class="fa fa-upload"></i>
+								</span>
+							</label>
+							<input id="file-upload" type="file" name="file-upload" style="display : none;" multiple/>
+							<input type="submit">
+						</form>
+					</div>
+				</div>
+			</div>
 			<form action="${LISTurl}" id="formSubmit" method="get" onsubmit="DoSubmit();">
 				<div class="row">
 					<div class="col-12">
@@ -55,6 +71,8 @@
 											</button>
 										</div>
 									</div>
+									
+									
 								</div>
 								<div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
 										<div class="row">

@@ -7,4 +7,6 @@ public class SystemConstant {
 	public static final String LIST = "list";
 	public static final String EDIT = "edit";
 	public static final String SEARCH = "search";
+	public static final String UPLOAD_IMAGE_DIR = "D:/SneakyG/git/BanSach/BanSach/sneakyg.giang/src/main/webapp/images";
+
 }

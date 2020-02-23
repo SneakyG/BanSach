@@ -9,7 +9,7 @@ public class Sach extends Common<Sach> {
 	private String moTaNgan;
 	private int soLuong;
 	private String hinhAnh;
-	private List<String> fileHinhAnh;
+	private List<String> fileHinhAnh = new ArrayList<String>();
 	private double donGia;
 	private Integer maNXB;
 	private Integer maTacGia;
