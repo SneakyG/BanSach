@@ -3,7 +3,7 @@ package sneakyg.giang.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Common<T> {
+public abstract class Common<T> {
 	
 	protected Integer id;
 	protected Integer[] ids;

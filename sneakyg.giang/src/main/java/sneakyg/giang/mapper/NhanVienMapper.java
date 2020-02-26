@@ -19,9 +19,19 @@ public class NhanVienMapper implements IRowMapper<NhanVien> {
 			nv.setDiaChi(resultSet.getString("diachi"));
 			nv.setCmnd(resultSet.getString("cmnd"));
 			nv.setLuong(resultSet.getDouble("luong"));
-			TaiKhoan tk = new TaiKhoan();
-			tk.setMatKhau(resultSet.getString("matkhau"));
-			nv.setTk(tk);
+			try {
+				nv.setMaTaiKhoan(resultSet.getInt("mataikhoan"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				TaiKhoan tk = new TaiKhoan();
+				tk.setMatKhau(resultSet.getString("matkhau"));
+				nv.setTk(tk);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 			return nv;
 		} catch (SQLException e) {
 			return null;

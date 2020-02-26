@@ -1,5 +1,7 @@
 package sneakyg.giang.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import sneakyg.giang.dao.interfaces.IKhachHangDAO;
@@ -8,6 +10,7 @@ import sneakyg.giang.dao.interfaces.ITaiKhoanDAO;
 import sneakyg.giang.model.KhachHang;
 import sneakyg.giang.model.NhanVien;
 import sneakyg.giang.model.TaiKhoan;
+import sneakyg.giang.paging.IPageble;
 import sneakyg.giang.service.interfaces.ITaiKhoanService;
 
 public class TaiKhoanService implements ITaiKhoanService {
@@ -37,6 +40,44 @@ public class TaiKhoanService implements ITaiKhoanService {
 			return nv;
 		}
 		return null;
+	}
+
+	@Override
+	public List<TaiKhoan> findAll(IPageble pageble, String textSearch) {
+		return taiKhoanDAO.findAll(pageble, textSearch);
+	}
+
+	@Override
+	public TaiKhoan findOne(Integer id) {
+		return taiKhoanDAO.findOne(id);
+	}
+
+	@Override
+	public TaiKhoan save(TaiKhoan tk) {
+//		Mã chức vụ khác nhau(trang đăng ký (machucvu = 1) thêm tk của admin(machucvu = 2))
+		tk.setMaChucVu(2);
+		int id = taiKhoanDAO.save(tk);
+		return taiKhoanDAO.findOne(id);
+	}
+
+	@Override
+	public TaiKhoan update(TaiKhoan tk) {
+		if(tk.getTenTaiKhoan() == null) {
+			tk = taiKhoanDAO.findOne(tk.getId());
+			if(tk.getTrangThai() == 0) {
+				tk.setTrangThai(1);
+			}else {
+				tk.setTrangThai(0);
+			}
+			
+		}
+		taiKhoanDAO.update(tk);
+		return taiKhoanDAO.findOne(tk.getId());
+	}
+
+	@Override
+	public int getTotalItem(String textSearch) {
+		return taiKhoanDAO.getTotalItem(textSearch);
 	}
 
 }

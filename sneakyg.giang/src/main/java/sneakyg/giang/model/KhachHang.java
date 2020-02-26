@@ -2,9 +2,8 @@ package sneakyg.giang.model;
 
 import java.util.Date;
 
-public class KhachHang {
+public class KhachHang extends Common<KhachHang> {
 
-	protected Integer id;
 	protected String ten;
 	protected String email;
 	protected String sdt;
@@ -14,12 +13,6 @@ public class KhachHang {
 	protected Integer maTaiKhoan;
 	protected TaiKhoan tk = new TaiKhoan();
 	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	public TaiKhoan getTk() {
 		return tk;
 	}
@@ -68,6 +61,4 @@ public class KhachHang {
 	public void setDiaChi(String diaChi) {
 		this.diaChi = diaChi;
 	}
-	
-	
 }

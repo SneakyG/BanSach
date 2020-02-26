@@ -15,7 +15,7 @@ create table KhachHang(
 
 create table NhanVien(
 	id int primary key auto_increment,
-    mataikhoan int not null,
+    mataikhoan int null,
     tennv nvarchar(255) null,
     email varchar(144) null,
     sdt varchar(20) null,

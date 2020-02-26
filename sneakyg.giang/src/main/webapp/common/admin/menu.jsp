@@ -53,6 +53,12 @@
 						<li class="nav-item"><a href="<c:url value = '/admin-hoadon?type=list&textSearch=&page=1&maxPageItem=5&sortName=trangThai&sortBy=asc'/>" class="nav-link">
 								<p>Quản lý hóa đơn</p>
 						</a></li>
+						<li class="nav-item"><a href="<c:url value = '/admin-taikhoan?type=list&textSearch=&page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" class="nav-link">
+								<p>Quản lý tài khoản</p>		
+						</a></li>
+						<li class="nav-item"><a href="<c:url value = '/admin-nhanvien?type=list&textSearch=&page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" class="nav-link">
+								<p>Quản lý nhân viên</p>		
+						</a></li>
 					</ul></li>
 				<li class="nav-item"><a href="#" class="nav-link"> <i
 						class="nav-icon fas fa-th"></i>
