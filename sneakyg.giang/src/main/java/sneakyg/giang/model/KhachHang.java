@@ -1,6 +1,8 @@
 package sneakyg.giang.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class KhachHang extends Common<KhachHang> {
 
@@ -12,6 +14,7 @@ public class KhachHang extends Common<KhachHang> {
 	protected String diaChi;
 	protected Integer maTaiKhoan;
 	protected TaiKhoan tk = new TaiKhoan();
+	private List<KhachHang> dsKH = new ArrayList<KhachHang>();
 	
 	public TaiKhoan getTk() {
 		return tk;
@@ -60,5 +63,11 @@ public class KhachHang extends Common<KhachHang> {
 	}
 	public void setDiaChi(String diaChi) {
 		this.diaChi = diaChi;
+	}
+	public List<KhachHang> getDsKH() {
+		return dsKH;
+	}
+	public void setDsKH(List<KhachHang> dsKH) {
+		this.dsKH = dsKH;
 	}
 }

@@ -15,7 +15,7 @@
 		<!-- Sidebar user panel (optional) -->
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 			<div class="info">
-				<a href="#" class="d-block">Chào,${TAIKHOAN.ten}</a>
+				<a href="<c:url value = 'admin-nhanvien?type=info&id=${TAIKHOAN.id}'/>" class="d-block">Chào,${TAIKHOAN.ten}</a>
 			</div>
 		</div>
 		<!-- Sidebar Menu -->

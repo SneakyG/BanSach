@@ -31,9 +31,9 @@ public class TaiKhoanDAO extends CommonDAO<TaiKhoan> implements ITaiKhoanDAO {
 
 	@Override
 	public List<TaiKhoan> findAll(IPageble pageble, String textSearch) {
-		StringBuilder sql = new StringBuilder("SELECT * FROM taikhoan");
+		StringBuilder sql = new StringBuilder("SELECT * FROM taikhoan WHERE machucvu = 2 OR machucvu = 3");
 		if (textSearch != null) {
-			sql.append(" WHERE tentaikhoan like '%" + textSearch + "%' AND machucvu = 2 OR machucvu = 3");
+			sql.append(" AND tentaikhoan like '%" + textSearch + "%' ");
 		}
 		if (pageble.getSorter() != null) {
 			sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy());
@@ -66,9 +66,9 @@ public class TaiKhoanDAO extends CommonDAO<TaiKhoan> implements ITaiKhoanDAO {
 
 	@Override
 	public int getTotalItem(String textSearch) {
-		StringBuilder sql = new StringBuilder("SELECT count(*) from taikhoan");
+		StringBuilder sql = new StringBuilder("SELECT count(*) from taikhoan WHERE machucvu = 2 OR machucvu = 3");
 		if (textSearch != null) {
-			sql.append(" WHERE tentaikhoan like '%" + textSearch + "%' AND machucvu = 2 OR machucvu = 3");
+			sql.append(" AND tentaikhoan like '%" + textSearch + "%'");
 		}
 		return count(sql.toString());
 	}

@@ -57,6 +57,12 @@ public class TaiKhoanService implements ITaiKhoanService {
 //		Mã chức vụ khác nhau(trang đăng ký (machucvu = 1) thêm tk của admin(machucvu = 2))
 		tk.setMaChucVu(2);
 		int id = taiKhoanDAO.save(tk);
+		if(tk.getMaNV() != null) {
+			NhanVien nv = new NhanVien();
+			nv = nhanVienDAO.findOne(tk.getMaNV());
+			nv.setMaTaiKhoan(id);
+			nhanVienDAO.update(nv);
+		}
 		return taiKhoanDAO.findOne(id);
 	}
 

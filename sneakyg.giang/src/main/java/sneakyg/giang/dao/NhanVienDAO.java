@@ -46,13 +46,13 @@ public class NhanVienDAO extends CommonDAO<NhanVien> implements INhanVienDAO{
 	@Override
 	public Integer save(NhanVien nv) {
 		String sql = "INSERT INTO nhanvien(mataikhoan,tennv,email,sdt,cmnd,ngaysinh,ngayvl,luong,diachi) VALUES(?,?,?,?,?,?,?,?,?)";
-		return insert(sql, nv.getMaTaiKhoan(),nv.getTen(),nv.getEmail(),nv.getCmnd(),nv.getNgaySinh(),nv.getNgayVL(),nv.getLuong(),nv.getDiaChi());
+		return insert(sql, nv.getMaTaiKhoan(),nv.getTen(),nv.getEmail(),nv.getSdt(),nv.getCmnd(),nv.getNgaySinh(),nv.getNgayVL(),nv.getLuong(),nv.getDiaChi());
 	}
 
 	@Override
 	public void update(NhanVien nv) {
-		String sql = "UPDATE nhanvien SET tennv = ?, email = ?, cmnd = ?, sdt = ?, ngaysinh = ?,luong = ?, diachi = ? WHERE id = ?";
-		update(sql, nv.getTen(),nv.getEmail(),nv.getCmnd(),nv.getSdt(),nv.getNgaySinh(),nv.getLuong(),nv.getDiaChi(), nv.getId());
+		String sql = "UPDATE nhanvien SET mataikhoan = ?, tennv = ?, email = ?, cmnd = ?, sdt = ?, ngaysinh = ?,luong = ?, diachi = ? WHERE id = ?";
+		update(sql,nv.getMaTaiKhoan(),nv.getTen(),nv.getEmail(),nv.getCmnd(),nv.getSdt(),nv.getNgaySinh(),nv.getLuong(),nv.getDiaChi(), nv.getId());
 	}
 
 	@Override

@@ -44,7 +44,7 @@ public class TaiKhoanController extends HttpServlet {
 			if (model.getId() != null) {
 				model = taiKhoanService.findOne(model.getId());
 			} else {
-
+				
 			}
 			view = "/views/admin/taikhoan/edit.jsp";
 		}

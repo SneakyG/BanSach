@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglibs.jsp"%>
-<c:url var="APIurl" value="/api-admin-nhanvien" />
-<c:url var="LISTurl" value="/admin-nhanvien" />
+<c:url var="APIurl" value="/api-admin-khachhang" />
+<c:url var="LISTurl" value="/admin-khachhang" />
 <!DOCTYPE html>
 <html>
 
 <head>
 
 	<meta charset="UTF-8">
-	<title>Nhân viên</title>
+	<title>Khách hàng</title>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 </head>
 
@@ -19,12 +19,12 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1>Nhân viên</h1>
+						<h1>Khách hàng</h1>
 					</div>
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
 							<li class="breadcrumb-item"><a href="#">Home</a></li>
-							<li class="breadcrumb-item active">Nhân viên</li>
+							<li class="breadcrumb-item active">Khách hàng</li>
 						</ol>
 					</div>
 				</div>
@@ -68,8 +68,6 @@
 															<th>Địa chỉ</th>
 															<th>Email</th>
 															<th>Ngày sinh</th>
-															<th>Ngày vào làm</th>
-															<th>Lương</th>
 															<th>Thao tác</th>
 														</tr>
 													</thead>
@@ -83,10 +81,8 @@
 																<td>${item.diaChi}</td>
 																<td>${item.email}</td>
 																<td>${item.ngaySinh}</td>
-																<td>${item.ngayVL}</td>
-																<td>${item.luong}</td>
 																<td style="width:10%">
-																	<c:url var="editUrl" value="/admin-khachhang">
+																	<c:url var="editUrl" value="/admin-nhanvien">
 																		<c:param name="type" value="edit" />
 																		<c:param name="id" value="${item.id}" />
 																	</c:url> <a class="btn btn-sm btn-primary btn-edit"
@@ -96,7 +92,7 @@
 																	<c:if test="${item.maTaiKhoan == 0}">
 																		<c:url var="registerUrl" value="/admin-taikhoan">
 																			<c:param name="type" value="edit" />
-																			<c:param name="maKH" value="${item.id}" />
+																			<c:param name="maNV" value="${item.id}" />
 																		</c:url>
 																		 <a class="btn btn-sm btn-primary btn-edit"
 																		data-toggle="tooltip" title="Thêm tài khoản"

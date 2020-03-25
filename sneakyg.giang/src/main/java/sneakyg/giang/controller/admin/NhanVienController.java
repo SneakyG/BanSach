@@ -47,7 +47,10 @@ public class NhanVienController extends HttpServlet {
 
 			}
 			view = "/views/admin/nhanvien/edit.jsp";
-		} 
+		} else if (model.getType().equals(SystemConstant.INFO)) {
+			model = nhanVienService.findOne(model.getId());
+			view = "/views/admin/nhanvien/profile.jsp";
+		}
 		req.setAttribute(SystemConstant.MODEL, model);
 		RequestDispatcher rd = req.getRequestDispatcher(view);
 		rd.forward(req, resp);

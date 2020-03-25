@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglibs.jsp"%>
-<c:url var="editurl" value="/admin-taikhoan" />
-<c:url var="NVurl" value="/admin-nhanvien" />
-<c:url var="APIurl" value="/api-admin-taikhoan" />
+<c:url var="editurl" value="/admin-nhanvien" />
+<c:url var="APIurl" value="/api-admin-nhanvien" />
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8">
-<title>Tài khoản</title>
+<title>Nhân viên</title>
 </head>
 
 <body>
@@ -18,12 +17,12 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1>Tài khoản</h1>
+						<h1>Nhân viên</h1>
 					</div>
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
 							<li class="breadcrumb-item"><a href="#">Home</a></li>
-							<li class="breadcrumb-item active">Tài khoản</li>
+							<li class="breadcrumb-item active">Nhân viên</li>
 						</ol>
 					</div>
 				</div>
@@ -37,15 +36,27 @@
 						<div class="card-body">
 							<form id="formSubmit">
 								<div class="form-group">
-								<c:if test="${empty model.id}">
-									<label>Tên tài khoản</label> 
-									<input type="text" class="form-control" id="tenTaiKhoan" name="tenTaiKhoan"
-									>
-								</c:if>
-									
-									<label>Mật khẩu</label> 
-									<input type="text" class="form-control" id="matKhau" name="matKhau"
-										value="${model.matKhau}">
+									<label>Họ tên</label> 
+									<input type="text" class="form-control" id="ten" name="ten"
+										value="${model.ten}">
+									<label>Email</label> 
+									<input type="text" class="form-control" id="email" name="email"
+										value="${model.email}">
+										<label>Số điện thoại</label> 
+									<input type="text" class="form-control" id="sdt" name="sdt"
+										value="${model.sdt}">
+									<label>Chứng minh nhân dân</label> 
+									<input type="text" class="form-control" id="cmnd" name="cmnd"
+										value="${model.cmnd}">
+										<label>Địa chỉ</label> 
+									<input type="text" class="form-control" id="diaChi" name="diaChi"
+										value="${model.diaChi}">
+									<label>Ngày sinh</label> 
+									<input type="text" class="form-control" id="ngaySinh" name="ngaySinh"
+										value="${model.ngaySinh}">
+										<label>Lương</label> 
+									<input type="text" class="form-control" id="luong" name="luong"
+										value="${model.luong}">
 								</div>
 								<div align="center">
 									<div class="dt-buttons btn-overlap btn-group">
@@ -64,7 +75,6 @@
 										</a>
 									</div>
 									<input type="hidden" value="${model.id}" id="id" name="id" />
-									<input type="hidden" value="${model.maNV}" id="maNV" name="maNV" />
 								</div>
 							</form>
 						</div>
@@ -85,7 +95,6 @@
 					data["" + v.name + ""] = v.value;
 				});
 				var id = $("#id").val();
-				console.log(data.maNV);
 				if (id == "") {
 					createChucVu(data);
 				} else {
@@ -116,11 +125,7 @@
 					data : JSON.stringify(data),
 					dataType : 'json',
 					success : function(result) {
-						if(data.maNV != ""){
-							window.location.href = "${NVurl}?type=list&page=1&maxPageItem=5&sortName=id&sortBy=asc";
-						}else {
-							window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=id&sortBy=asc";
-						}
+						window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=id&sortBy=asc";
 					},
 					error : function(error) {
 						console.log(error);
