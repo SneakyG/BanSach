@@ -1,6 +1,5 @@
 package sneakyg.giang.controller.web;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sneakyg.giang.common.SystemConstant;
 import sneakyg.giang.model.TaiKhoan;
 import sneakyg.giang.service.interfaces.ITaiKhoanService;
 import sneakyg.giang.utils.FormUtil;
