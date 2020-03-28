@@ -74,7 +74,7 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="item" items="${model.dsKH}">
+														<c:forEach var="item" items="${model.dsNV}">
 															<tr>
 																<td>${item.ten}</td>
 																<td>${item.maTaiKhoan}</td>
@@ -86,9 +86,22 @@
 																<td>${item.ngayVL}</td>
 																<td>${item.luong}</td>
 																<td style="width:10%">
-																	<c:url var="editUrl" value="/admin-khachhang">
+																	<c:url var="taikhoanUrl" value="/admin-taikhoan">
+																		<c:param name="type" value="list" />
+																		<c:param name="id" value="${item.maTaiKhoan}" />
+																		<c:param name="page" value="1" />
+																		<c:param name="maxPageItem" value="5" />
+																		<c:param name="sortName" value="id" />
+																		<c:param name="sortBy" value="asc" />
+																	</c:url> <a class="btn btn-sm btn-primary btn-edit"
+																		data-toggle="tooltip" title="Cập nhật"
+																		href="${taikhoanUrl}"><i class="fa fa-list"
+																			aria-hidden="true"></i> </a>
+																
+																	<c:url var="editUrl" value="/admin-nhanvien">
 																		<c:param name="type" value="edit" />
 																		<c:param name="id" value="${item.id}" />
+																		<c:param name="maTaiKhoan" value="${item.maTaiKhoan}" />
 																	</c:url> <a class="btn btn-sm btn-primary btn-edit"
 																		data-toggle="tooltip" title="Cập nhật"
 																		href="${editUrl}"><i class="fa fa-edit"
@@ -96,7 +109,7 @@
 																	<c:if test="${item.maTaiKhoan == 0}">
 																		<c:url var="registerUrl" value="/admin-taikhoan">
 																			<c:param name="type" value="edit" />
-																			<c:param name="maKH" value="${item.id}" />
+																			<c:param name="maNV" value="${item.id}" />
 																		</c:url>
 																		 <a class="btn btn-sm btn-primary btn-edit"
 																		data-toggle="tooltip" title="Thêm tài khoản"
@@ -117,6 +130,8 @@
 															<th>Đìa chỉ</th>
 															<th>Email</th>
 															<th>Ngày sinh</th>
+															<th>Ngày vào làm</th>
+															<th>Lương</th>
 															<th>Thao tác</th>
 														</tr>
 													</tfoot>

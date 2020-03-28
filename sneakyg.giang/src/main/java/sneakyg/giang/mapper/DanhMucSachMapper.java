@@ -16,7 +16,6 @@ public class DanhMucSachMapper implements IRowMapper<DanhMucSach> {
 			try {
 				dms.setTenCode(resultSet.getString("tencode"));
 			} catch (Exception e) {
-				e.printStackTrace();
 			}
 			
 			return dms;

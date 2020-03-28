@@ -34,7 +34,6 @@ public class SachMapper implements IRowMapper<Sach> {
 				sach.setTg(tg);
 				sach.setNxb(nxb);
 			} catch (Exception e) {
-				System.out.println(e.getMessage());
 			}
 			return sach;
 		} catch (SQLException e) {

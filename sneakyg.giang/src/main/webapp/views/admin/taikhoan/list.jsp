@@ -63,6 +63,7 @@
 														<tr>
 															<th>Tên tài khoản</th>
 															<th>Mật khẩu</th>
+															<th>Chức vụ</th>
 															<th>Trạng thái</th>
 															<th>Thao tác</th>
 														</tr>
@@ -72,20 +73,38 @@
 															<tr>
 																<td>${item.tenTaiKhoan}</td>
 																<td>${item.matKhau}</td>
+																<td>${item.cv.tenCV}</td>
 																<td>${item.trangThai}</td>
 																<td>
-																	<c:url var="nhanvienUrl" value="/admin-nhanvien">
-																		<c:param name="type" value="list" />
-																		<c:param name="mataikhoan" value="${item.id}" />
-																		<c:param name="page" value="1" />
-																		<c:param name="maxPageItem" value="5" />
-																		<c:param name="sortName" value="id" />
-																		<c:param name="sortBy" value="asc" />
-																		<c:param name="trangThai" value="${item.trangThai}" />
-																	</c:url> <a class="btn btn-sm btn-primary btn-edit"
-																		data-toggle="tooltip" title="Chi tiết"
-																		href="${nhanvienUrl}"><i class="fa fa-list"
-																			aria-hidden="true"></i> </a>
+																	<c:if test="${item.maChucVu == 2 or item.maChucVu == 3}">
+																		<c:url var="nhanvienUrl" value="/admin-nhanvien">
+																			<c:param name="type" value="list" />
+																			<c:param name="maTaiKhoan" value="${item.id}" />
+																			<c:param name="page" value="1" />
+																			<c:param name="maxPageItem" value="5" />
+																			<c:param name="sortName" value="id" />
+																			<c:param name="sortBy" value="asc" />
+																			<c:param name="trangThai" value="${item.trangThai}" />
+																		</c:url> <a class="btn btn-sm btn-primary btn-edit"
+																			data-toggle="tooltip" title="Chi tiết"
+																			href="${nhanvienUrl}"><i class="fa fa-list"
+																				aria-hidden="true"></i> </a>
+																	</c:if>
+																	<c:if test="${item.maChucVu == 1}">
+																		<c:url var="khachhangUrl" value="/admin-khachhang">
+																				<c:param name="type" value="list" />
+																				<c:param name="maTaiKhoan" value="${item.id}" />
+																				<c:param name="page" value="1" />
+																				<c:param name="maxPageItem" value="5" />
+																				<c:param name="sortName" value="id" />
+																				<c:param name="sortBy" value="asc" />
+																				<c:param name="trangThai" value="${item.trangThai}" />
+																			</c:url> <a class="btn btn-sm btn-primary btn-edit"
+																				data-toggle="tooltip" title="Chi tiết"
+																				href="${khachhangUrl}"><i class="fa fa-list"
+																					aria-hidden="true"></i> </a>
+																	</c:if>
+																	
 																		
 																	<c:if test="${item.trangThai == 0}">
 																		<button class="btn btn-sm btn-primary btn-edit"  id="unlock"

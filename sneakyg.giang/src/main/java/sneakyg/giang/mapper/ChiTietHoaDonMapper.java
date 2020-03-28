@@ -20,7 +20,6 @@ public class ChiTietHoaDonMapper implements IRowMapper<ChiTietHoaDon> {
 				cthd.setTenSach(resultSet.getString("tensach"));
 				cthd.setTrangThai(resultSet.getInt("trangthai"));
 			} catch (Exception e) {
-				e.printStackTrace();
 			}
 			return cthd;
 		} catch (SQLException e) {

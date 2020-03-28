@@ -1,5 +1,6 @@
 package sneakyg.giang.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -84,6 +85,13 @@ public class TaiKhoanService implements ITaiKhoanService {
 	@Override
 	public int getTotalItem(String textSearch) {
 		return taiKhoanDAO.getTotalItem(textSearch);
+	}
+
+	@Override
+	public List<TaiKhoan> findOneByID(Integer id) {
+		List<TaiKhoan> ds = new ArrayList<TaiKhoan>();
+		ds.add(taiKhoanDAO.findOne(id));
+		return ds;
 	}
 
 }

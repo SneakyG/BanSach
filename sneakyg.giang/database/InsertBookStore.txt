@@ -67,16 +67,16 @@ insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(1,"khachhang
 insert into taikhoan(machucvu,tentaikhoan,matkhau,trangthai) values(1,"khachhangk","123456",1);
 
 -- Khách hàng --
-insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(4,"Nguyễn Văn A","nguyenvana@gmail.com","123456789","123456789",null,"asd");
-insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(5,"Nguyễn Văn B","nguyenvanb@gmail.com","123456789","123456789",null,"asd");
-insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(6,"Nguyễn Văn C","nguyenvanc@gmail.com","123456789","123456789",null,"asd");
-insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(7,"Nguyễn Văn D","nguyenvand@gmail.com","123456789","123456789",null,"asd");
-insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(8,"Nguyễn Văn E","nguyenvane@gmail.com","123456789","123456789",null,"asd");
-insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(9,"Nguyễn Văn F","nguyenvanf@gmail.com","123456789","123456789",null,"asd");
-insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(10,"Nguyễn Văn G","nguyenvang@gmail.com","123456789","123456789",null,"asd");
-insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(11,"Nguyễn Văn H","nguyenvanh@gmail.com","123456789","123456789",null,"asd");
-insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(12,"Nguyễn Văn J","nguyenvanj@gmail.com","123456789","123456789",null,"asd");
-insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(13,"Nguyễn Văn K","nguyenvank@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(5,"Nguyễn Văn A","nguyenvana@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(6,"Nguyễn Văn B","nguyenvanb@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(7,"Nguyễn Văn C","nguyenvanc@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(8,"Nguyễn Văn D","nguyenvand@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(9,"Nguyễn Văn E","nguyenvane@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(10,"Nguyễn Văn F","nguyenvanf@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(11,"Nguyễn Văn G","nguyenvang@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(12,"Nguyễn Văn H","nguyenvanh@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(13,"Nguyễn Văn J","nguyenvanj@gmail.com","123456789","123456789",null,"asd");
+insert into khachhang(mataikhoan,tenkh,email,sdt,cmnd,ngaysinh,diachi) values(14,"Nguyễn Văn K","nguyenvank@gmail.com","123456789","123456789",null,"asd");
 
 -- Nhân viên --
 insert into nhanvien(mataikhoan,tennv,email,sdt,cmnd,ngaysinh,ngayvl,luong,diachi) values(1,"Hồ Tấn Giang","hotangiang@gmail.com","123456789","123456789",null,null,0,"asd");

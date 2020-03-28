@@ -9,6 +9,8 @@ public interface IKhachHangDAO {
 
 	KhachHang findByUsername(String tenTaiKhoan);
 	
+	KhachHang findByUserId(Integer maTaiKhoan);
+	
 	List<KhachHang> findAll(IPageble pageble, String textSearch);
 
 	KhachHang findOne(Integer id);

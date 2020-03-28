@@ -11,24 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sneakyg.giang.common.SystemConstant;
-import sneakyg.giang.model.NhanVien;
+import sneakyg.giang.model.KhachHang;
 import sneakyg.giang.paging.IPageble;
 import sneakyg.giang.paging.PageRequest;
-import sneakyg.giang.service.interfaces.INhanVienService;
+import sneakyg.giang.service.interfaces.IKhachHangService;
 import sneakyg.giang.sort.Sorter;
 import sneakyg.giang.utils.FormUtil;
 
-@WebServlet(urlPatterns = {"/admin-nhanvien"})
-public class NhanVienController extends HttpServlet {
-	
+@WebServlet(urlPatterns = { "/admin-khachhang" })
+public class KhachHangController extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
-	private INhanVienService nhanVienService;
+	private IKhachHangService khachHangService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		NhanVien model = FormUtil.toModel(NhanVien.class, req);
+		KhachHang model = FormUtil.toModel(KhachHang.class, req);
 		String view = "";
 		if (model.getType().equals(SystemConstant.LIST)) {
 			IPageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
@@ -37,23 +37,20 @@ public class NhanVienController extends HttpServlet {
 //				model.setListResult(chucVuService.search(model.getTextSearch()));
 //			}
 			if (model.getMaTaiKhoan() != null) {
-				model.setDsNV(nhanVienService.findByUserId(model.getMaTaiKhoan()));
-			}else {
-				model.setDsNV(nhanVienService.findAll(pageble,model.getTextSearch()));
-				model.setTotalItem(nhanVienService.getTotalItem(model.getTextSearch()));
+				model.setDsKH(khachHangService.findByUserId(model.getMaTaiKhoan()));
+			} else {
+				model.setDsKH(khachHangService.findAll(pageble, model.getTextSearch()));
+				model.setTotalItem(khachHangService.getTotalItem(model.getTextSearch()));
 				model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
 			}
-			view = "/views/admin/nhanvien/list.jsp";
+			view = "/views/admin/khachhang/list.jsp";
 		} else if (model.getType().equals(SystemConstant.EDIT)) {
 			if (model.getId() != null) {
-				model = nhanVienService.findOne(model.getId());
+				model = khachHangService.findOne(model.getId());
 			} else {
 
 			}
-			view = "/views/admin/nhanvien/edit.jsp";
-		} else if (model.getType().equals(SystemConstant.INFO)) {
-			model = nhanVienService.findOne(model.getId());
-			view = "/views/admin/nhanvien/profile.jsp";
+			view = "/views/admin/khachhang/edit.jsp";
 		}
 		req.setAttribute(SystemConstant.MODEL, model);
 		RequestDispatcher rd = req.getRequestDispatcher(view);

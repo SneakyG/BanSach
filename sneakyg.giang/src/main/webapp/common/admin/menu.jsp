@@ -15,7 +15,8 @@
 		<!-- Sidebar user panel (optional) -->
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 			<div class="info">
-				<a href="<c:url value = 'admin-nhanvien?type=info&id=${TAIKHOAN.id}'/>" class="d-block">Chào,${TAIKHOAN.ten}</a>
+				<a style="color:yellow;font-weight: bold" href="<c:url value = 'admin-nhanvien?type=info&id=${TAIKHOAN.id}'/>" class="d-block">Chào,${TAIKHOAN.ten}</a>
+				<a style="color:red" href="<c:url value = '/thoat?action=logout'/>">Thoát</a>
 			</div>
 		</div>
 		<!-- Sidebar Menu -->
@@ -58,6 +59,9 @@
 						</a></li>
 						<li class="nav-item"><a href="<c:url value = '/admin-nhanvien?type=list&textSearch=&page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" class="nav-link">
 								<p>Quản lý nhân viên</p>		
+						</a></li>
+						<li class="nav-item"><a href="<c:url value = '/admin-khachhang?type=list&textSearch=&page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" class="nav-link">
+								<p>Quản lý khách hàng</p>		
 						</a></li>
 					</ul></li>
 				<li class="nav-item"><a href="#" class="nav-link"> <i

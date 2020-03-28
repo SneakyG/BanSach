@@ -36,9 +36,13 @@ public class TaiKhoanController extends HttpServlet {
 //			if(model.getTextSearch() != null) {
 //				model.setListResult(chucVuService.search(model.getTextSearch()));
 //			}
-			model.setListResult(taiKhoanService.findAll(pageble, model.getTextSearch()));
-			model.setTotalItem(taiKhoanService.getTotalItem(model.getTextSearch()));
-			model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+			if (model.getId() != null) {
+				model.setListResult(taiKhoanService.findOneByID(model.getId()));
+			} else {
+				model.setListResult(taiKhoanService.findAll(pageble, model.getTextSearch()));
+				model.setTotalItem(taiKhoanService.getTotalItem(model.getTextSearch()));
+				model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+			}
 			view = "/views/admin/taikhoan/list.jsp";
 		} else if (model.getType().equals(SystemConstant.EDIT)) {
 			if (model.getId() != null) {

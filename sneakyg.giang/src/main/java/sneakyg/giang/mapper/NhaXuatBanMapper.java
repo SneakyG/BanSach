@@ -16,7 +16,6 @@ public class NhaXuatBanMapper implements IRowMapper<NhaXuatBan> {
 			try {
 				nxb.setSdt(resultSet.getString("sdt"));
 			} catch (Exception e) {
-				e.printStackTrace();
 			}
 			return nxb;
 		} catch (SQLException e) {

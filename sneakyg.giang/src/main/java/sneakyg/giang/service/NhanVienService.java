@@ -1,5 +1,6 @@
 package sneakyg.giang.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -44,6 +45,13 @@ public class NhanVienService implements INhanVienService {
 	@Override
 	public int getTotalItem(String textSearch) {
 		return nhanVienDAO.getTotalItem(textSearch);
+	}
+
+	@Override
+	public List<NhanVien> findByUserId(Integer maTaiKhoan) {
+		List<NhanVien> ds = new ArrayList<NhanVien>();
+		ds.add(nhanVienDAO.findByUserId(maTaiKhoan));
+		return ds;
 	}
 
 }

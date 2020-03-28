@@ -11,6 +11,8 @@ public interface INhanVienDAO {
 	NhanVien findOne(Integer id);
 
 	NhanVien findByUsername(String tenTaiKhoan);
+	
+	NhanVien findByUserId(Integer maTaiKhoan);
 
 	Integer save(NhanVien nv);
 

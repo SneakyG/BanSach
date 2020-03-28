@@ -22,16 +22,13 @@ public class NhanVienMapper implements IRowMapper<NhanVien> {
 			try {
 				nv.setMaTaiKhoan(resultSet.getInt("mataikhoan"));
 			} catch (Exception e) {
-				e.printStackTrace();
 			}
 			try {
 				TaiKhoan tk = new TaiKhoan();
 				tk.setMatKhau(resultSet.getString("matkhau"));
 				nv.setTk(tk);
 			} catch (Exception e) {
-				e.printStackTrace();
 			}
-			
 			return nv;
 		} catch (SQLException e) {
 			return null;

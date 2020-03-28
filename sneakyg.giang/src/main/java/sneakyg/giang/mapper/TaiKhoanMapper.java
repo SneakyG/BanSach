@@ -14,6 +14,7 @@ public class TaiKhoanMapper implements IRowMapper<TaiKhoan> {
 		try {
 			tk.setId(resultSet.getInt("id"));
 			tk.setTenTaiKhoan(resultSet.getString("tentaikhoan"));
+			tk.setMaChucVu(resultSet.getInt("maChucVu"));
 			tk.setMatKhau(resultSet.getString("matkhau"));
 			tk.setTrangThai(resultSet.getInt("trangthai"));
 			try {
@@ -22,7 +23,6 @@ public class TaiKhoanMapper implements IRowMapper<TaiKhoan> {
 				cv.setTenCV(resultSet.getString("tencv"));
 				tk.setCv(cv);
 			}catch (Exception e) {
-				System.out.println(e.getMessage());
 			}
 			return tk;
 		} catch (SQLException e) {

@@ -75,6 +75,7 @@
 										</a>
 									</div>
 									<input type="hidden" value="${model.id}" id="id" name="id" />
+									<input type="hidden" value="${model.maTaiKhoan}" id="maTaiKhoan" name="maTaiKhoan" />
 								</div>
 							</form>
 						</div>
@@ -96,13 +97,13 @@
 				});
 				var id = $("#id").val();
 				if (id == "") {
-					createChucVu(data);
+					createNhanVien(data);
 				} else {
-					updateChucVu(data);
+					updateNhanVien(data);
 				}
 			});
 
-			function updateChucVu(data) {
+			function updateNhanVien(data) {
 				$.ajax({
 					url : '${APIurl}',
 					type : 'PUT',
@@ -117,7 +118,7 @@
 					}
 				});
 			}
-			function createChucVu(data) {
+			function createNhanVien(data) {
 				$.ajax({
 					url : '${APIurl}',
 					type : 'POST',

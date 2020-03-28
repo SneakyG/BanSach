@@ -15,7 +15,6 @@ public class HoaDonMapper implements IRowMapper<HoaDon> {
 			try {
 				hd.setThoiGianMua(resultSet.getTimestamp("thoigianmua"));
 			} catch (Exception e) {
-				e.printStackTrace();
 			}
 			hd.setThoiGianDat(resultSet.getTimestamp("thoigiandat"));
 			hd.setTongTien(resultSet.getDouble("tongtien"));

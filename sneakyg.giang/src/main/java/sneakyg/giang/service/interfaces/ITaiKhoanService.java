@@ -14,6 +14,8 @@ public interface ITaiKhoanService {
 	List<TaiKhoan> findAll(IPageble pageble, String textSearch);
 	
 	TaiKhoan findOne(Integer id);
+	
+	List<TaiKhoan> findOneByID(Integer id);
 
 	TaiKhoan save(TaiKhoan tk);
 

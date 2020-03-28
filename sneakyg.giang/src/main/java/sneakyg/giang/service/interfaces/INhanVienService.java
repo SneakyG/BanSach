@@ -10,6 +10,8 @@ public interface INhanVienService {
 	List<NhanVien> findAll(IPageble pageble, String textSearch);
 
 	NhanVien findByUsername(String tenTaiKhoan);
+	
+	List<NhanVien> findByUserId(Integer maTaiKhoan);
 
 	NhanVien findOne(Integer id);
 
