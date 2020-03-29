@@ -99,4 +99,9 @@ public class SachService implements ISachService {
 		return ds;
 	}
 
+	@Override
+	public List<Sach> findAllByCategoryId(Integer maDanhMuc) {
+		return sachDAO.findAllByCategoryId(maDanhMuc);
+	}
+
 }
