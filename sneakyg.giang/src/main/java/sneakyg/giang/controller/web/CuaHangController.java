@@ -18,7 +18,7 @@ import sneakyg.giang.service.interfaces.ISachService;
 import sneakyg.giang.utils.FormUtil;
 
 @WebServlet(urlPatterns = { "/shop" })
-public class ShopController extends HttpServlet {
+public class CuaHangController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 

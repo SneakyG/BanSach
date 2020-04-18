@@ -94,6 +94,14 @@ create table ChiTietHoaDon(
     thanhtien decimal null
 );
 
+create table GioHang(
+	id int primary key auto_increment,
+    mataikhoan int not null,
+    masach int not null,
+    soluong int not null,
+    tongtien decimal not null
+);
+
 ALTER TABLE KhachHang ADD CONSTRAINT fk_KhachHang_TaiKhoan FOREIGN KEY (mataikhoan) REFERENCES TaiKhoan(id);
 ALTER TABLE NhanVien ADD CONSTRAINT fk_NhanVien_TaiKhoan FOREIGN KEY (mataikhoan) REFERENCES TaiKhoan(id);
 ALTER TABLE HinhAnh ADD CONSTRAINT fk_HinhAnh_Sach FOREIGN KEY (masach) REFERENCES Sach(id);
@@ -105,4 +113,6 @@ ALTER TABLE ChiTietHoaDon ADD CONSTRAINT fk_ChiTietHoaDon_HoaDon FOREIGN KEY (ma
 ALTER TABLE ChiTietHoaDon ADD CONSTRAINT fk_ChiTietHoaDon_Sach FOREIGN KEY (masach) REFERENCES Sach(id);
 ALTER TABLE HoaDon ADD CONSTRAINT fk_HoaDon_NhanVien FOREIGN KEY (manv) REFERENCES NhanVien(id);
 ALTER TABLE HoaDon ADD CONSTRAINT fk_HoaDon_KhachHang FOREIGN KEY (makh) REFERENCES KhachHang(id);
+ALTER TABLE GioHang ADD CONSTRAINT fk_GioHang_TaiKhoan FOREIGN KEY (mataikhoan) REFERENCES TaiKhoan(id);
+ALTER TABLE GioHang ADD CONSTRAINT fk_GioHang_Sach FOREIGN KEY (masach) REFERENCES Sach(id);
 

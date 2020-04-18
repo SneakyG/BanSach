@@ -37,15 +37,15 @@
 		                            <h3 class="short-text">
 		                            	<a href="<c:url value ='/shop?id=${item.id}'/>">${item.tenSach}</a>
 		                            </h3>
-		                            <h6><span class="price">${item.donGia}</span> / <a href="#">Buy Now</a></h6>
+		                            <h6><span class="price">${item.donGia}</span> / <a href="<c:url value ='/shop?id=${item.id}'/>">Mua ngay</a></h6>
 	                        	
 	                        </div>
 	                    </div>
                     </c:forEach>
                 </div>
-                <div class="btn-sec">
+                <!-- <div class="btn-sec">
                     <button class="btn gray-btn">load More books</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </form>
@@ -53,8 +53,8 @@
     
     <script src="<c:url value = '/template/admin/plugins/jquery/jquery.min.js'/>"></script>
 	<script type="text/javascript">
-		var index = ${model.maDanhMuc};
-		$('#maDanhMuc option')[index].selected = true;
+	var index = ${model.maDanhMuc};
+	$('#maDanhMuc option')[index].selected = true;
     $("#maDanhMuc").on('change',function(){
 		$("#formSubmit").submit();
 	});

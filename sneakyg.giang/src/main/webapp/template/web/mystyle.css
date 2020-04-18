@@ -3,3 +3,40 @@
     white-space: nowrap; 
     text-overflow: ellipsis;
 }
+.cart-col-1 {
+    margin-right: 0;
+    margin-left: 0;
+    width: 983px;
+}
+.shopping-cart-item {
+    background-color: #fff;
+    padding: 20px;
+    margin: 0;
+}
+.cart-col-1.box-info-product {
+    width: 542px;
+    padding-right: 50px;
+    padding-left: 15px;
+    float: left;
+}
+.col-right {
+    float: left;
+    width: 788px;
+}
+.box-info-product {
+    width: 542px;
+    padding-right: 50px;
+    padding-left: 15px;
+    float: left;
+}
+.box-price {
+    float: left;
+    width: 150px;
+    padding-right: 15px;
+}
+.action {
+    position: relative;
+    padding: 0!important;
+    margin-bottom: 0;
+    margin-top: 0;
+}

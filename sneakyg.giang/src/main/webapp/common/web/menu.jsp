@@ -29,10 +29,14 @@
 						</c:if>
 
 					</ul>
-					<div class="cart my-2 my-lg-0">
-						<span> <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-						<span class="quntity">3</span>
-					</div>
+					<c:if test="${not empty TAIKHOAN}">
+							<div class="cart my-2 my-lg-0">
+								<a href="<c:url value = '/cart?page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" style="color:black">
+									<span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+									<span class="quntity">3</span>
+								</a>
+							</div>
+					</c:if>
 					<form class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-2" type="search"
 							placeholder="Search here..." aria-label="Search"> <span

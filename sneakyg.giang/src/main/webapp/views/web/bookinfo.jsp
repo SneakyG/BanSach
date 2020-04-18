@@ -34,26 +34,7 @@
                                 <img src="${model.hinhAnh}" class="img-fluid">
                             </div>
                         </div>
-                        <!-- main slider carousel nav controls -->
-	                   <%--  <ul class="carousel-indicators list-inline">
-	                    	<li class="list-inline-item active">
-		                        <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
-		                        	<img src="${model.hinhAnh}" class="img-fluid">
-		                        </a>
-	                        </li>
-	                        <li class="list-inline-item">
-	                        	<a id="carousel-selector-1" data-slide-to="1" data-target="#myCarousel">
-	                            	<img src="${model.hinhAnh}" class="img-fluid">
-	                           	</a>
-	                        </li>
-	                        <li class="list-inline-item">
-	                            <a id="carousel-selector-2" data-slide-to="2" data-target="#myCarousel">
-	                        	    <img src="${model.hinhAnh}" class="img-fluid">
-	                           	</a>
-	                        </li>
-	                    </ul> --%>
                     </div>
-                    <!--/main slider carousel-->
                 </div>
                 <div class="col-md-6 slider-content">
                     <p>${model.moTaNgan}</p>
@@ -64,8 +45,8 @@
                         </li>
                     </ul>
                     <div class="btn-sec">
-                        <button class="btn ">Add To cart</button>
-                        <button class="btn black">Buy Now</button>
+                        <button class="btn ">Thêm vào giỏ hàng</button>
+                        <button class="btn black">Mua ngay</button>
                     </div>
                 </div>
             </div>
