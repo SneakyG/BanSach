@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sneakyg.giang.model.TaiKhoan;
+import sneakyg.giang.service.interfaces.IGioHangService;
 import sneakyg.giang.service.interfaces.ITaiKhoanService;
 import sneakyg.giang.utils.FormUtil;
 import sneakyg.giang.utils.SessionUtil;
@@ -25,6 +26,9 @@ public class HomeController extends HttpServlet {
 	
 	@Inject
 	private ITaiKhoanService taiKhoanService;
+	
+	@Inject
+	private IGioHangService gioHangService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -44,7 +48,6 @@ public class HomeController extends HttpServlet {
 				resp.sendRedirect(req.getContextPath() + "/trang-chu");
 			}
 		} else {
-//			req.setAttribute("categories",danhMucSachService.findAll());
 			RequestDispatcher rd = req.getRequestDispatcher("/views/web/home.jsp");
 			rd.forward(req, resp);
 		}

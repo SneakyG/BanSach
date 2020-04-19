@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglibs.jsp" %>
+<c:url var="APIurl" value="/api-giohang" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,41 +17,81 @@
         </div>
     </div>
     <section class="product-sec">
-        <div class="container">
-            <h1>${model.tenSach}</h1>
-            <div class="row">
-                <div class="col-md-6 slider-sec">
-                    <!-- main slider carousel -->
-                    <div id="myCarousel" class="carousel slide">
-                        <!-- main slider carousel items -->
-                        <div class="carousel-inner">
-                            <div class="active item carousel-item" data-slide-number="0">
-                                <img src="${model.hinhAnh}" class="img-fluid">
-                            </div>
-                            <div class="item carousel-item" data-slide-number="1">
-                                <img src="${model.hinhAnh}" class="img-fluid">
-                            </div>
-                            <div class="item carousel-item" data-slide-number="2">
-                                <img src="${model.hinhAnh}" class="img-fluid">
+        <form name="formSubmit" id="formSubmit">
+            <div class="container">
+                <h1>${model.tenSach}</h1>
+                <div class="row">
+                    <div class="col-md-6 slider-sec">
+                        <!-- main slider carousel -->
+                        <div id="myCarousel" class="carousel slide">
+                            <!-- main slider carousel items -->
+                            <div class="carousel-inner">
+                                <div class="active item carousel-item" data-slide-number="0">
+                                    <img src="${model.hinhAnh}" class="img-fluid">
+                                </div>
+                                <div class="item carousel-item" data-slide-number="1">
+                                    <img src="${model.hinhAnh}" class="img-fluid">
+                                </div>
+                                <div class="item carousel-item" data-slide-number="2">
+                                    <img src="${model.hinhAnh}" class="img-fluid">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 slider-content">
-                    <p>${model.moTaNgan}</p>
-                    <ul>
-                        <li>
-                            <span class="name">Đơn giá</span><span class="clm">:</span>
-                            <span class="price final">${model.donGia} VNĐ</span>
-                        </li>
-                    </ul>
-                    <div class="btn-sec">
-                        <button class="btn ">Thêm vào giỏ hàng</button>
-                        <button class="btn black">Mua ngay</button>
+                    <div class="col-md-6 slider-content">
+                        <p>${model.moTaNgan}</p>
+                        <ul>
+                            <li>
+                                <span class="name">Đơn giá</span><span class="clm">:</span>
+                                <span class="price final">${model.donGia} VNĐ</span>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <span class="name">Số lượng</span><span class="clm">:</span>
+                                <input type="number" class="form-control"  min = "1" name="soLuong" id="soLuong">
+                            </li>
+                        </ul>
+                        <div class="btn-sec">
+                            <button class="btn" id="btnThemGioHang">Thêm vào giỏ hàng</button>
+                            <button class="btn black">Mua ngay</button>
+                        </div>
+                        <input type="hidden" value="${model.id}" id="maSach" name="maSach" />
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </section>
+    <script
+		src="<c:url value = '/template/admin/plugins/jquery/jquery.min.js'/>"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#btnThemGioHang').click(function(e) {
+				e.preventDefault();
+				var data = {};
+				var formData = $('#formSubmit').serializeArray();
+				$.each(formData, function(i, v) {
+					data["" + v.name + ""] = v.value;
+				});
+				createGioHang(data);
+            });
+            
+			function createGioHang(data) {
+				$.ajax({
+					url : '${APIurl}',
+					type : 'POST',
+					contentType : 'application/json',
+					data : JSON.stringify(data),
+					dataType : 'json',
+					success : function(result) {
+						alert("Thêm vào giỏ hàng thành công!");
+					},
+					error : function(error) {
+						console.log(error);
+					}
+				});
+			}
+		});
+	</script>
 </body>
 </html>

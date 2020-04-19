@@ -5,7 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import sneakyg.giang.dao.interfaces.IGioHangDAO;
+import sneakyg.giang.dao.interfaces.ISachDAO;
 import sneakyg.giang.model.GioHang;
+import sneakyg.giang.model.Sach;
 import sneakyg.giang.paging.IPageble;
 import sneakyg.giang.service.interfaces.IGioHangService;
 
@@ -14,27 +16,44 @@ public class GioHangService implements IGioHangService{
 	@Inject
 	private IGioHangDAO gioHangDAO;
 	
+	@Inject
+	private ISachDAO sachDAO;
+	
 	@Override
 	public List<GioHang> findAll(IPageble pageble, int maTaiKhoan) {
 		return gioHangDAO.findAll(pageble, maTaiKhoan);
 	}
 
 	@Override
-	public GioHang save(GioHang cv) {
-		int id = gioHangDAO.save(cv);
-		return gioHangDAO.findOne(id);
+	public GioHang save(GioHang gh) {
+		Sach sach = sachDAO.findOne(gh.getMaSach());
+		int maSach = gh.getMaSach();
+		int maTaiKhoan = gh.getMaTaiKhoan();
+		double donGia = sach.getDonGia();
+		if(kiemTraTonTai(maSach, maTaiKhoan)) {
+			GioHang gh1 = gioHangDAO.findOneByBookIdAndUserId(maSach,maTaiKhoan);
+			int soLuongThem = gh1.getSoLuong() + gh.getSoLuong();
+			gh1.setSoLuong(soLuongThem);
+			gh1.setTongTien(tongTien(gh1.getSoLuong(), donGia));
+			gioHangDAO.update(gh1);
+			return gioHangDAO.findOne(gh1.getId());
+		}else {
+			gh.setTongTien(tongTien(gh.getSoLuong(), donGia));
+			int id = gioHangDAO.save(gh);
+			return gioHangDAO.findOne(id);
+		}
 	}
 
 	@Override
-	public GioHang update(GioHang cv) {
-		gioHangDAO.update(cv);
-		return gioHangDAO.findOne(cv.getId());
+	public GioHang update(GioHang gh) {
+		gioHangDAO.update(gh);
+		return gioHangDAO.findOne(gh.getId());
 	}
 
 	@Override
-	public void delete(Integer[] ids) {
+	public void delete(Integer[] ids, int maTaiKhoan) {
 		for(int id : ids) {
-			gioHangDAO.delete(id);
+			gioHangDAO.delete(id, maTaiKhoan);
 		}
 	}
 
@@ -42,5 +61,20 @@ public class GioHangService implements IGioHangService{
 	public int getTotalItem(int maTaiKhoan) {
 		return gioHangDAO.getTotalItem(maTaiKhoan);
 	}
+	
+	public double tongTien(int soLuong, double donGia) {
+		return soLuong * donGia;
+	}
 
+	public boolean kiemTraTonTai(int maSach, int maTaiKhoan) {
+		boolean check = false;
+		List<GioHang> ds = gioHangDAO.findAll(null, maTaiKhoan);
+		for(int i = 0; i < ds.size() ; i++) {
+			if(maSach == ds.get(i).getMaSach()) {
+				check = true;
+				break;
+			}
+		}
+		return check;
+	}
 }

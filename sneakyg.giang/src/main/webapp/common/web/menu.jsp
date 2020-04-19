@@ -33,7 +33,7 @@
 							<div class="cart my-2 my-lg-0">
 								<a href="<c:url value = '/cart?page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" style="color:black">
 									<span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-									<span class="quntity">3</span>
+									<span class="quntity">${TAIKHOAN.tk.soGioHang}</span>
 								</a>
 							</div>
 					</c:if>

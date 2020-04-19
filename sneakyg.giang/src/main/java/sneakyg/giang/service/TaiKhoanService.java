@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import sneakyg.giang.dao.interfaces.IGioHangDAO;
 import sneakyg.giang.dao.interfaces.IKhachHangDAO;
 import sneakyg.giang.dao.interfaces.INhanVienDAO;
 import sneakyg.giang.dao.interfaces.ITaiKhoanDAO;
@@ -22,6 +23,8 @@ public class TaiKhoanService implements ITaiKhoanService {
 	private IKhachHangDAO khachHangDAO;
 	@Inject
 	private INhanVienDAO nhanVienDAO;
+	@Inject
+	private IGioHangDAO gioHangDAO;
 	
 	@Override
 	public TaiKhoan findByUserNameAndPasswordAndStatus(String taiKhoan, String matKhau, int trangThai) {
@@ -31,6 +34,7 @@ public class TaiKhoanService implements ITaiKhoanService {
 	@Override
 	public Object findInfoByUsername(String tenTaiKhoan) {
 		TaiKhoan tk = taiKhoanDAO.findByUsername(tenTaiKhoan);
+		tk.setSoGioHang(gioHangDAO.getTotalItem(tk.getId()));
 		if(tk.getCv().getTenCode().equals("khach-hang")) {
 			KhachHang kh = khachHangDAO.findByUsername(tenTaiKhoan);
 			kh.setTk(tk);

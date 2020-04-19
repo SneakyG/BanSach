@@ -53,11 +53,11 @@
     
     <script src="<c:url value = '/template/admin/plugins/jquery/jquery.min.js'/>"></script>
 	<script type="text/javascript">
-	var index = ${model.maDanhMuc};
-	$('#maDanhMuc option')[index].selected = true;
-    $("#maDanhMuc").on('change',function(){
-		$("#formSubmit").submit();
-	});
+		var index = ${model.maDanhMuc};
+		$('#maDanhMuc option')[index].selected = true;
+	    $("#maDanhMuc").on('change',function(){
+			$("#formSubmit").submit();
+		});
     </script>
 </body>
 </html>

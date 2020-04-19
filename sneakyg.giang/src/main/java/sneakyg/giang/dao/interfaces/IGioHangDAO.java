@@ -10,12 +10,14 @@ public interface IGioHangDAO {
 	List<GioHang> findAll(IPageble pageble,int maTaiKhoan);
 	
 	GioHang findOne(Integer id);
+	
+	GioHang findOneByBookIdAndUserId(Integer maSach,Integer maTaiKhoan);
 
 	Integer save(GioHang gh);
 
 	void update(GioHang gh);
 
-	void delete(Integer id);
+	void delete(Integer id, int maTaiKhoan);
 
 	int getTotalItem(int maTaiKhoan);
 }

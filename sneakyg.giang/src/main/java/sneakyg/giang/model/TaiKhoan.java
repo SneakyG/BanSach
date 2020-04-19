@@ -7,6 +7,7 @@ public class TaiKhoan extends Common<TaiKhoan> {
 	private Integer maNV;
 	private int trangThai;
 	private Integer maChucVu;
+	private int soGioHang;
 	ChucVu cv = new ChucVu();
 	
 	public String getTenTaiKhoan() {
@@ -44,6 +45,12 @@ public class TaiKhoan extends Common<TaiKhoan> {
 	}
 	public void setMaNV(Integer maNV) {
 		this.maNV = maNV;
+	}
+	public int getSoGioHang() {
+		return soGioHang;
+	}
+	public void setSoGioHang(int soGioHang) {
+		this.soGioHang = soGioHang;
 	}
 	
 }
