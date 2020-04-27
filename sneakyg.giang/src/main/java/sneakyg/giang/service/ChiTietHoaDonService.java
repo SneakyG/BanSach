@@ -8,10 +8,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 import sneakyg.giang.dao.interfaces.IChiTietHoaDonDAO;
+import sneakyg.giang.dao.interfaces.IGioHangDAO;
 import sneakyg.giang.dao.interfaces.IHoaDonDAO;
+import sneakyg.giang.dao.interfaces.IKhachHangDAO;
 import sneakyg.giang.dao.interfaces.ISachDAO;
 import sneakyg.giang.model.ChiTietHoaDon;
 import sneakyg.giang.model.HoaDon;
+import sneakyg.giang.model.KhachHang;
 import sneakyg.giang.model.Sach;
 import sneakyg.giang.paging.IPageble;
 import sneakyg.giang.service.interfaces.IChiTietHoaDonService;
@@ -26,7 +29,13 @@ public class ChiTietHoaDonService implements IChiTietHoaDonService {
 
 	@Inject
 	private IHoaDonDAO hoaDonDAO;
+	
+	@Inject 
+	private IKhachHangDAO khachHangDAO;
 
+	@Inject 
+	private IGioHangDAO gioHangDAO;
+	
 	@Override
 	public List<ChiTietHoaDon> findAll(IPageble pageble, String textSearch) {
 		return cthdDAO.findAll(pageble, textSearch);
@@ -43,11 +52,13 @@ public class ChiTietHoaDonService implements IChiTietHoaDonService {
 	}
 
 	@Override
-	public List<ChiTietHoaDon> save(List<ChiTietHoaDon> cthd) {
+	public List<ChiTietHoaDon> save(List<ChiTietHoaDon> cthd, Integer maTaiKhoan) {
 		LocalDateTime currentTime = LocalDateTime.now();
 		List<ChiTietHoaDon> ds = new ArrayList<ChiTietHoaDon>();
 		Sach sach = new Sach();
 		HoaDon hd = new HoaDon(Timestamp.valueOf(currentTime),0,0);
+		KhachHang user = khachHangDAO.findByUserId(maTaiKhoan);
+		hd.setMaKhachHang(user.getId());
 		int maHoaDon = hoaDonDAO.save(hd);
 		hd = hoaDonDAO.findOne(maHoaDon);
 		for (ChiTietHoaDon item : cthd) {
@@ -59,12 +70,14 @@ public class ChiTietHoaDonService implements IChiTietHoaDonService {
 				int id = cthdDAO.save(item);
 				sach.setSoLuong(soLuongCon);
 				sachDAO.update(sach);
+				gioHangDAO.deleteAll(maTaiKhoan);
 				ds.add(cthdDAO.findOne(id));
 			} else {
+				hoaDonDAO.delete(maHoaDon);
 				break;
 			}
 		}
-		double tongTien = cthdDAO.getTotalCostByMaHoaDon(maHoaDon);
+		double tongTien = cthdDAO.getTotalCostByMaHoaDon(maHoaDon) + 20000;
 		hd.setTongTien(tongTien);
 		hoaDonDAO.update(hd);
 		return ds;

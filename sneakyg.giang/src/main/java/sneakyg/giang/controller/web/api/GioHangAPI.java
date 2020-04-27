@@ -13,7 +13,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import sneakyg.giang.model.GioHang;
 import sneakyg.giang.model.KhachHang;
-import sneakyg.giang.model.TaiKhoan;
 import sneakyg.giang.service.interfaces.IGioHangService;
 import sneakyg.giang.utils.HttpUtil;
 import sneakyg.giang.utils.SessionUtil;

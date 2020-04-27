@@ -15,7 +15,7 @@ public interface IChiTietHoaDonService {
 
 	ChiTietHoaDon findOne(Integer id);
 
-	List<ChiTietHoaDon> save(List<ChiTietHoaDon> cthd);
+	List<ChiTietHoaDon> save(List<ChiTietHoaDon> cthd, Integer maTaiKhoan);
 
 	ChiTietHoaDon update(ChiTietHoaDon cthd);
 

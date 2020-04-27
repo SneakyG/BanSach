@@ -65,4 +65,10 @@ public class GioHangDAO extends CommonDAO<GioHang> implements IGioHangDAO {
 		return ds.isEmpty() ? null : ds.get(0);
 	}
 
+	@Override
+	public void deleteAll(int maTaiKhoan) {
+		String sql = "DELETE FROM giohang WHERE maTaiKhoan = ?";
+		update(sql, maTaiKhoan);
+	}
+
 }

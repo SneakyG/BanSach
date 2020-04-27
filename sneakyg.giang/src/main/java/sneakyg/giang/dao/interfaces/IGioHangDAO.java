@@ -18,6 +18,8 @@ public interface IGioHangDAO {
 	void update(GioHang gh);
 
 	void delete(Integer id, int maTaiKhoan);
+	
+	void deleteAll(int maTaiKhoan);
 
 	int getTotalItem(int maTaiKhoan);
 }

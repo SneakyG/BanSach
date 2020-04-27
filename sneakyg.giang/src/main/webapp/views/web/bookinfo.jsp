@@ -49,7 +49,7 @@
                         <ul>
                             <li>
                                 <span class="name">Số lượng</span><span class="clm">:</span>
-                                <input type="number" class="form-control"  min = "1" name="soLuong" id="soLuong">
+                                <input type="number" class="form-control"  min = "1" value="1" name="soLuong" id="soLuong">
                             </li>
                         </ul>
                         <div class="btn-sec">
@@ -67,13 +67,18 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#btnThemGioHang').click(function(e) {
-				e.preventDefault();
-				var data = {};
-				var formData = $('#formSubmit').serializeArray();
-				$.each(formData, function(i, v) {
-					data["" + v.name + ""] = v.value;
-				});
-				createGioHang(data);
+                e.preventDefault();
+                var soLuong = $('#soLuong').val();
+                if(soLuong < 1){
+                    alert("Số lượng không phù hợp");
+                }else{
+                    var data = {};
+                    var formData = $('#formSubmit').serializeArray();
+                    $.each(formData, function(i, v) {
+                        data["" + v.name + ""] = v.value;
+                    });
+                    createGioHang(data);
+                }
             });
             
 			function createGioHang(data) {

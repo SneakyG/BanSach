@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import sneakyg.giang.model.ChiTietHoaDon;
+import sneakyg.giang.model.KhachHang;
 import sneakyg.giang.service.interfaces.IChiTietHoaDonService;
 import sneakyg.giang.utils.HttpUtil;
+import sneakyg.giang.utils.SessionUtil;
 
 @WebServlet(urlPatterns = { "/api-admin-cthd" })
 public class ChiTietHoaDonAPI extends HttpServlet {
@@ -39,7 +41,8 @@ public class ChiTietHoaDonAPI extends HttpServlet {
 		req.setCharacterEncoding("UTF8");
 		resp.setContentType("application/json");
 		List<ChiTietHoaDon> model = HttpUtil.of(req.getReader()).toListModel(ChiTietHoaDon.class);
-		model = cthdService.save(model);
+		KhachHang user = (KhachHang) SessionUtil.getInstance().getValue(req, "TAIKHOAN");
+		model = cthdService.save(model,user.getMaTaiKhoan());
 		mapper.writeValue(resp.getOutputStream(), model);
 	}
 	
