@@ -25,6 +25,7 @@ public class GioHangAPI extends HttpServlet {
 	@Inject
 	private IGioHangService gioHangService;
 	
+	
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
@@ -54,7 +55,6 @@ public class GioHangAPI extends HttpServlet {
 		Integer[] ids = HttpUtil.of(req.getReader()).toIntArray();
 		KhachHang user = (KhachHang) SessionUtil.getInstance().getValue(req, "TAIKHOAN");
 		gioHangService.delete(ids, user.getMaTaiKhoan());
-		SessionUtil.getInstance().putValue(req, "TAIKHOAN", user);
 		mapper.writeValue(resp.getOutputStream(), "{}");
 	}
 }

@@ -16,6 +16,7 @@ import sneakyg.giang.model.KhachHang;
 import sneakyg.giang.paging.IPageble;
 import sneakyg.giang.paging.PageRequest;
 import sneakyg.giang.service.interfaces.IGioHangService;
+import sneakyg.giang.service.interfaces.ITaiKhoanService;
 import sneakyg.giang.sort.Sorter;
 import sneakyg.giang.utils.FormUtil;
 import sneakyg.giang.utils.SessionUtil;
@@ -28,14 +29,19 @@ public class GioHangController extends HttpServlet {
 	@Inject
 	private IGioHangService gioHangService;
 	
+	@Inject
+	private ITaiKhoanService taiKhoanService;
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		GioHang model = FormUtil.toModel(GioHang.class, req);
-		KhachHang user = (KhachHang) SessionUtil.getInstance().getValue(req, "TAIKHOAN");
+		KhachHang kh = (KhachHang) SessionUtil.getInstance().getValue(req, "TAIKHOAN");
+		Object user = taiKhoanService.findInfoByUsername(kh.getTk().getTenTaiKhoan());
 		IPageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(), new Sorter(model.getSortName(), model.getSortBy()));
-		model.setListResult(gioHangService.findAll(pageble, user.getMaTaiKhoan()));
-		model.setTotalItem(gioHangService.getTotalItem(user.getMaTaiKhoan()));
+		model.setListResult(gioHangService.findAll(pageble, kh.getMaTaiKhoan()));
+		model.setTotalItem(gioHangService.getTotalItem(kh.getMaTaiKhoan()));
 		model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+		SessionUtil.getInstance().putValue(req, "TAIKHOAN", user);
 		req.setAttribute(SystemConstant.MODEL, model);
 		RequestDispatcher rd = req.getRequestDispatcher("/views/web/shoppingcart.jsp");
 		rd.forward(req, resp);

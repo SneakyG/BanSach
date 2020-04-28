@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglibs.jsp" %>
 <c:url var="APIurl" value="/api-giohang" />
+<c:url var="GETurl" value="/shop" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,8 +49,14 @@
                         </ul>
                         <ul>
                             <li>
+                                <span class="name">Số lượng còn</span><span class="clm">:</span>
+                                <span class="price final" style="color:black">${model.soLuong}</span>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
                                 <span class="name">Số lượng</span><span class="clm">:</span>
-                                <input type="number" class="form-control"  min = "1" value="1" name="soLuong" id="soLuong">
+                                <input type="number" class="form-control"  min = "1" max="${model.soLuong}" value="1" name="soLuong" id="soLuong">
                             </li>
                         </ul>
                         <div class="btn-sec">
@@ -69,8 +76,13 @@
 			$('#btnThemGioHang').click(function(e) {
                 e.preventDefault();
                 var soLuong = $('#soLuong').val();
-                if(soLuong < 1){
+                var soLuongCon = $('#soLuong').attr('max');
+                if(soLuongCon === "0"){
+                	alert("Đã hết hàng mong quý khách quay lại sau");
+                }else if(soLuong < 1 || Number.isInteger(soLuong*"1") === false){
                     alert("Số lượng không phù hợp");
+                }else if(soLuong > soLuongCon){
+                	alert("Số lượng vượt quá số lượng còn");
                 }else{
                     var data = {};
                     var formData = $('#formSubmit').serializeArray();
@@ -82,6 +94,7 @@
             });
             
 			function createGioHang(data) {
+                var maSach = $('#maSach').val();
 				$.ajax({
 					url : '${APIurl}',
 					type : 'POST',
@@ -89,12 +102,13 @@
 					data : JSON.stringify(data),
 					dataType : 'json',
 					success : function(result) {
-						alert("Thêm vào giỏ hàng thành công!");
+						location.reload(true);
 					},
 					error : function(error) {
 						console.log(error);
 					}
 				});
+                alert("Thêm vào giỏ hàng thành công!");
 			}
 		});
 	</script>

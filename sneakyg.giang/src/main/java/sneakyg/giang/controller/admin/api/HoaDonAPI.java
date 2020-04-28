@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import sneakyg.giang.model.HoaDon;
+import sneakyg.giang.model.KhachHang;
+import sneakyg.giang.model.NhanVien;
 import sneakyg.giang.service.interfaces.IHoaDonService;
 import sneakyg.giang.utils.HttpUtil;
+import sneakyg.giang.utils.SessionUtil;
 
 @WebServlet(urlPatterns = { "/api-admin-hd" })
 public class HoaDonAPI extends HttpServlet {
@@ -29,7 +32,8 @@ public class HoaDonAPI extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("application/json");
 		HoaDon capnhat = HttpUtil.of(req.getReader()).toModel(HoaDon.class);
-		capnhat = hoaDonService.update(capnhat);
+		KhachHang user = (NhanVien) SessionUtil.getInstance().getValue(req, "TAIKHOAN");
+		capnhat = hoaDonService.update(capnhat,user.getId());
 		mapper.writeValue(resp.getOutputStream(), capnhat);
 	}
 }

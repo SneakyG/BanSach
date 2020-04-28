@@ -11,11 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sneakyg.giang.common.SystemConstant;
+import sneakyg.giang.model.KhachHang;
 import sneakyg.giang.model.Sach;
 import sneakyg.giang.paging.IPageble;
 import sneakyg.giang.paging.PageRequest;
 import sneakyg.giang.service.interfaces.ISachService;
+import sneakyg.giang.service.interfaces.ITaiKhoanService;
 import sneakyg.giang.utils.FormUtil;
+import sneakyg.giang.utils.SessionUtil;
 
 @WebServlet(urlPatterns = { "/shop" })
 public class CuaHangController extends HttpServlet {
@@ -25,6 +28,8 @@ public class CuaHangController extends HttpServlet {
 	@Inject
 	private ISachService sachService;
 	
+	@Inject
+	private ITaiKhoanService taiKhoanService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,6 +52,9 @@ public class CuaHangController extends HttpServlet {
 			model.setDsTenDanhMuc(sachService.getListCategoryName(model.getMaDanhMuc()));
 			view = "/views/web/shop.jsp";
 		}
+		KhachHang kh = (KhachHang) SessionUtil.getInstance().getValue(req, "TAIKHOAN");
+		Object user = taiKhoanService.findInfoByUsername(kh.getTk().getTenTaiKhoan());
+		SessionUtil.getInstance().putValue(req, "TAIKHOAN", user);
 		req.setAttribute(SystemConstant.MODEL, model);
 		RequestDispatcher rd = req.getRequestDispatcher(view);
 		rd.forward(req, resp);

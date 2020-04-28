@@ -35,38 +35,14 @@
 			                    <thead>
 			                        <tr>
 			                            <th scope="col" width="10%"> </th>
-			                            <th scope="col" width="30%">Sản phẩm</th>
-			                            <th scope="col" width="20%" >Tên tác giả</th>
+			                            <th scope="col" width="25%">Sản phẩm</th>
+			                            <th scope="col" width="15%" >Tên tác giả</th>
 			                            <th scope="col" class="text-center" width="10%">Số lượng</th>
-			                            <th scope="col" class="text-right" width="20%">Tổng giá(VND)</th>
-			                            <th class="text-right" width="20%">Thao tác</th>
+			                            <th scope="col" class="text-right" width="15%">Tổng giá(VND)</th>
+			                            <th class="text-right" width="25%">Thao tác</th>
 			                        </tr>
 			                    </thead>
 			                    <tbody>
-			                        <!-- <tr>
-			                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-			                            <td>Product Name Dada</td>
-			                            <td>SneakyG</td>
-			                            <td><input class="form-control" type="text" value="1" /></td>
-			                            <td class="text-right">124,90 €</td>
-			                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-			                        </tr>
-			                        <tr>
-			                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-			                            <td>Product Name Toto</td>
-			                            <td>SneakyG</td>
-			                            <td><input class="form-control" type="text" value="1" /></td>
-			                            <td class="text-right">33,90 €</td>
-			                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-			                        </tr>
-			                        <tr>
-			                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-			                            <td>Product Name Titi</td>
-			                            <td>SneakyG</td>
-			                            <td><input class="form-control" type="text" value="1" /></td>
-			                            <td class="text-right">70,00 €</td>
-			                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-			                        </tr> -->
 			                        <c:forEach var="item" items="${model.listResult}">
 			                        	<tr>	
 			                        		<td><img src="${item.hinhAnh}"/> </td>
@@ -75,14 +51,19 @@
 				                            </td>
 				                            <td>${item.tenTG}</td>
 				                            <td>
-				                            	<input class="form-control" type="number" value="${item.soLuong}" min="1" />
+												<input class="form-control soLuongMua" type="number" value="${item.soLuong}" min="1"/>
 				                            </td>
 				                            <td class="text-right eachproduct">${item.tongTien}</td>
-				                            <td>
-												<button class="btn btn-sm btn-danger"  
-													id="btnDelete" data-toggle="tooltip" title="Xóa khỏi giỏ hàng" value="${item.id}">
+				                            <td class="text-right">
+												<button class="btn btn-sm btnBuyOne" data-toggle="tooltip" title="Mua sản phẩm này" value="${item.id}">
+													<i class="fa fa-usd"></i> 
+												</button>
+												<button class="btn btn-sm btnEdit" data-toggle="tooltip" title="Cập nhật" value="${item.id}">
+													<i class="fa fa-edit"></i> 
+												</button>
+												<button class="btn btn-sm btnDelete" data-toggle="tooltip" title="Xóa khỏi giỏ hàng" value="${item.id}">
 													<i class="fa fa-trash"></i> 
-												</button> 
+												</button>
 											</td>
 				                            
 				                    	</tr>
@@ -115,22 +96,22 @@
 			                </table>
 			            </div>
 			        </div>
-			        
+			        <div class="col mb-2">
+						<div class="row">
+							<div class="col-sm-12  col-md-6">
+								<button class="btn btn-block btn-light" id="btnMuaSam">Tiếp tục mua sắm</button>
+							</div>
+							<div class="col-sm-12 col-md-6 text-right">
+								<button class="btn btn-lg btn-block btn-success text-uppercase" id="btnThanhToan">Thanh toán</button>
+							</div>
+						</div>
+					</div>
 		        </div>
 	    	</div>
 	    </form>
 	    
 	</c:if>
-	<div class="col mb-2">
-		<div class="row">
-			<div class="col-sm-12  col-md-6">
-				<button class="btn btn-block btn-light" id="btnMuaSam">Tiếp tục mua sắm</button>
-			</div>
-			<div class="col-sm-12 col-md-6 text-right">
-				<button class="btn btn-lg btn-block btn-success text-uppercase" id="btnThanhToan">Thanh toán</button>
-			</div>
-		</div>
-	</div>
+	
 </section>
     <script src="<c:url value = '/template/admin/plugins/jquery/jquery.min.js'/>"></script>
     <script>
@@ -149,11 +130,53 @@
 			window.location.href="${ShopURL}?maDanhMuc=0";
 		});
 		
-		$("#btnDelete").click(function(e) {
+		$(".btnDelete").click(function(e) {
 			e.preventDefault();
 			var id = $(this).prop("value");
-			console.log(id);
-			var data = {}
+			var data = {};
+			data['ids'] = [$(this).prop("value")];
+			$.ajax({
+				url : '${APIurl}',
+				type : 'DELETE',
+				contentType : 'application/json',
+				data : JSON.stringify(data),
+				dataType : 'json',
+				success : function(result) {
+					window.location.href = "${CartURL}?page=1&maxPageItem=5&sortName=id&sortBy=asc";
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			});
+		});
+		
+		$(".btnEdit").click(function(e) {
+			e.preventDefault();
+			var currentRow=$(this).closest("tr");
+			var id = $(this).prop("value");
+			var soLuongMua = currentRow.find("td intput").text();
+			var data = {};
+			ssss;
+			data['ids'] = [$(this).prop("value")];
+			$.ajax({
+				url : '${APIurl}',
+				type : 'DELETE',
+				contentType : 'application/json',
+				data : JSON.stringify(data),
+				dataType : 'json',
+				success : function(result) {
+					window.location.href = "${CartURL}?page=1&maxPageItem=5&sortName=id&sortBy=asc";
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			});
+		});
+		
+		$(".btnBuyOne").click(function(e) {
+			e.preventDefault();
+			var id = $(this).prop("value");
+			var data = {};
 			data['ids'] = [$(this).prop("value")];
 			$.ajax({
 				url : '${APIurl}',
