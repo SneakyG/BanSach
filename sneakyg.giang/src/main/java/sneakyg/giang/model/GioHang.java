@@ -4,10 +4,11 @@ public class GioHang extends Common<GioHang> {
 
 	private int maTaiKhoan;
 	private int maSach;
-	private int soLuong;
+	private int soLuongMua;
 	private double tongTien;
 	private double tongTienTatCa;
 	private String tenSach;
+	private int soLuong;
 	private String tenTG;
 	private String hinhAnh;
 	
@@ -35,11 +36,11 @@ public class GioHang extends Common<GioHang> {
 	public void setMaSach(int maSach) {
 		this.maSach = maSach;
 	}
-	public int getSoLuong() {
-		return soLuong;
+	public int getSoLuongMua() {
+		return soLuongMua;
 	}
-	public void setSoLuong(int soLuong) {
-		this.soLuong = soLuong;
+	public void setSoLuongMua(int soLuongMua) {
+		this.soLuongMua = soLuongMua;
 	}
 	public double getTongTien() {
 		return tongTien;
@@ -58,6 +59,12 @@ public class GioHang extends Common<GioHang> {
 	}
 	public void setTongTienTatCa(double tongTienTatCa) {
 		this.tongTienTatCa = tongTienTatCa;
+	}
+	public int getSoLuong() {
+		return soLuong;
+	}
+	public void setSoLuong(int soLuong) {
+		this.soLuong = soLuong;
 	}
 	
 }

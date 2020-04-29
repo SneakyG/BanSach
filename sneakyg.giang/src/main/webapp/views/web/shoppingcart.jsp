@@ -51,7 +51,7 @@
 				                            </td>
 				                            <td>${item.tenTG}</td>
 				                            <td>
-												<input class="form-control soLuongMua" type="number" value="${item.soLuong}" min="1"/>
+												<input class="form-control" type="number" value="${item.soLuongMua}" min="1" max="${item.soLuong}"/>
 				                            </td>
 				                            <td class="text-right eachproduct">${item.tongTien}</td>
 				                            <td class="text-right">
@@ -130,6 +130,34 @@
 			window.location.href="${ShopURL}?maDanhMuc=0";
 		});
 		
+		$(".btnEdit").click(function(e) {
+			e.preventDefault();
+			var currentRow=$(this).closest("tr");
+			var soLuong = currentRow.find("td:eq(3) input").attr("max") * "1";
+			var soLuongMua = currentRow.find("td:eq(3) input").val() * "1";
+			if (soLuongMua > soLuong) {
+				alert("Số lượng sách chỉ còn " + soLuong);
+			} else {
+				var data = {};
+				data['id'] = $(this).prop("value");
+				data['soLuongMua'] = soLuongMua;
+				data['maSach'] = currentRow.find("td:eq(1) input").val();
+				$.ajax({
+					url : '${APIurl}',
+					type : 'PUT',
+					contentType : 'application/json',
+					data : JSON.stringify(data),
+					dataType : 'json',
+					success : function(result) {
+						window.location.href = "${CartURL}?page=1&maxPageItem=5&sortName=id&sortBy=asc";
+					},
+					error : function(error) {
+						console.log(error);
+					}
+				});
+			}
+		});
+
 		$(".btnDelete").click(function(e) {
 			e.preventDefault();
 			var id = $(this).prop("value");
@@ -150,28 +178,7 @@
 			});
 		});
 		
-		$(".btnEdit").click(function(e) {
-			e.preventDefault();
-			var currentRow=$(this).closest("tr");
-			var id = $(this).prop("value");
-			var soLuongMua = currentRow.find("td intput").text();
-			var data = {};
-			ssss;
-			data['ids'] = [$(this).prop("value")];
-			$.ajax({
-				url : '${APIurl}',
-				type : 'DELETE',
-				contentType : 'application/json',
-				data : JSON.stringify(data),
-				dataType : 'json',
-				success : function(result) {
-					window.location.href = "${CartURL}?page=1&maxPageItem=5&sortName=id&sortBy=asc";
-				},
-				error : function(error) {
-					console.log(error);
-				}
-			});
-		});
+		
 		
 		$(".btnBuyOne").click(function(e) {
 			e.preventDefault();

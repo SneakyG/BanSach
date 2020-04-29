@@ -32,13 +32,13 @@ public class GioHangService implements IGioHangService{
 		double donGia = sach.getDonGia();
 		if(kiemTraTonTai(maSach, maTaiKhoan)) {
 			GioHang gh1 = gioHangDAO.findOneByBookIdAndUserId(maSach,maTaiKhoan);
-			int soLuongThem = gh1.getSoLuong() + gh.getSoLuong();
-			gh1.setSoLuong(soLuongThem);
-			gh1.setTongTien(tongTien(gh1.getSoLuong(), donGia));
+			int soLuongThem = gh1.getSoLuongMua() + gh.getSoLuongMua();
+			gh1.setSoLuongMua(soLuongThem);
+			gh1.setTongTien(tongTien(gh1.getSoLuongMua(), donGia));
 			gioHangDAO.update(gh1);
 			return gioHangDAO.findOne(gh1.getId());
 		}else {
-			gh.setTongTien(tongTien(gh.getSoLuong(), donGia));
+			gh.setTongTien(tongTien(gh.getSoLuongMua(), donGia));
 			int id = gioHangDAO.save(gh);
 			return gioHangDAO.findOne(id);
 		}
@@ -46,14 +46,16 @@ public class GioHangService implements IGioHangService{
 
 	@Override
 	public GioHang update(GioHang gh) {
+		Sach sach = sachDAO.findOne(gh.getMaSach());
+		gh.setTongTien(tongTien(gh.getSoLuongMua(), sach.getDonGia()));
 		gioHangDAO.update(gh);
 		return gioHangDAO.findOne(gh.getId());
 	}
 
 	@Override
-	public void delete(Integer[] ids, int maTaiKhoan) {
+	public void delete(Integer[] ids) {
 		for(int id : ids) {
-			gioHangDAO.delete(id, maTaiKhoan);
+			gioHangDAO.delete(id);
 		}
 	}
 

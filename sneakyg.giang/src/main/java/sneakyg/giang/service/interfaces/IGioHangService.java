@@ -13,7 +13,7 @@ public interface IGioHangService {
 
 	GioHang update(GioHang gh);
 
-	void delete(Integer[] ids, int maTaiKhoan);
+	void delete(Integer[] ids);
 
 	int getTotalItem(int maTaiKhoan);
 }

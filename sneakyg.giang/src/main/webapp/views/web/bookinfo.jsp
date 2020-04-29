@@ -56,7 +56,7 @@
                         <ul>
                             <li>
                                 <span class="name">Số lượng</span><span class="clm">:</span>
-                                <input type="number" class="form-control"  min = "1" max="${model.soLuong}" value="1" name="soLuong" id="soLuong">
+                                <input type="number" class="form-control"  min = "1" max="${model.soLuong}" value="1" name="soLuongMua" id="soLuongMua">
                             </li>
                         </ul>
                         <div class="btn-sec">
@@ -75,11 +75,11 @@
 		$(document).ready(function() {
 			$('#btnThemGioHang').click(function(e) {
                 e.preventDefault();
-                var soLuong = $('#soLuong').val();
-                var soLuongCon = $('#soLuong').attr('max');
-                if(soLuongCon === "0"){
+                var soLuong = $('#soLuongMua').val() * "1";
+                var soLuongCon = $('#soLuongMua').attr('max') * "1";
+                if(soLuongCon === 0){
                 	alert("Đã hết hàng mong quý khách quay lại sau");
-                }else if(soLuong < 1 || Number.isInteger(soLuong*"1") === false){
+                }else if(soLuong < 1 || Number.isInteger(soLuong) === false){
                     alert("Số lượng không phù hợp");
                 }else if(soLuong > soLuongCon){
                 	alert("Số lượng vượt quá số lượng còn");

@@ -10,6 +10,10 @@
         <pattern>/admin*</pattern>
     </decorator>
     
+    <decorator name="nhanvien" page="admin.jsp">
+        <pattern>/admin-home</pattern>
+    </decorator>
+    
     <decorator name="web" page="web.jsp">
         <pattern>/*</pattern>
     </decorator>

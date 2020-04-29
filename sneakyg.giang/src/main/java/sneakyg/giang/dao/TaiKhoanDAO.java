@@ -11,7 +11,6 @@ public class TaiKhoanDAO extends CommonDAO<TaiKhoan> implements ITaiKhoanDAO {
 
 	@Override
 	public TaiKhoan findByUserNameAndPasswordAndStatus(String taiKhoan, String matKhau, int trangThai) {
-
 		StringBuilder sql = new StringBuilder("SELECT * FROM taikhoan as t ");
 		sql.append("INNER JOIN chucvu AS c ON c.id = t.machucvu ");
 		sql.append("WHERE tentaikhoan = ? AND matkhau = ? AND trangthai = ?");

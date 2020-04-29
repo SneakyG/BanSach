@@ -11,7 +11,7 @@ public class GioHangDAO extends CommonDAO<GioHang> implements IGioHangDAO {
 
 	@Override
 	public List<GioHang> findAll(IPageble pageble, int maTaiKhoan) {
-		StringBuilder sql = new StringBuilder("SELECT gh.id, gh.mataikhoan, gh.masach, gh.soluong, gh.tongtien,s.tensach, s.hinhanh, tg.tentg FROM giohang AS gh");
+		StringBuilder sql = new StringBuilder("SELECT gh.id, gh.mataikhoan, gh.masach, gh.soluongmua, s.soluong, gh.tongtien,s.tensach, s.hinhanh, tg.tentg FROM giohang AS gh");
 		sql.append(" JOIN sach AS s ON gh.masach = s.id");
 		sql.append(" JOIN tacgia AS tg ON s.matacgia = tg.id");
 		sql.append(" WHERE maTaiKhoan = ?");
@@ -36,20 +36,20 @@ public class GioHangDAO extends CommonDAO<GioHang> implements IGioHangDAO {
 
 	@Override
 	public Integer save(GioHang gh) {
-		String sql = "INSERT INTO giohang(mataikhoan,masach,soluong,tongtien) VALUES(?,?,?,?)";
-		return insert(sql, gh.getMaTaiKhoan(), gh.getMaSach(), gh.getSoLuong(), gh.getTongTien());
+		String sql = "INSERT INTO giohang(mataikhoan,masach,soluongmua,tongtien) VALUES(?,?,?,?)";
+		return insert(sql, gh.getMaTaiKhoan(), gh.getMaSach(), gh.getSoLuongMua(), gh.getTongTien());
 	}
 
 	@Override
 	public void update(GioHang gh) {
-		String sql = "UPDATE giohang SET soluong = ? WHERE id = ?";
-		update(sql, gh.getSoLuong(),gh.getId());
+		String sql = "UPDATE giohang SET soluongmua = ?, tongtien = ? WHERE id = ?";
+		update(sql, gh.getSoLuongMua(), gh.getTongTien(), gh.getId());
 	}
 
 	@Override
-	public void delete(Integer id, int maTaiKhoan) {
-		String sql = "DELETE FROM giohang WHERE id = ? AND maTaiKhoan = ?";
-		update(sql, id, maTaiKhoan);
+	public void delete(Integer id) {
+		String sql = "DELETE FROM giohang WHERE id = ?";
+		update(sql, id);
 	}
 
 	@Override

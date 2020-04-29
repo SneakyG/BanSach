@@ -33,36 +33,38 @@
 						</p>
 				</a>
 					<ul class="nav nav-treeview">
-						<li class="nav-item"><a href="<c:url value = '/admin-sach?type=list&textSearch=&page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" class="nav-link">
-								<p>Quản lý sách</p>
-						</a></li>
-						<li class="nav-item"><a href="<c:url value = '/admin-tacgia?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenTG&sortBy=asc'/>" class="nav-link">
-								<p>Quản lý tác giả</p>
-						</a></li>
-						<li class="nav-item"><a href="<c:url value = '/admin-nhaxuatban?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenNXB&sortBy=asc'/>" class="nav-link">
-								<p>Quản lý nhà xuất bản</p>
-						</a></li>
-						<li class="nav-item"><a href="<c:url value = '/admin-chucvu?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenCV&sortBy=asc'/>" class="nav-link">
-								<p>Quản lý chức vụ</p>
-						</a></li>
-						<li class="nav-item"><a href="<c:url value = '/admin-danhmucsach?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenDanhMuc&sortBy=asc'/>" class="nav-link">
-								<p>Quản lý danh mục sách</p>
-						</a></li>
-						<li class="nav-item"><a href="<c:url value = '/admin-chitiethoadon?type=list&textSearch=&page=1&maxPageItem=5&sortName=trangThai&sortBy=asc'/>" class="nav-link">
-								<p>Quản lý chi tiết hóa đơn</p>
-						</a></li>
-						<li class="nav-item"><a href="<c:url value = '/admin-hoadon?type=list&textSearch=&page=1&maxPageItem=5&sortName=trangThai&sortBy=asc'/>" class="nav-link">
-								<p>Quản lý hóa đơn</p>
-						</a></li>
-						<li class="nav-item"><a href="<c:url value = '/admin-taikhoan?type=list&textSearch=&page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" class="nav-link">
-								<p>Quản lý tài khoản</p>		
-						</a></li>
-						<li class="nav-item"><a href="<c:url value = '/admin-nhanvien?type=list&textSearch=&page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" class="nav-link">
-								<p>Quản lý nhân viên</p>		
-						</a></li>
-						<li class="nav-item"><a href="<c:url value = '/admin-khachhang?type=list&textSearch=&page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" class="nav-link">
-								<p>Quản lý khách hàng</p>		
-						</a></li>
+						<c:if test="${TAIKHOAN.tk.maChucVu == 3}">
+							<li class="nav-item"><a href="<c:url value = '/admin-tacgia?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenTG&sortBy=asc'/>" class="nav-link">
+									<p>Quản lý tác giả</p>
+							</a></li>
+							<li class="nav-item"><a href="<c:url value = '/admin-nhaxuatban?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenNXB&sortBy=asc'/>" class="nav-link">
+									<p>Quản lý nhà xuất bản</p>
+							</a></li>
+							<li class="nav-item"><a href="<c:url value = '/admin-chucvu?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenCV&sortBy=asc'/>" class="nav-link">
+									<p>Quản lý chức vụ</p>
+							</a></li>
+							<li class="nav-item"><a href="<c:url value = '/admin-danhmucsach?type=list&textSearch=&page=1&maxPageItem=5&sortName=tenDanhMuc&sortBy=asc'/>" class="nav-link">
+									<p>Quản lý danh mục sách</p>
+							</a></li>
+							<li class="nav-item"><a href="<c:url value = '/admin-taikhoan?type=list&textSearch=&page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" class="nav-link">
+									<p>Quản lý tài khoản</p>		
+							</a></li>
+							<li class="nav-item"><a href="<c:url value = '/admin-nhanvien?type=list&textSearch=&page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" class="nav-link">
+									<p>Quản lý nhân viên</p>		
+							</a></li>
+						</c:if>
+							<li class="nav-item"><a href="<c:url value = '/admin-khachhang?type=list&textSearch=&page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" class="nav-link">
+									<p>Quản lý khách hàng</p>		
+							</a></li>
+							<li class="nav-item"><a href="<c:url value = '/admin-chitiethoadon?type=list&textSearch=&page=1&maxPageItem=5&sortName=trangThai&sortBy=asc'/>" class="nav-link">
+									<p>Quản lý chi tiết hóa đơn</p>
+							</a></li>
+							<li class="nav-item"><a href="<c:url value = '/admin-hoadon?type=list&textSearch=&page=1&maxPageItem=5&sortName=trangThai&sortBy=asc'/>" class="nav-link">
+									<p>Quản lý hóa đơn</p>
+							</a></li>
+							<li class="nav-item"><a href="<c:url value = '/admin-sach?type=list&textSearch=&page=1&maxPageItem=5&sortName=id&sortBy=asc'/>" class="nav-link">
+									<p>Quản lý sách</p>
+							</a></li>
 					</ul></li>
 				<li class="nav-item"><a href="#" class="nav-link"> <i
 						class="nav-icon fas fa-th"></i>

@@ -52,6 +52,8 @@
 													<thead>
 														<tr>
 															<th>Mã hóa đơn</th>
+															<th>Mã nhân viên</th>
+															<th>Mã khách hàng</th>
 															<th>Thời gian đặt</th>
 															<th>Thời gian mua</th>
 															<th>Tổng tiền</th>
@@ -63,6 +65,12 @@
 														<c:forEach var="item" items="${model.listResult}" varStatus="loop">
 															<tr>
 																<td>${item.id}</td>
+																<td>
+																	<c:if test="${item.maNhanVien != 0}">
+																		${item.maNhanVien}
+																	</c:if>
+																</td>
+																<td>${item.maKhachHang}</td>
 																<td>${item.thoiGianDat}</td>
 																<td>${item.thoiGianMua}</td>
 																<td>${item.tongTien}</td>
@@ -97,6 +105,8 @@
 													<tfoot>
 														<tr>
 															<th>Mã hóa đơn</th>
+															<th>Mã nhân viên</th>
+															<th>Mã khách hàng</th>
 															<th>Thời gian đặt</th>
 															<th>Thời gian mua</th>
 															<th>Tổng tiền</th>

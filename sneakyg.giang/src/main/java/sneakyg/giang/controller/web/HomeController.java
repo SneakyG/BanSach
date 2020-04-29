@@ -61,7 +61,7 @@ public class HomeController extends HttpServlet {
 					SessionUtil.getInstance().putValue(req, "TAIKHOAN", object);
 				if (model.getCv().getTenCode().equals("khach-hang")) {
 					resp.sendRedirect(req.getContextPath() + "/trang-chu");
-				} else if (model.getCv().getTenCode().equals("quan-ly")) {
+				} else if (model.getCv().getTenCode().equals("quan-ly") || model.getCv().getTenCode().equals("nhan-vien")  ) {
 					resp.sendRedirect(req.getContextPath() + "/admin-home");
 				}
 			} else {

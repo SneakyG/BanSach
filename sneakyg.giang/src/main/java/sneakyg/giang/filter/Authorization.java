@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -37,6 +38,13 @@ public class Authorization implements Filter{
 			if(model != null) {
 				if(model.getTk().getCv().getTenCode().equals("quan-ly")) {
 					chain.doFilter(req, resp);
+				}else if(model.getTk().getCv().getTenCode().equals("nhan-vien")){
+					if(checkRole(url)) {
+						chain.doFilter(req, resp);
+					}else {
+						RequestDispatcher rd = req.getRequestDispatcher("/views/admin/home.jsp");
+						rd.forward(req, resp);
+					}
 				}else if(model.getTk().getCv().getTenCode().equals("khach-hang")) {
 					resp.sendRedirect(req.getContextPath() + "/dang-nhap?action=login&message=no-permission&alert=warning");
 				}
@@ -47,6 +55,17 @@ public class Authorization implements Filter{
 			chain.doFilter(req, resp);
 		}
 		
+	}
+	
+	public boolean checkRole(String url) {
+		String[] nhanVienRequired = {"/admin-hoadon","/admin-chitiethoadon","/admin-sach","/admin-khachhang"};
+		
+		for(String checkURL : nhanVienRequired) {
+			if(url.contains(checkURL)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override

@@ -14,12 +14,13 @@ public class GioHangMapper implements IRowMapper<GioHang> {
 			gh.setId(resultSet.getInt("id"));
 			gh.setMaSach(resultSet.getInt("masach"));
 			gh.setMaTaiKhoan(resultSet.getInt("mataikhoan"));
-			gh.setSoLuong(resultSet.getInt("soluong"));
+			gh.setSoLuongMua(resultSet.getInt("soluongmua"));
 			gh.setTongTien(resultSet.getDouble("tongtien"));
 			try {
 				gh.setHinhAnh(resultSet.getString("hinhanh"));
 				gh.setTenSach(resultSet.getString("tensach"));
 				gh.setTenTG(resultSet.getString("tentg"));
+				gh.setSoLuong(resultSet.getInt("soluong"));
 			} catch (Exception e) {
 			}
 			return gh;

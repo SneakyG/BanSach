@@ -14,6 +14,8 @@ public class HoaDonMapper implements IRowMapper<HoaDon> {
 			hd.setId(resultSet.getInt("id"));
 			try {
 				hd.setThoiGianMua(resultSet.getTimestamp("thoigianmua"));
+				hd.setMaNhanVien(resultSet.getInt("manv"));
+				hd.setMaKhachHang(resultSet.getInt("makh"));
 			} catch (Exception e) {
 			}
 			hd.setThoiGianDat(resultSet.getTimestamp("thoigiandat"));

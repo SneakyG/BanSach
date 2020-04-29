@@ -98,7 +98,7 @@ create table GioHang(
 	id int primary key auto_increment,
     mataikhoan int not null,
     masach int not null,
-    soluong int not null,
+    soluongmua int not null,
     tongtien decimal not null
 );
 

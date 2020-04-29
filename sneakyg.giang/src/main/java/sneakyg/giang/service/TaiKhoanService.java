@@ -39,7 +39,7 @@ public class TaiKhoanService implements ITaiKhoanService {
 			KhachHang kh = khachHangDAO.findByUsername(tenTaiKhoan);
 			kh.setTk(tk);
 			return kh;
-		}else if(tk.getCv().getTenCode().equals("quan-ly")) {
+		}else if(tk.getCv().getTenCode().equals("quan-ly") || tk.getCv().getTenCode().equals("nhan-vien")) {
 			NhanVien nv = nhanVienDAO.findByUsername(tenTaiKhoan);
 			nv.setTk(tk);
 			return nv;

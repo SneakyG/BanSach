@@ -95,6 +95,7 @@
 			});
 
 			function updateChiTietHoaDon(data) {
+				sssss;
 				$.ajax({
 					url : '${APIurl}',
 					type : 'PUT',

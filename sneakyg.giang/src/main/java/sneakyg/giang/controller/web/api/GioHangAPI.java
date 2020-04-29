@@ -53,8 +53,7 @@ public class GioHangAPI extends HttpServlet {
 		req.setCharacterEncoding("UTF8");
 		resp.setContentType("application/json");
 		Integer[] ids = HttpUtil.of(req.getReader()).toIntArray();
-		KhachHang user = (KhachHang) SessionUtil.getInstance().getValue(req, "TAIKHOAN");
-		gioHangService.delete(ids, user.getMaTaiKhoan());
+		gioHangService.delete(ids);
 		mapper.writeValue(resp.getOutputStream(), "{}");
 	}
 }

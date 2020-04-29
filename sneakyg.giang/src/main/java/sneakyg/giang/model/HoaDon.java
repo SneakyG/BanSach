@@ -8,9 +8,11 @@ public class HoaDon extends Common<HoaDon> {
 	private Timestamp thoiGianMua;
 	private Integer maKhachHang;
 	private Integer maNhanVien;
+	private String tenNhanVien;
+	private String tenKhachHang;
 	private double tongTien;
 	private int trangThai;
-
+	
 	public HoaDon() {
 	}
 	
@@ -18,6 +20,22 @@ public class HoaDon extends Common<HoaDon> {
 		this.thoiGianDat = thoiGianDat;
 		this.tongTien = tongTien;
 		this.trangThai = trangThai;
+	}
+
+	public String getTenNhanVien() {
+		return tenNhanVien;
+	}
+
+	public void setTenNhanVien(String tenNhanVien) {
+		this.tenNhanVien = tenNhanVien;
+	}
+
+	public String getTenKhachHang() {
+		return tenKhachHang;
+	}
+
+	public void setTenKhachHang(String tenKhachHang) {
+		this.tenKhachHang = tenKhachHang;
 	}
 
 	public Timestamp getThoiGianDat() {

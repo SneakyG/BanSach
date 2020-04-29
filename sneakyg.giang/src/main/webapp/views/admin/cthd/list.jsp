@@ -181,6 +181,7 @@
 				return $(this).val();
 			}).get();
 			data['ids'] = ids;
+			
 			deleteChiTietHoaDon(data);
 		});
 		
@@ -208,7 +209,7 @@
 				data: JSON.stringify(data),
 				dataType: 'json',
 				success: function (result) {
-					window.location.href = "${LISTurl}?type=list&page=1&maxPageItem=5&sortName=trangThai&sortBy=asc";
+					location.reload(true);
 				},
 				error: function (error) {
 					console.log(error);

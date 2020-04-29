@@ -13,12 +13,11 @@ public class HoaDonDAO extends CommonDAO<HoaDon> implements IHoaDonDAO{
 	public List<HoaDon> findAll(IPageble pageble, String textSearch) {
 		StringBuilder sql;
 		if(textSearch != null ) {
-//			sql = new StringBuilder("SELECT hd.id,hd.manv,hd.makh,hd.thoigiandat,hd.thoigianmua,hd.tongtien,hd.trangthai,nv.tennv,kh.tenkh");
-//			sql.append(" FROM hoadon AS hd JOIN khachhang AS kh ON hd.makh = kh.id");
-//			sql.append(" JOIN nhanvien AS nv ON hd.manv = nv.id");
-//			sql.append(" WHERE kh.tenkh like '%" + textSearch + "%' or nv.tennv like '%" + textSearch + "%'");
-//			sql.append(" or hd.id like '%" + textSearch + "%'");
-			sql = new StringBuilder("SELECT * FROM hoadon");
+			sql = new StringBuilder("SELECT hd.id,hd.manv,hd.makh,hd.thoigiandat,hd.thoigianmua,hd.tongtien,hd.trangthai,nv.tennv,kh.tenkh");
+			sql.append(" FROM hoadon AS hd LEFT JOIN khachhang AS kh ON hd.makh = kh.id");
+			sql.append(" LEFT JOIN nhanvien AS nv ON hd.manv = nv.id");
+			sql.append(" WHERE kh.tenkh like '%" + textSearch + "%' or nv.tennv like '%" + textSearch + "%'");
+			sql.append(" or hd.id like '%" + textSearch + "%'");
 		}else {
 			sql = new StringBuilder("SELECT * FROM hoadon");
 		}
