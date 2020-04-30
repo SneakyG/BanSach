@@ -10,18 +10,12 @@
 <body>
 	<div class="breadcrumb">
 		<div class="container">
-			<a class="breadcrumb-item" href="index.html">Home</a> <span
-				class="breadcrumb-item active">Login</span>
+			<a class="breadcrumb-item" href="index.html">Trang chủ</a> <span
+				class="breadcrumb-item active">Đăng nhập</span>
 		</div>
 	</div>
 	<section class="static about-sec">
 		<div class="container">
-			<!-- <h1>My Account / Login</h1> -->
-			<!-- <p>Lorem Ipsum is simply dummy text of the printing and
-				typesetting industry. Lorem Ipsum has been the industry's printer
-				took a galley of type and scrambled it to make a type specimen book.
-				It has survived not only fiveLorem Ipsum is simply dummy text of the
-				printing and typesetting industry. Lorem</p> -->
 
 			<div class="form" align="center">
 

@@ -16,7 +16,7 @@ import sneakyg.giang.service.interfaces.ITaiKhoanService;
 import sneakyg.giang.utils.FormUtil;
 import sneakyg.giang.utils.SessionUtil;
 
-@WebServlet(urlPatterns = { "/trang-chu", "/dang-nhap", "/thoat" })
+@WebServlet(urlPatterns = { "/trang-chu", "/dang-nhap", "/dang-ky", "/thoat" })
 public class HomeController extends HttpServlet {
 
 	private static final long serialVersionUID = 3868379978025734446L;
@@ -42,6 +42,9 @@ public class HomeController extends HttpServlet {
 			} else if (action.equals("logout")) {
 				SessionUtil.getInstance().removeValue(req, "TAIKHOAN");
 				resp.sendRedirect(req.getContextPath() + "/trang-chu");
+			} else if (action.equals("regis")) {
+				RequestDispatcher rd = req.getRequestDispatcher("/views/web/register.jsp");
+				rd.forward(req, resp);
 			}
 		} else {
 			RequestDispatcher rd = req.getRequestDispatcher("/views/web/home.jsp");

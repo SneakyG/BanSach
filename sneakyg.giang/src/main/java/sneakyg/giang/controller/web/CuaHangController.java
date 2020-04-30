@@ -52,9 +52,12 @@ public class CuaHangController extends HttpServlet {
 			model.setDsTenDanhMuc(sachService.getListCategoryName(model.getMaDanhMuc()));
 			view = "/views/web/shop.jsp";
 		}
-		KhachHang kh = (KhachHang) SessionUtil.getInstance().getValue(req, "TAIKHOAN");
-		Object user = taiKhoanService.findInfoByUsername(kh.getTk().getTenTaiKhoan());
-		SessionUtil.getInstance().putValue(req, "TAIKHOAN", user);
+		try {
+			KhachHang kh = (KhachHang) SessionUtil.getInstance().getValue(req, "TAIKHOAN");
+			Object user = taiKhoanService.findInfoByUsername(kh.getTk().getTenTaiKhoan());
+			SessionUtil.getInstance().putValue(req, "TAIKHOAN", user);
+		} catch (Exception e) {
+		}
 		req.setAttribute(SystemConstant.MODEL, model);
 		RequestDispatcher rd = req.getRequestDispatcher(view);
 		rd.forward(req, resp);

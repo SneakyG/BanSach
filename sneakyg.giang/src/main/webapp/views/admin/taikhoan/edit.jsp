@@ -3,6 +3,7 @@
 <%@include file="/common/taglibs.jsp"%>
 <c:url var="editurl" value="/admin-taikhoan" />
 <c:url var="NVurl" value="/admin-nhanvien" />
+<c:url var="KHurl" value="/admin-khachhang" />
 <c:url var="APIurl" value="/api-admin-taikhoan" />
 <!DOCTYPE html>
 <html>
@@ -85,15 +86,14 @@
 					data["" + v.name + ""] = v.value;
 				});
 				var id = $("#id").val();
-				console.log(data.maNV);
 				if (id == "") {
-					createChucVu(data);
+					createTaiKhoan(data);
 				} else {
-					updateChucVu(data);
+					updateTaiKhoan(data);
 				}
 			});
 
-			function updateChucVu(data) {
+			function updateTaiKhoan(data) {
 				$.ajax({
 					url : '${APIurl}',
 					type : 'PUT',
@@ -101,14 +101,14 @@
 					data : JSON.stringify(data),
 					dataType : 'json',
 					success : function(result) {
-						window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=id&sortBy=asc";
+						window.location.href = "${editurl}?type=list&id="+data.id+"&page=1&maxPageItem=5&sortName=id&sortBy=asc";
 					},
 					error : function(error) {
 						console.log(error);
 					}
 				});
 			}
-			function createChucVu(data) {
+			function createTaiKhoan(data) {
 				$.ajax({
 					url : '${APIurl}',
 					type : 'POST',
@@ -116,11 +116,12 @@
 					data : JSON.stringify(data),
 					dataType : 'json',
 					success : function(result) {
-						if(data.maNV != ""){
+						/* if(data.maNV != ""){
 							window.location.href = "${NVurl}?type=list&page=1&maxPageItem=5&sortName=id&sortBy=asc";
 						}else {
 							window.location.href = "${editurl}?type=list&page=1&maxPageItem=5&sortName=id&sortBy=asc";
-						}
+						} */
+						window.location.href = "${editurl}?type=list&id="+data.id+"&page=1&maxPageItem=5&sortName=id&sortBy=asc";
 					},
 					error : function(error) {
 						console.log(error);

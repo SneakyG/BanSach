@@ -68,28 +68,35 @@
                 </div>
             </div>
         </form>
+        <input type="hidden" value="${TAIKHOAN}" id="user" name="user" />
     </section>
     <script
 		src="<c:url value = '/template/admin/plugins/jquery/jquery.min.js'/>"></script>
-	<script type="text/javascript">
+    <script type="text/javascript">
+        
 		$(document).ready(function() {
 			$('#btnThemGioHang').click(function(e) {
                 e.preventDefault();
-                var soLuong = $('#soLuongMua').val() * "1";
-                var soLuongCon = $('#soLuongMua').attr('max') * "1";
-                if(soLuongCon === 0){
-                	alert("Đã hết hàng mong quý khách quay lại sau");
-                }else if(soLuong < 1 || Number.isInteger(soLuong) === false){
-                    alert("Số lượng không phù hợp");
-                }else if(soLuong > soLuongCon){
-                	alert("Số lượng vượt quá số lượng còn");
+                var user = $('#user').val();
+                if(user != ""){
+                	var soLuong = $('#soLuongMua').val() * "1";
+                    var soLuongCon = $('#soLuongMua').attr('max') * "1";
+                    if(soLuongCon === 0){
+                        alert("Đã hết hàng mong quý khách quay lại sau");
+                    }else if(soLuong < 1 || Number.isInteger(soLuong) === false){
+                        alert("Số lượng không phù hợp");
+                    }else if(soLuong > soLuongCon){
+                        alert("Số lượng vượt quá số lượng còn");
+                    }else{
+                        var data = {};
+                        var formData = $('#formSubmit').serializeArray();
+                        $.each(formData, function(i, v) {
+                            data["" + v.name + ""] = v.value;
+                        });
+                        createGioHang(data);
+                    }
                 }else{
-                    var data = {};
-                    var formData = $('#formSubmit').serializeArray();
-                    $.each(formData, function(i, v) {
-                        data["" + v.name + ""] = v.value;
-                    });
-                    createGioHang(data);
+                	alert("Hãy đăng nhập");
                 }
             });
             

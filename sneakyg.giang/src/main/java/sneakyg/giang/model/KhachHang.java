@@ -16,6 +16,15 @@ public class KhachHang extends Common<KhachHang> {
 	protected TaiKhoan tk = new TaiKhoan();
 	private List<KhachHang> dsKH = new ArrayList<KhachHang>();
 	
+	public KhachHang() {}
+	
+	public KhachHang(Integer maTaiKhoan, String ten) {
+		this.ten = ten;
+		email = "";
+		cmnd = "";
+		diaChi = "";
+		this.maTaiKhoan = maTaiKhoan;
+	}
 	public TaiKhoan getTk() {
 		return tk;
 	}

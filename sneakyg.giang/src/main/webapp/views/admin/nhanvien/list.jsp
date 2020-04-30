@@ -77,7 +77,11 @@
 														<c:forEach var="item" items="${model.dsNV}">
 															<tr>
 																<td>${item.ten}</td>
-																<td>${item.maTaiKhoan}</td>
+																<td>
+																	<c:if test="${item.maTaiKhoan != 0 }">
+																		${item.maTaiKhoan}
+																	</c:if>
+																</td>
 																<td>${item.sdt}</td>
 																<td>${item.cmnd}</td>
 																<td>${item.diaChi}</td>
@@ -86,7 +90,8 @@
 																<td>${item.ngayVL}</td>
 																<td>${item.luong}</td>
 																<td style="width:10%">
-																	<c:url var="taikhoanUrl" value="/admin-taikhoan">
+																	<c:if test="${item.maTaiKhoan != 0}">
+																		<c:url var="taikhoanUrl" value="/admin-taikhoan">
 																		<c:param name="type" value="list" />
 																		<c:param name="id" value="${item.maTaiKhoan}" />
 																		<c:param name="page" value="1" />
@@ -94,9 +99,10 @@
 																		<c:param name="sortName" value="id" />
 																		<c:param name="sortBy" value="asc" />
 																	</c:url> <a class="btn btn-sm btn-primary btn-edit"
-																		data-toggle="tooltip" title="Cập nhật"
+																		data-toggle="tooltip" title="Xem tài khoản"
 																		href="${taikhoanUrl}"><i class="fa fa-list"
 																			aria-hidden="true"></i> </a>
+																	</c:if>
 																
 																	<c:url var="editUrl" value="/admin-nhanvien">
 																		<c:param name="type" value="edit" />

@@ -60,13 +60,21 @@ public class TaiKhoanService implements ITaiKhoanService {
 	@Override
 	public TaiKhoan save(TaiKhoan tk) {
 //		Mã chức vụ khác nhau(trang đăng ký (machucvu = 1) thêm tk của admin(machucvu = 2))
-		tk.setMaChucVu(2);
+		if(tk.getTenTaiKhoan() != null && checkUserName(tk.getTenTaiKhoan())) {
+			return null;
+		}
+		if(tk.getMaChucVu() == null) {
+			tk.setMaChucVu(2);
+		}
 		int id = taiKhoanDAO.save(tk);
 		if(tk.getMaNV() != null) {
 			NhanVien nv = new NhanVien();
 			nv = nhanVienDAO.findOne(tk.getMaNV());
 			nv.setMaTaiKhoan(id);
 			nhanVienDAO.update(nv);
+		}else {
+			KhachHang kh = new KhachHang(id, tk.getTenTaiKhoan());
+			khachHangDAO.save(kh);
 		}
 		return taiKhoanDAO.findOne(id);
 	}
@@ -74,13 +82,16 @@ public class TaiKhoanService implements ITaiKhoanService {
 	@Override
 	public TaiKhoan update(TaiKhoan tk) {
 		if(tk.getTenTaiKhoan() == null) {
-			tk = taiKhoanDAO.findOne(tk.getId());
-			if(tk.getTrangThai() == 0) {
-				tk.setTrangThai(1);
+			if(tk.getMatKhau() == null) {
+				tk = taiKhoanDAO.findOne(tk.getId());
+				if(tk.getTrangThai() == 0) {
+					tk.setTrangThai(1);
+				}else {
+					tk.setTrangThai(0);
+				}
 			}else {
-				tk.setTrangThai(0);
+				tk.setTrangThai(1);
 			}
-			
 		}
 		taiKhoanDAO.update(tk);
 		return taiKhoanDAO.findOne(tk.getId());
@@ -98,4 +109,16 @@ public class TaiKhoanService implements ITaiKhoanService {
 		return ds;
 	}
 
+	
+	public boolean checkUserName(String tenTaiKhoan) {
+		List<String> ds = taiKhoanDAO.findAllUserName();
+		String tenThuong = tenTaiKhoan.toLowerCase();
+		for(String ten : ds) {
+			ten = ten.toLowerCase();
+			if(tenThuong.equals(ten)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

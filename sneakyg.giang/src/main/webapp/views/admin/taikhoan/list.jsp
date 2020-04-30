@@ -136,6 +136,7 @@
 														<tr>
 															<th>Tên tài khoản</th>
 															<th>Mật khẩu</th>
+															<th>Chức vụ</th>
 															<th>Trạng thái</th>
 															<th>Thao tác</th>
 														</tr>

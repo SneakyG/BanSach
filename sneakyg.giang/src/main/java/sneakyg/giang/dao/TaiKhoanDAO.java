@@ -46,7 +46,7 @@ public class TaiKhoanDAO extends CommonDAO<TaiKhoan> implements ITaiKhoanDAO {
 
 	@Override
 	public TaiKhoan findOne(Integer id) {
-		String sql = "SELECT * FROM taikhoan WHERE id = ?";
+		String sql = "SELECT * FROM taikhoan as t INNER JOIN chucvu AS c ON c.id = t.machucvu WHERE t.id = ?";
 		List<TaiKhoan> ds = query(sql, new TaiKhoanMapper(), id);
 		return ds.isEmpty() ? null : ds.get(0);
 	}
@@ -70,5 +70,12 @@ public class TaiKhoanDAO extends CommonDAO<TaiKhoan> implements ITaiKhoanDAO {
 			sql.append(" WHERE tentaikhoan like '%" + textSearch + "%'");
 		}
 		return count(sql.toString());
+	}
+
+	@Override
+	public List<String> findAllUserName() {
+		String sql = "SELECT tentaikhoan from taikhoan";
+		List<String> ds = queryString(sql, "tentaikhoan");
+		return ds;
 	}
 }

@@ -23,9 +23,10 @@
 						<li class="navbar-item"><a href="faq.html" class="nav-link">FAQ</a>
 						</li>
 						<c:if test="${empty TAIKHOAN}">
-							<li class="navbar-item"><a
-								href="<c:url value = '/dang-nhap?action=login'/>"
-								class="nav-link">Login</a></li>
+							<a	href="<c:url value = '/dang-nhap?action=login'/>"
+								class="nav-link">&nbsp Đăng nhập &nbsp</a>/
+							<a	href="<c:url value = '/dang-ky?action=regis'/>"
+								class="nav-link">&nbsp Đăng ký &nbsp</a>
 						</c:if>
 
 					</ul>
