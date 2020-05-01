@@ -1,4 +1,4 @@
-package sneakyg.giang.controller.web.api;
+package sneakyg.giang.controller.admin.api;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ import sneakyg.giang.service.interfaces.IGioHangService;
 import sneakyg.giang.utils.HttpUtil;
 import sneakyg.giang.utils.SessionUtil;
 
-@WebServlet(urlPatterns = { "/api-giohang" })
+@WebServlet(urlPatterns = { "/api-admin-giohang" })
 public class GioHangAPI extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

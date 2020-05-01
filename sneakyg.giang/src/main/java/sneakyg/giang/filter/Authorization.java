@@ -58,7 +58,7 @@ public class Authorization implements Filter{
 	}
 	
 	public boolean checkRole(String url) {
-		String[] nhanVienRequired = {"/admin-hoadon","/admin-chitiethoadon","/admin-sach","/admin-khachhang"};
+		String[] nhanVienRequired = {"/admin-hoadon","/admin-chitiethoadon","/admin-sach","/admin-khachhang", "/admin-taikhoan", "/admin-nhanvien"};
 		
 		for(String checkURL : nhanVienRequired) {
 			if(url.contains(checkURL)) {

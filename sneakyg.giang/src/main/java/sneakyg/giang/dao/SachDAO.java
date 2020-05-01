@@ -76,12 +76,15 @@ public class SachDAO extends CommonDAO<Sach> implements ISachDAO{
 	}
 
 	@Override
-	public List<Sach> findAllByCategoryId(Integer maDanhMuc) {
+	public List<Sach> findAllByCategoryId(Integer maDanhMuc, String textSearch) {
 		StringBuilder sql = new StringBuilder("SELECT s.id,s.madanhmuc,s.matacgia,s.manxb,s.tensach,s.motangan,s.soluong,s.hinhanh,s.dongia,dm.tendanhmuc,tg.tentg,nxb.tennxb");
 		sql.append(" FROM sach AS s JOIN danhmucsach AS dm ON s.madanhmuc = dm.id");
 		sql.append(" JOIN tacgia AS tg ON s.matacgia = tg.id");
 		sql.append(" JOIN nhaxuatban AS nxb ON s.manxb = nxb.id");
 		sql.append(" WHERE s.madanhmuc = ?");
+		if(textSearch != null) {
+			sql.append(" AND s.tensach LIKE '%"+textSearch+"%'");
+		}
 		
 		List<Sach> ds = query(sql.toString(), new SachMapper(),maDanhMuc);
 		return ds;

@@ -78,4 +78,21 @@ public class TaiKhoanDAO extends CommonDAO<TaiKhoan> implements ITaiKhoanDAO {
 		List<String> ds = queryString(sql, "tentaikhoan");
 		return ds;
 	}
+
+	@Override
+	public List<TaiKhoan> findAllCustomer(IPageble pageble, String textSearch) {
+		StringBuilder sql = new StringBuilder("SELECT * FROM taikhoan as t INNER JOIN chucvu AS c ON c.id = t.machucvu");
+		sql.append(" WHERE t.machucvu = 1");
+		if (textSearch != null) {
+			sql.append(" AND t.tentaikhoan like '%" + textSearch + "%' ");
+		}
+		if (pageble.getSorter() != null) {
+			sql.append(" ORDER BY t." + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy());
+		}
+		if (pageble.getLimit() != 0) {
+			sql.append(" LIMIT " + pageble.getOffSet() + "," + pageble.getLimit());
+		}
+		List<TaiKhoan> ds = query(sql.toString(), new TaiKhoanMapper());
+		return ds;
+	}
 }

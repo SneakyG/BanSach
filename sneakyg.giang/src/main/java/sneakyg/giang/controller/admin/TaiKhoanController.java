@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sneakyg.giang.common.SystemConstant;
+import sneakyg.giang.model.KhachHang;
 import sneakyg.giang.model.TaiKhoan;
 import sneakyg.giang.paging.IPageble;
 import sneakyg.giang.paging.PageRequest;
 import sneakyg.giang.service.interfaces.ITaiKhoanService;
 import sneakyg.giang.sort.Sorter;
 import sneakyg.giang.utils.FormUtil;
+import sneakyg.giang.utils.SessionUtil;
 
 @WebServlet(urlPatterns = { "/admin-taikhoan" })
 public class TaiKhoanController extends HttpServlet {
@@ -33,13 +35,15 @@ public class TaiKhoanController extends HttpServlet {
 		if (model.getType().equals(SystemConstant.LIST)) {
 			IPageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
 					new Sorter(model.getSortName(), model.getSortBy()));
-//			if(model.getTextSearch() != null) {
-//				model.setListResult(chucVuService.search(model.getTextSearch()));
-//			}
+			KhachHang user = (KhachHang) SessionUtil.getInstance().getValue(req, "TAIKHOAN"); 
 			if (model.getId() != null) {
 				model.setListResult(taiKhoanService.findOneByID(model.getId()));
-			} else {
-				model.setListResult(taiKhoanService.findAll(pageble, model.getTextSearch()));
+			}else {
+				if(user.getTk().getMaChucVu() == 2) {
+					model.setListResult(taiKhoanService.findAllCustomer(pageble, model.getTextSearch()));
+				}else {
+					model.setListResult(taiKhoanService.findAll(pageble, model.getTextSearch()));
+				}
 				model.setTotalItem(taiKhoanService.getTotalItem(model.getTextSearch()));
 				model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
 			}

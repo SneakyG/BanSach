@@ -121,4 +121,9 @@ public class TaiKhoanService implements ITaiKhoanService {
 		}
 		return false;
 	}
+
+	@Override
+	public List<TaiKhoan> findAllCustomer(IPageble pageble, String textSearch) {
+		return taiKhoanDAO.findAllCustomer(pageble, textSearch);
+	}
 }

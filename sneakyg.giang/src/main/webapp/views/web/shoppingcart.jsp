@@ -3,7 +3,7 @@
 <%@include file="/common/taglibs.jsp" %>
 <c:url var="ShopURL" value="/shop"/>
 <c:url var="CartURL" value="/cart"/>
-<c:url var="APIurl" value="/api-giohang" />
+<c:url var="APIurl" value="/api-admin-giohang" />
 <c:url var="APIThanhToanurl" value="/api-admin-cthd" />
 <!DOCTYPE html>
 <html>
@@ -38,7 +38,7 @@
 			                            <th scope="col" width="25%">Sản phẩm</th>
 			                            <th scope="col" width="15%" >Tên tác giả</th>
 			                            <th scope="col" class="text-center" width="10%">Số lượng</th>
-			                            <th scope="col" class="text-right" width="15%">Tổng giá(VND)</th>
+			                            <th scope="col" class="text-right" width="15%">Tổng giá(VNĐ)</th>
 			                            <th class="text-right" width="25%">Thao tác</th>
 			                        </tr>
 			                    </thead>
@@ -53,7 +53,9 @@
 				                            <td>
 												<input class="form-control" type="number" value="${item.soLuongMua}" min="1" max="${item.soLuong}"/>
 				                            </td>
-				                            <td class="text-right eachproduct">${item.tongTien}</td>
+				                            <td class="text-right eachproduct">
+				                            	<fmt:formatNumber pattern = "###.###" value = "${item.tongTien}" type="number"/>
+				                            </td>
 				                            <td class="text-right">
 												<button class="btn btn-sm btnBuyOne" data-toggle="tooltip" title="Mua sản phẩm này" value="${item.id}">
 													<i class="fa fa-usd"></i> 
@@ -82,7 +84,7 @@
 			                            <td></td>
 			                            <td></td>
 			                            <td>Tiền Ship :</td>
-			                            <td class="text-right">20000 VND</td>
+			                            <td class="text-right">20.000 đ</td>
 			                        </tr>
 			                        <tr>
 			                            <td></td>
@@ -90,7 +92,11 @@
 			                            <td></td>
 			                            <td></td>
 			                            <td><strong>Tổng cộng :</strong></td>
-			                            <td class="text-right" id="total"><strong></strong></td>
+			                            <td class="text-right" id="total">
+			                            	<strong>
+			                            		<fmt:formatNumber value = "" type = "currency"/>
+			                            	</strong>
+			                            </td>
 			                        </tr>
 			                    </tbody>
 			                </table>
@@ -115,15 +121,19 @@
 </section>
     <script src="<c:url value = '/template/admin/plugins/jquery/jquery.min.js'/>"></script>
     <script>
-			var table = document.getElementById("cartTable").getElementsByTagName("td");
-			var sum = 0;
-			for (var i = 0; i < table.length; i++){
-				if(table[i].className == "text-right eachproduct"){
-					sum += isNaN(table[i].innerHTML) ? 0 : parseInt(table[i].innerHTML);
-				}
+	    function formatNumber (num) {
+		    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+		}
+	    
+		var table = document.getElementById("cartTable").getElementsByTagName("td");
+		var sum = 0;
+		for (var i = 0; i < table.length; i++){
+			if(table[i].className == "text-right eachproduct"){
+				sum += isNaN(table[i].innerHTML) ? 0 : parseInt(table[i].innerHTML);
 			}
-			document.getElementById("subtotal").innerHTML = sum + " VND";
-			document.getElementById("total").innerHTML = sum + 20000 + " VND";
+		}
+		document.getElementById("subtotal").innerHTML = formatNumber(sum) + " đ";
+		document.getElementById("total").innerHTML = formatNumber(sum+20000) + " đ";
 		
 		$('#btnMuaSam').click(function(e) {
 			e.preventDefault();

@@ -9,7 +9,8 @@
 				</div>
 				<c:if test="${not empty TAIKHOAN}">
 					<div class="col-md-6" align="right">
-						<label>Welcome, ${TAIKHOAN.ten}</label>
+						<label><a href="<c:url value = 'profile'/>" style="color:black;"
+								class="nav-link">${TAIKHOAN.ten}</a></label>/
 						<a href="<c:url value = '/thoat?action=logout'/>">Thoát</a>
 					</div>
 				</c:if>

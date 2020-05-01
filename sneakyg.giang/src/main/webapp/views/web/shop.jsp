@@ -18,15 +18,22 @@
     <section class="static about-sec">
     <form action="${LISTurl}" name="formSubmit" id="formSubmit"  method="get">
     	<div class="container">
-        	<div>
-				<label>Loại sách:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-				<select id="maDanhMuc" name="maDanhMuc">
-					<option value="0" class="form-control" >Tất cả</option>
-					<c:forEach var="item" items="${model.dsTenDanhMuc}">
-						<option value="${item.id}" class="form-control" id="itemSelect">${item.tenDanhMuc}</option>
-					</c:forEach>
-				</select>
-			</div>
+	    	<div class="row">
+	    		<div>
+					<label>Loại sách:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+					<select id="maDanhMuc" name="maDanhMuc">
+						<option value="0" class="form-control" >Tất cả</option>
+						<c:forEach var="item" items="${model.dsTenDanhMuc}">
+							<option value="${item.id}" class="form-control" id="itemSelect">${item.tenDanhMuc}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div style="margin-left:auto;margin-bottom:15px;margin-right:0">
+					<input type="text" name="textSearch" id="textSearch" value="${model.textSearch}"
+						placeholder="Search..." />
+				</div>
+	    	</div>
+        	
             <div class="recent-book-sec">
                 <div class="row">
                 	<c:forEach var="item" items="${model.listResult}">
@@ -37,7 +44,10 @@
 		                            <h3 class="short-text">
 		                            	<a href="<c:url value ='/shop?id=${item.id}'/>">${item.tenSach}</a>
 		                            </h3>
-		                            <h6><span class="price">${item.donGia}</span> / <a href="<c:url value ='/shop?id=${item.id}'/>">Mua ngay</a></h6>
+		                            <h6><span class="price">
+		                            		<fmt:setLocale value="vi_VN"/>
+                                			<fmt:formatNumber value = "${item.donGia}" type = "currency"/>
+		                            	</span> / <a href="<c:url value ='/shop?id=${item.id}'/>">Mua ngay</a></h6>
 	                        	
 	                        </div>
 	                    </div>

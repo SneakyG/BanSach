@@ -8,7 +8,7 @@ import sneakyg.giang.paging.IPageble;
 public interface ISachDAO {
 	List<Sach> findAll(IPageble pageble, String textSearch);
 	
-	List<Sach> findAllByCategoryId(Integer maDanhMuc);
+	List<Sach> findAllByCategoryId(Integer maDanhMuc, String textSearch);
 
 	Sach findOne(Integer id);
 

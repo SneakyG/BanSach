@@ -9,6 +9,8 @@ public interface ITaiKhoanDAO {
 
 	List<TaiKhoan> findAll(IPageble pageble, String textSearch);
 	
+	List<TaiKhoan> findAllCustomer(IPageble pageble, String textSearch);
+	
 	List<String> findAllUserName();
 	
 	TaiKhoan findByUserNameAndPasswordAndStatus(String taiKhoan, String matKhau, int trangThai);

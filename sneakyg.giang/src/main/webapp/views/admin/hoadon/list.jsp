@@ -53,7 +53,7 @@
 														<tr>
 															<th>Mã hóa đơn</th>
 															<th>Mã nhân viên</th>
-															<th>Mã khách hàng</th>
+															<th>Khách hàng</th>
 															<th>Thời gian đặt</th>
 															<th>Thời gian mua</th>
 															<th>Tổng tiền</th>
@@ -70,7 +70,7 @@
 																		${item.maNhanVien}
 																	</c:if>
 																</td>
-																<td>${item.maKhachHang}</td>
+																<td>${item.tenKhachHang}</td>
 																<td>${item.thoiGianDat}</td>
 																<td>${item.thoiGianMua}</td>
 																<td>${item.tongTien}</td>

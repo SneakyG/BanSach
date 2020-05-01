@@ -105,29 +105,34 @@
 																					aria-hidden="true"></i> </a>
 																	</c:if>
 																	
-																		
-																	<c:if test="${item.trangThai == 0}">
-																		<button class="btn btn-sm btn-primary btn-edit"  id="unlock"
-																			data-toggle="tooltip" title="Mở khóa" value="${item.id}"
-																			><i class="fa fa-unlock"
-																				aria-hidden="true"></i>
-																		</button>
-																	</c:if>
-																	<c:if test="${item.trangThai == 1}">
-																		<c:url var="editUrl" value="/admin-taikhoan">
-																				<c:param name="type" value="edit" />
-																				<c:param name="id" value="${item.id}" />
-																			</c:url> <a class="btn btn-sm btn-primary btn-edit"
-																				data-toggle="tooltip" title="Cập nhật"
-																				href="${editUrl}"><i class="fa fa-edit"
-																					aria-hidden="true"></i> </a>
-																					
-																		<button class="btn btn-sm btn-primary btn-edit" id="lock"
-																			data-toggle="tooltip" title="Khóa" value="${item.id}"
-																			><i class="fa fa-lock"
-																				aria-hidden="true"></i>
-																		</button>
-																	</c:if>
+																	
+																		<c:if test="${item.trangThai == 0}">
+																			<button class="btn btn-sm btn-primary btn-edit"  id="unlock"
+																				data-toggle="tooltip" title="Mở khóa" value="${item.id}"
+																				><i class="fa fa-unlock"
+																					aria-hidden="true"></i>
+																			</button>
+																		</c:if>
+																	
+																		<c:if test="${item.trangThai == 1}">
+																			<c:url var="editUrl" value="/admin-taikhoan">
+																					<c:param name="type" value="edit" />
+																					<c:param name="id" value="${item.id}" />
+																				</c:url> <a class="btn btn-sm btn-primary btn-edit"
+																					data-toggle="tooltip" title="Cập nhật"
+																					href="${editUrl}"><i class="fa fa-edit"
+																						aria-hidden="true"></i> </a>
+																			<c:if test="${item.maChucVu != 1}">	
+																				<button class="btn btn-sm btn-primary btn-edit" id="lock"
+																					data-toggle="tooltip" title="Khóa" value="${item.id}"
+																					><i class="fa fa-lock"
+																						aria-hidden="true"></i>
+																				</button>
+																			</c:if>
+																		</c:if>
+																			
+																	
+																	
 																</td>
 															</tr>
 														</c:forEach>

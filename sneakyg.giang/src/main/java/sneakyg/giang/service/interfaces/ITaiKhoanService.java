@@ -13,9 +13,11 @@ public interface ITaiKhoanService {
 	
 	List<TaiKhoan> findAll(IPageble pageble, String textSearch);
 	
-	TaiKhoan findOne(Integer id);
+	List<TaiKhoan> findAllCustomer(IPageble pageble, String textSearch);
 	
 	List<TaiKhoan> findOneByID(Integer id);
+	
+	TaiKhoan findOne(Integer id);
 
 	TaiKhoan save(TaiKhoan tk);
 

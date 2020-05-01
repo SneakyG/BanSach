@@ -16,9 +16,7 @@
 	</div>
 	<section class="static about-sec">
 		<div class="container">
-
 			<div class="form" align="center">
-
 				<form action="<c:url value = '/dang-nhap'/>" id='formLogin'
 					method='post'>
 					<div class="col">

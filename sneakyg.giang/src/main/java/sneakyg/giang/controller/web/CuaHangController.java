@@ -42,9 +42,9 @@ public class CuaHangController extends HttpServlet {
 			IPageble pageble = new PageRequest(0, model.getMaxPageItem(), null);
 			if(model.getMaDanhMuc() != null) {
 				if(model.getMaDanhMuc() == 0) {
-					model.setListResult(sachService.findAll(pageble, ""));
+					model.setListResult(sachService.findAll(pageble, model.getTextSearch()));
 				}else {
-					model.setListResult(sachService.findAllByCategoryId(model.getMaDanhMuc()));
+					model.setListResult(sachService.findAllByCategoryId(model.getMaDanhMuc(), model.getTextSearch()));
 				}
 			}else {
 				model.setListResult(sachService.findAll(pageble, ""));

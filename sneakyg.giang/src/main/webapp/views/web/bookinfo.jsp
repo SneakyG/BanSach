@@ -44,7 +44,11 @@
                         <ul>
                             <li>
                                 <span class="name">Đơn giá</span><span class="clm">:</span>
-                                <span class="price final">${model.donGia} VNĐ</span>
+                               	<span class="price final">
+                                	<fmt:setLocale value="vi_VN"/>
+                                	<fmt:formatNumber value = "${model.donGia}" type = "currency"/>
+                                </span>
+                                	
                             </li>
                         </ul>
                         <ul>
