@@ -1,6 +1,7 @@
 package sneakyg.giang.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +10,6 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -80,7 +80,7 @@ public class CommonDAO<T> implements ICommonDAO<T> {
 				} else if (parameter instanceof Timestamp) {
 					statement.setTimestamp(i, (Timestamp) parameter);
 				} else if (parameter instanceof Date) {
-					statement.setDate(i, (java.sql.Date) parameter);
+					statement.setDate(i,  (Date) parameter);
 				} else if (parameter instanceof Double) {
 					statement.setDouble(i,(double) parameter);
 				} else if (parameter == null) {

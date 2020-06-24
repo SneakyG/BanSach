@@ -33,7 +33,7 @@
 						</div>
 						<div class="col-md-4">
 							<label>Ngày sinh</label>
-							<input id="ngaySinh" name="ngaySinh" type="text" value="${model.ngaySinh}" required>
+							<input id="ngaySinh" name="ngaySinh" type="date" value="${model.ngaySinh}" required>
 						</div>
 						<div class="col-md-4">
 							<label>Địa chỉ</label>

@@ -16,6 +16,7 @@ public class KhachHangMapper implements IRowMapper<KhachHang> {
 			kh.setTen(resultSet.getString("tenkh"));
 			kh.setEmail(resultSet.getString("email"));
 			kh.setSdt(resultSet.getString("sdt"));
+			kh.setNgaySinh(resultSet.getDate("ngaysinh"));
 			kh.setDiaChi(resultSet.getString("diachi"));
 			kh.setCmnd(resultSet.getString("cmnd"));
 			try {
