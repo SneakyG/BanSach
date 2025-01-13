@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglibs.jsp" %>
-<c:url var="APIurl" value="/api-giohang" />
+<c:url var="APIurl" value="/api-admin-giohang" />
 <c:url var="GETurl" value="/shop" />
 <!DOCTYPE html>
 <html>
